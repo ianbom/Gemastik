@@ -1,0 +1,1 @@
+const t=a=>{const e=a.trim().toLowerCase();return{paid:"Pembayaran Berhasil",expired:"Pembayaran Kadaluwarsa",cancelled:"Pembayaran Dibatalkan",pending:"Menunggu Pembayaran   "}[e]??"Status Tidak Diketahui"};export{t as g};
