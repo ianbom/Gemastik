@@ -5,9 +5,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { router } from '@inertiajs/react';
 import {
-    ArrowLeft,
     File,
     Image,
+    Menu,
     Paperclip,
     Reply,
     Search,
@@ -24,11 +24,11 @@ interface Mission {
     thumbnail: string | null;
 }
 
-interface ChatUser {
-    id: number;
-    name: string;
-    profile_url: string | null;
-}
+// interface ChatUser {
+//     id: number;
+//     name: string;
+//     profile_url: string | null;
+// }
 
 interface ChatMessage {
     id: number;
@@ -42,7 +42,7 @@ interface ChatMessage {
         profile_url: string | null;
     };
     reply_id: number | null;
-    reply_to?: ChatMessage; // For nested reply data
+    reply_to?: ChatMessage;
 }
 
 interface ChatGroup {
@@ -69,10 +69,11 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
     const [searchTerm, setSearchTerm] = useState('');
     const [newMessage, setNewMessage] = useState('');
     const [isSending, setIsSending] = useState(false);
-    const [showSidebar, setShowSidebar] = useState(true);
+    const [showSidebar, setShowSidebar] = useState(false);
     const [replyingTo, setReplyingTo] = useState<ChatMessage | null>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -95,6 +96,19 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
     }
 
     console.log('Grup Aktif yang Ditemukan:', activeGroup);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+            if (!mobile) {
+                setShowSidebar(true);
+            }
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     // Filter chat groups based on search term
     const filteredChatGroups = allGroups.filter((group) =>
@@ -230,8 +244,19 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
             );
         }
 
-        // Sembunyikan sidebar di mobile setelah pemilihan
-        if (window.innerWidth < 768) {
+        // Hide sidebar on mobile after selection
+        if (isMobile) {
+            setShowSidebar(false);
+        }
+    };
+
+    const toggleSidebar = () => {
+        setShowSidebar(!showSidebar);
+    };
+
+    // Close sidebar when clicking outside on mobile
+    const handleOverlayClick = () => {
+        if (isMobile && showSidebar) {
             setShowSidebar(false);
         }
     };
@@ -313,7 +338,7 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
     };
 
     return (
-        <div className="flex h-screen bg-background">
+        <div className="relative flex h-screen bg-background">
             {/* Hidden file input */}
             <input
                 ref={fileInputRef}
@@ -323,180 +348,221 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                 className="hidden"
             />
 
+            {/* Mobile Overlay */}
+            {isMobile && showSidebar && (
+                <div
+                    className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+                    onClick={handleOverlayClick}
+                />
+            )}
+
             {/* Sidebar - Chat Groups List */}
             <div
-                className={`${showSidebar ? 'w-80' : 'w-0'} overflow-hidden border-r bg-card transition-all duration-300 md:block md:w-80`}
+                className={` ${showSidebar ? 'translate-x-0' : '-translate-x-full'} ${isMobile ? 'fixed left-0 top-0 z-50 h-full' : 'relative'} w-80 max-w-[85vw] overflow-hidden border-r bg-card transition-transform duration-300 ease-in-out md:static md:max-w-none md:translate-x-0`}
             >
-                <div className="p-4 border-b">
-                    <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-lg font-semibold">Grup Chat</h2>
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            className="md:hidden"
-                            onClick={() => setShowSidebar(false)}
-                        >
-                            <ArrowLeft className="w-4 h-4" />
-                        </Button>
+                <div className="flex flex-col h-full">
+                    {/* Sidebar Header */}
+                    <div className="flex-shrink-0 p-4 border-b">
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-lg font-semibold">Grup Chat</h2>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                className="md:hidden"
+                                onClick={() => setShowSidebar(false)}
+                            >
+                                <X className="w-4 h-4" />
+                            </Button>
+                        </div>
+
+                        {/* Search Bar */}
+                        <div className="relative">
+                            <Search className="absolute w-4 h-4 transform -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
+                            <Input
+                                type="text"
+                                placeholder="Cari grup chat..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="pl-10"
+                            />
+                        </div>
                     </div>
 
-                    {/* Search Bar */}
-                    <div className="relative">
-                        <Search className="absolute w-4 h-4 transform -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
-                        <Input
-                            type="text"
-                            placeholder="Cari grup chat..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-10"
-                        />
-                    </div>
-                </div>
-
-                {/* Chat Groups List */}
-                <div className="h-full pb-20 overflow-y-auto">
-                    {filteredChatGroups.length === 0 ? (
-                        <div className="p-4">
-                            <div className="py-8 text-center">
-                                <Users className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-                                <p className="text-sm text-muted-foreground">
-                                    {searchTerm
-                                        ? 'Tidak ada grup yang ditemukan'
-                                        : 'Belum ada grup chat'}
-                                </p>
+                    {/* Chat Groups List */}
+                    <div className="flex-1 overflow-y-auto">
+                        {filteredChatGroups.length === 0 ? (
+                            <div className="p-4">
+                                <div className="py-8 text-center">
+                                    <Users className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                                    <p className="text-sm text-muted-foreground">
+                                        {searchTerm
+                                            ? 'Tidak ada grup yang ditemukan'
+                                            : 'Belum ada grup chat'}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    ) : (
-                        <div className="p-2 space-y-1">
-                            {filteredChatGroups.map((group) => {
-                                const lastMessage = getLastMessage(group);
-                                const isActive = group.id === activeGroupId;
+                        ) : (
+                            <div className="p-2 space-y-1">
+                                {filteredChatGroups.map((group) => {
+                                    const lastMessage = getLastMessage(group);
+                                    const isActive = group.id === activeGroupId;
 
-                                return (
-                                    <Card
-                                        key={group.id}
-                                        className={`cursor-pointer p-3 transition-all hover:bg-accent ${
-                                            isActive
-                                                ? 'border-primary bg-accent'
-                                                : ''
-                                        }`}
-                                        onClick={() => handleGroupClick(group)}
-                                    >
-                                        <div className="flex items-start space-x-3">
-                                            <Avatar className="flex-shrink-0 w-10 h-10">
-                                                <AvatarImage
-                                                    src={
-                                                        group.mission
-                                                            .thumbnail || ''
-                                                    }
-                                                    alt={group.mission.title}
-                                                />
-                                                <AvatarFallback className="text-xs bg-primary text-primary-foreground">
-                                                    {getInitials(
-                                                        group.mission.title,
-                                                    )}
-                                                </AvatarFallback>
-                                            </Avatar>
-
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-start justify-between mb-1">
-                                                    <h3 className="pr-2 text-sm font-medium truncate text-foreground">
-                                                        {group.mission.title}
-                                                    </h3>
-                                                    {group.unread_messages_count &&
-                                                        group.unread_messages_count >
-                                                            0 && (
-                                                            <span className="inline-flex items-center justify-center flex-shrink-0 px-2 py-1 text-xs font-bold leading-none text-white rounded-full bg-primary">
-                                                                {
-                                                                    group.unread_messages_count
-                                                                }
-                                                            </span>
+                                    return (
+                                        <Card
+                                            key={group.id}
+                                            className={`cursor-pointer p-3 transition-all duration-200 hover:bg-accent active:scale-[0.98] ${
+                                                isActive
+                                                    ? 'border-primary bg-accent ring-1 ring-primary/20'
+                                                    : ''
+                                            }`}
+                                            onClick={() =>
+                                                handleGroupClick(group)
+                                            }
+                                        >
+                                            <div className="flex items-start space-x-3">
+                                                <Avatar className="flex-shrink-0 w-10 h-10 sm:h-12 sm:w-12">
+                                                    <AvatarImage
+                                                        src={
+                                                            group.mission
+                                                                .thumbnail || ''
+                                                        }
+                                                        alt={
+                                                            group.mission.title
+                                                        }
+                                                    />
+                                                    <AvatarFallback className="text-xs bg-sky-600 text-primary-foreground">
+                                                        {getInitials(
+                                                            group.mission.title,
                                                         )}
-                                                </div>
+                                                    </AvatarFallback>
+                                                </Avatar>
 
-                                                {lastMessage && (
-                                                    <div className="space-y-1">
-                                                        <p className="text-xs truncate text-muted-foreground">
-                                                            <span className="font-medium">
-                                                                Last Message :
-                                                            </span>{' '}
-                                                            {lastMessage.content ||
-                                                                'Media'}
-                                                        </p>
-                                                        <span className="text-xs text-muted-foreground">
-                                                            {formatTimestamp(
-                                                                lastMessage.created_at,
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-start justify-between mb-1">
+                                                        <h3 className="pr-2 text-sm font-medium truncate text-foreground">
+                                                            {
+                                                                group.mission
+                                                                    .title
+                                                            }
+                                                        </h3>
+                                                        {group.unread_messages_count &&
+                                                            group.unread_messages_count >
+                                                                0 && (
+                                                                <span className="inline-flex min-w-[1.25rem] flex-shrink-0 items-center justify-center rounded-full bg-primary px-2 py-1 text-xs font-bold leading-none text-white">
+                                                                    {group.unread_messages_count >
+                                                                    99
+                                                                        ? '99+'
+                                                                        : group.unread_messages_count}
+                                                                </span>
                                                             )}
-                                                        </span>
                                                     </div>
-                                                )}
 
-                                                {!lastMessage && (
-                                                    <p className="text-xs text-muted-foreground">
-                                                        Belum ada pesan
-                                                    </p>
-                                                )}
+                                                    {lastMessage && (
+                                                        <div className="space-y-1">
+                                                            <p className="text-xs truncate text-muted-foreground">
+                                                                <span className="font-medium">
+                                                                    Last
+                                                                    Message:
+                                                                </span>{' '}
+                                                                {lastMessage.content ||
+                                                                    'Media'}
+                                                            </p>
+                                                            <span className="text-xs text-muted-foreground">
+                                                                {formatTimestamp(
+                                                                    lastMessage.created_at,
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                    )}
+
+                                                    {!lastMessage && (
+                                                        <p className="text-xs text-muted-foreground">
+                                                            Belum ada pesan
+                                                        </p>
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Card>
-                                );
-                            })}
-                        </div>
-                    )}
+                                        </Card>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
             {/* Main Chat Area */}
-            <div className="flex flex-col flex-1">
+            <div className="flex flex-col flex-1 min-w-0">
                 {activeGroup ? (
                     <>
                         {/* Chat Header */}
-                        <div className="flex items-center justify-between p-4 border-b bg-card">
-                            <div className="flex items-center space-x-3">
+                        <div className="flex items-center justify-between p-3 border-b bg-card sm:p-4">
+                            <div className="flex items-center flex-1 min-w-0 space-x-3">
                                 <Button
                                     variant="ghost"
                                     size="sm"
-                                    className="md:hidden"
-                                    onClick={() => setShowSidebar(true)}
+                                    className="p-2 md:hidden"
+                                    onClick={toggleSidebar}
                                 >
-                                    <ArrowLeft className="w-4 h-4" />
+                                    <Menu className="w-4 h-4" />
                                 </Button>
-                                <Avatar className="w-10 h-10">
+                                <Avatar className="w-8 h-8 sm:h-10 sm:w-10">
                                     <AvatarImage
                                         src={
                                             activeGroup.mission.thumbnail || ''
                                         }
                                         alt={activeGroup.mission.title}
                                     />
-                                    <AvatarFallback className="bg-primary text-primary-foreground">
+                                    <AvatarFallback className="text-xs bg-sky-600 text-primary-foreground">
                                         {getInitials(activeGroup.mission.title)}
                                     </AvatarFallback>
                                 </Avatar>
-                                <div>
-                                    <h3 className="font-semibold text-foreground">
+                                <div className="flex-1 min-w-0">
+                                    <h3 className="text-sm font-semibold truncate text-foreground sm:text-base">
                                         {activeGroup.mission.title}
                                     </h3>
-                                    <p className="text-sm text-muted-foreground">
+                                    <p className="text-xs truncate text-muted-foreground sm:text-sm">
                                         Grup Chat Misi
                                     </p>
                                 </div>
                             </div>
+                            {/* Desktop sidebar toggle */}
+                            {/* <div className="flex items-center space-x-1">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="hidden p-2 md:flex"
+                                    onClick={toggleSidebar}
+                                >
+                                    {showSidebar ? (
+                                        <ArrowLeft className="w-4 h-4" />
+                                    ) : (
+                                        <Menu className="w-4 h-4" />
+                                    )}
+                                </Button>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="p-2"
+                                >
+                                    <MoreVertical className="w-4 h-4" />
+                                </Button>
+                            </div> */}
                         </div>
 
                         {/* Messages Area */}
-                        <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+                        <div className="flex-1 p-2 space-y-2 overflow-y-auto sm:space-y-4 sm:p-4">
                             {Object.entries(groupedMessages).map(
                                 ([date, dateMessages]) => (
                                     <div key={date}>
                                         {/* Date Separator */}
-                                        <div className="flex items-center justify-center my-4">
-                                            <div className="px-3 py-1 rounded-full bg-accent">
+                                        <div className="flex items-center justify-center my-3 sm:my-4">
+                                            <div className="px-2 py-1 rounded-full bg-accent sm:px-3">
                                                 <span className="text-xs font-medium text-muted-foreground">
                                                     {date}
                                                 </span>
                                             </div>
                                         </div>
-
                                         {/* Messages for this date */}
                                         {dateMessages.map((message, index) => {
                                             const isOwn = isOwnMessage(message);
@@ -526,18 +592,18 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                     className={`group flex ${isOwn ? 'justify-end' : 'justify-start'} ${
                                                         isSameUser &&
                                                         isRecentMessage
-                                                            ? 'mt-1'
-                                                            : 'mt-4'
+                                                            ? 'mt-0.5 sm:mt-1'
+                                                            : 'mt-2 sm:mt-4'
                                                     }`}
                                                 >
                                                     <div
-                                                        className={`flex max-w-[70%] items-start ${isOwn ? 'flex-row-reverse' : 'flex-row'}`}
+                                                        className={`flex max-w-[85%] items-start sm:max-w-[70%] ${isOwn ? 'flex-row-reverse' : 'flex-row'}`}
                                                     >
                                                         {/* Avatar - only show if not same user or not recent */}
                                                         {(!isSameUser ||
                                                             !isRecentMessage) && (
                                                             <Avatar
-                                                                className={`h-8 w-8 flex-shrink-0 ${isOwn ? 'ml-3' : 'mr-3'}`}
+                                                                className={`h-6 w-6 flex-shrink-0 sm:h-8 sm:w-8 ${isOwn ? 'ml-2 sm:ml-3' : 'mr-2 sm:mr-3'}`}
                                                             >
                                                                 <AvatarImage
                                                                     src={
@@ -566,7 +632,7 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                         {isSameUser &&
                                                             isRecentMessage && (
                                                                 <div
-                                                                    className={`w-8 flex-shrink-0 ${isOwn ? 'ml-3' : 'mr-3'}`}
+                                                                    className={`w-6 flex-shrink-0 sm:w-8 ${isOwn ? 'ml-2 sm:ml-3' : 'mr-2 sm:mr-3'}`}
                                                                 />
                                                             )}
 
@@ -577,10 +643,10 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                                 <div
                                                                     className={`mb-1 flex items-center justify-between ${isOwn ? 'flex-row-reverse' : 'flex-row'}`}
                                                                 >
-                                                                    <div
-                                                                        className={`flex items-baseline space-x-2 ${isOwn ? 'flex-row-reverse space-x-reverse' : ''}`}
+                                                                    {/* <div
+                                                                        className={`flex items-baseline space-x-1 sm:space-x-2 ${isOwn ? 'flex-row-reverse space-x-reverse' : ''}`}
                                                                     >
-                                                                        <span className="text-sm font-medium text-foreground">
+                                                                        <span className="text-xs font-medium text-foreground sm:text-sm">
                                                                             {isOwn
                                                                                 ? 'Anda'
                                                                                 : message
@@ -588,6 +654,24 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                                                       .name}
                                                                         </span>
                                                                         <span className="text-xs text-muted-foreground">
+                                                                            {formatTimestamp(
+                                                                                message.created_at,
+                                                                            )}{' '}
+                                                                        </span>
+                                                                    </div> */}
+                                                                    <div
+                                                                        className={`flex items-baseline ${isOwn ? 'flex-row-reverse' : ''}`}
+                                                                    >
+                                                                        <span className="text-xs font-medium text-foreground sm:text-sm">
+                                                                            {isOwn
+                                                                                ? 'Anda'
+                                                                                : message
+                                                                                      .user
+                                                                                      .name}
+                                                                        </span>
+                                                                        <span
+                                                                            className={`text-xs text-muted-foreground ${isOwn ? 'mr-2' : 'ml-2'}`}
+                                                                        >
                                                                             {formatTimestamp(
                                                                                 message.created_at,
                                                                             )}
@@ -598,23 +682,23 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                                     <Button
                                                                         variant="ghost"
                                                                         size="sm"
-                                                                        className="w-6 h-6 p-0 transition-opacity opacity-0 group-hover:opacity-100"
+                                                                        className="w-5 h-5 p-0 transition-opacity opacity-0 group-hover:opacity-100 sm:h-6 sm:w-6"
                                                                         onClick={() =>
                                                                             handleReply(
                                                                                 message,
                                                                             )
                                                                         }
                                                                     >
-                                                                        <Reply className="w-3 h-3" />
+                                                                        <Reply className="w-2 h-2 sm:h-3 sm:w-3" />
                                                                     </Button>
                                                                 </div>
                                                             )}
 
                                                             {/* Message bubble */}
                                                             <div
-                                                                className={`relative rounded-lg p-3 ${
+                                                                className={`relative rounded-lg p-2 sm:p-3 ${
                                                                     isOwn
-                                                                        ? 'ml-auto bg-primary text-primary-foreground'
+                                                                        ? 'ml-auto bg-sky-500 text-primary-foreground'
                                                                         : 'border bg-card'
                                                                 }`}
                                                             >
@@ -660,17 +744,17 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                                 )}
 
                                                                 {message.content && (
-                                                                    <p className="text-sm break-words whitespace-pre-wrap">
+                                                                    <p className="text-xs break-words whitespace-pre-wrap sm:text-sm">
                                                                         {
                                                                             message.content
                                                                         }
                                                                     </p>
                                                                 )}
 
-                                                                {/* Updated Media Display - Similar to Comment System */}
+                                                                {/* Media Display */}
                                                                 {message.media_url && (
                                                                     <div
-                                                                        className={`${message.content ? 'mt-3' : ''}`}
+                                                                        className={`${message.content ? 'mt-2 sm:mt-3' : ''}`}
                                                                     >
                                                                         {message.media_type ===
                                                                             'video' ||
@@ -681,7 +765,7 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                                                 src={`/storage/${message.media_url}`}
                                                                                 controls
                                                                                 preload="metadata"
-                                                                                className="w-full max-w-md rounded-lg aspect-video"
+                                                                                className="w-full max-w-xs rounded-lg aspect-video sm:max-w-md"
                                                                             />
                                                                         ) : message.media_type?.startsWith(
                                                                               'image',
@@ -689,7 +773,7 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                                             <img
                                                                                 src={`/storage/${message.media_url}`}
                                                                                 alt={`Media untuk pesan`}
-                                                                                className="object-cover w-auto transition-opacity rounded-lg shadow-sm cursor-pointer max-h-64 hover:opacity-95"
+                                                                                className="object-cover w-auto transition-opacity rounded-lg shadow-sm cursor-pointer max-h-48 hover:opacity-95 sm:max-h-64"
                                                                                 onClick={() =>
                                                                                     window.open(
                                                                                         `/storage/${message.media_url}`,
@@ -709,8 +793,8 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                                                         : 'border-border text-primary'
                                                                                 }`}
                                                                             >
-                                                                                <Paperclip className="w-4 h-4" />
-                                                                                <span className="text-sm">
+                                                                                <Paperclip className="w-3 h-3 sm:h-4 sm:w-4" />
+                                                                                <span className="text-xs sm:text-sm">
                                                                                     File
                                                                                     Attachment
                                                                                 </span>
@@ -742,14 +826,14 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                                         <Button
                                                                             variant="ghost"
                                                                             size="sm"
-                                                                            className="w-6 h-6 p-0 transition-opacity opacity-0 group-hover:opacity-100"
+                                                                            className="w-5 h-5 p-0 transition-opacity opacity-0 group-hover:opacity-100 sm:h-6 sm:w-6"
                                                                             onClick={() =>
                                                                                 handleReply(
                                                                                     message,
                                                                                 )
                                                                             }
                                                                         >
-                                                                            <Reply className="w-3 h-3" />
+                                                                            <Reply className="w-2 h-2 sm:h-3 sm:w-3" />
                                                                         </Button>
                                                                     </div>
                                                                 )}
@@ -763,12 +847,12 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                             )}
 
                             {messages.length === 0 && (
-                                <div className="flex flex-col items-center justify-center h-full py-12 text-center">
-                                    <Users className="w-12 h-12 mb-4 text-muted-foreground" />
-                                    <h3 className="mb-2 text-lg font-medium text-foreground">
+                                <div className="flex flex-col items-center justify-center h-full py-8 text-center sm:py-12">
+                                    <Users className="w-10 h-10 mb-3 text-muted-foreground sm:mb-4 sm:h-12 sm:w-12" />
+                                    <h3 className="mb-2 text-base font-medium text-foreground sm:text-lg">
                                         Belum ada pesan
                                     </h3>
-                                    <p className="text-muted-foreground">
+                                    <p className="text-sm text-muted-foreground">
                                         Mulai percakapan dengan mengirim pesan
                                         pertama
                                     </p>
@@ -779,15 +863,15 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                         </div>
 
                         {/* Message Input */}
-                        <div className="p-4 border-t bg-card">
+                        <div className="p-3 border-t bg-card sm:p-4">
                             {/* Reply Preview */}
                             {replyingTo && (
-                                <div className="p-3 mb-3 border-l-4 rounded-lg border-primary bg-muted">
+                                <div className="p-2 mb-2 border-l-4 rounded-lg border-primary bg-muted sm:mb-3 sm:p-3">
                                     <div className="flex items-start justify-between">
-                                        <div className="flex-1">
+                                        <div className="flex-1 min-w-0">
                                             <div className="flex items-center mb-1 space-x-2">
-                                                <Reply className="w-4 h-4 text-primary" />
-                                                <span className="text-sm font-medium text-foreground">
+                                                <Reply className="w-3 h-3 text-primary sm:h-4 sm:w-4" />
+                                                <span className="text-xs font-medium text-foreground sm:text-sm">
                                                     Membalas{' '}
                                                     {replyingTo.user.id ===
                                                     currentUserId
@@ -795,7 +879,7 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                                         : replyingTo.user.name}
                                                 </span>
                                             </div>
-                                            <p className="text-sm truncate text-muted-foreground">
+                                            <p className="text-xs truncate text-muted-foreground sm:text-sm">
                                                 {replyingTo.content ||
                                                     (replyingTo.media_url
                                                         ? 'Media'
@@ -806,9 +890,9 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                             variant="ghost"
                                             size="sm"
                                             onClick={clearReply}
-                                            className="w-6 h-6 p-0"
+                                            className="w-5 h-5 p-0 ml-2 sm:h-6 sm:w-6"
                                         >
-                                            <X className="w-4 h-4" />
+                                            <X className="w-3 h-3 sm:h-4 sm:w-4" />
                                         </Button>
                                     </div>
                                 </div>
@@ -816,12 +900,12 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
 
                             {/* File Preview */}
                             {selectedFile && previewUrl && (
-                                <div className="p-3 mb-3 rounded-lg bg-muted">
+                                <div className="p-2 mb-2 rounded-lg bg-muted sm:mb-3 sm:p-3">
                                     <div className="flex items-start justify-between">
-                                        <div className="flex items-center space-x-3">
+                                        <div className="flex items-center flex-1 min-w-0 space-x-2 sm:space-x-3">
                                             {getFileIcon(selectedFile.type)}
-                                            <div>
-                                                <p className="text-sm font-medium">
+                                            <div className="min-w-0">
+                                                <p className="text-xs font-medium truncate sm:text-sm">
                                                     {selectedFile.name}
                                                 </p>
                                                 <p className="text-xs text-muted-foreground">
@@ -838,25 +922,25 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                             variant="ghost"
                                             size="sm"
                                             onClick={clearSelectedFile}
-                                            className="w-6 h-6 p-0"
+                                            className="w-5 h-5 p-0 ml-2 sm:h-6 sm:w-6"
                                         >
-                                            <X className="w-4 h-4" />
+                                            <X className="w-3 h-3 sm:h-4 sm:w-4" />
                                         </Button>
                                     </div>
 
                                     {/* File Preview */}
                                     {selectedFile.type.startsWith('image/') && (
-                                        <div className="mt-3">
+                                        <div className="mt-2 sm:mt-3">
                                             <img
                                                 src={previewUrl}
                                                 alt="Preview"
-                                                className="object-cover w-auto border border-gray-200 rounded-lg shadow-sm max-h-32"
+                                                className="object-cover w-auto border border-gray-200 rounded-lg shadow-sm max-h-24 sm:max-h-32"
                                             />
                                         </div>
                                     )}
 
                                     {selectedFile.type.startsWith('video/') && (
-                                        <div className="mt-3">
+                                        <div className="mt-2 sm:mt-3">
                                             <video
                                                 src={previewUrl}
                                                 className="w-full max-w-xs border border-gray-200 rounded-lg shadow-sm aspect-video"
@@ -867,9 +951,10 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                 </div>
                             )}
 
+                            {/* Input Form */}
                             <form
                                 onSubmit={handleSendMessage}
-                                className="flex items-end space-x-2"
+                                className="flex items-end space-x-1 sm:space-x-2"
                             >
                                 <Button
                                     type="button"
@@ -878,7 +963,7 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                     onClick={() =>
                                         fileInputRef.current?.click()
                                     }
-                                    className="h-10 px-3"
+                                    className="h-8 px-2 sm:h-10 sm:px-3"
                                 >
                                     <Paperclip className="w-4 h-4" />
                                 </Button>
@@ -890,7 +975,7 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                             setNewMessage(e.target.value)
                                         }
                                         placeholder="Tulis pesan..."
-                                        className="max-h-32 min-h-[40px] resize-none"
+                                        className="max-h-20 min-h-[32px] resize-none text-sm sm:max-h-32 sm:min-h-[40px]"
                                         onKeyDown={(e) => {
                                             if (
                                                 e.key === 'Enter' &&
@@ -910,29 +995,49 @@ const DetailChatGroup: React.FC<DetailChatGroupProps> = ({
                                         isSending
                                     }
                                     size="sm"
-                                    className="h-10 px-3"
+                                    className="h-8 px-2 sm:h-10 sm:px-3"
                                 >
                                     <Send className="w-4 h-4" />
                                 </Button>
                             </form>
 
-                            <p className="mt-2 text-xs text-muted-foreground">
+                            <p className="hidden mt-2 text-xs text-muted-foreground sm:block">
                                 Tekan Enter untuk mengirim, Shift + Enter untuk
                                 baris baru
                             </p>
                         </div>
                     </>
                 ) : (
-                    <div className="flex items-center justify-center flex-1">
-                        <div className="text-center">
-                            <Users className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-                            <h3 className="mb-2 text-lg font-medium text-foreground">
+                    <div className="flex items-center justify-center flex-1 p-4">
+                        <div className="max-w-md text-center">
+                            <Users className="w-10 h-10 mx-auto mb-3 text-muted-foreground sm:mb-4 sm:h-12 sm:w-12" />
+                            <h3 className="mb-2 text-base font-medium text-foreground sm:text-lg">
                                 Pilih Grup Chat
                             </h3>
-                            <p className="text-muted-foreground">
-                                Pilih grup chat dari sidebar untuk mulai
-                                percakapan
+                            <p className="mb-4 text-sm text-muted-foreground">
+                                {isMobile ? (
+                                    <>
+                                        Tap tombol menu untuk melihat daftar
+                                        grup chat dan mulai percakapan.
+                                    </>
+                                ) : (
+                                    <>
+                                        Pilih grup chat dari sidebar untuk mulai
+                                        percakapan dengan sesama peserta misi.
+                                    </>
+                                )}
                             </p>
+
+                            {/* Mobile CTA Button */}
+                            {isMobile && (
+                                <Button
+                                    onClick={toggleSidebar}
+                                    className="w-full sm:w-auto"
+                                >
+                                    <Menu className="w-4 h-4 mr-2" />
+                                    Lihat Grup Chat
+                                </Button>
+                            )}
                         </div>
                     </div>
                 )}

@@ -13,11 +13,11 @@ interface Mission {
     thumbnail: string | null;
 }
 
-interface ChatUser {
-    id: number;
-    name: string;
-    profile_url: string | null;
-}
+// interface ChatUser {
+//     id: number;
+//     name: string;
+//     profile_url: string | null;
+// }
 
 interface ChatMessage {
     id: number;
@@ -203,7 +203,7 @@ const GroupChatPage: React.FC<GroupChatPageProps> = ({ chatGroups }) => {
                                                             group.mission.title
                                                         }
                                                     />
-                                                    <AvatarFallback className="text-xs bg-primary text-primary-foreground">
+                                                    <AvatarFallback className="text-xs bg-sky-600 text-primary-foreground">
                                                         {getInitials(
                                                             group.mission.title,
                                                         )}

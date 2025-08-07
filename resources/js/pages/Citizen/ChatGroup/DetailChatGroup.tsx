@@ -9,12 +9,6 @@ interface Mission {
     thumbnail: string | null;
 }
 
-interface ChatUser {
-    id: number;
-    name: string;
-    profile_url: string | null;
-}
-
 interface ChatMessage {
     id: number;
     content: string | null;
@@ -47,7 +41,6 @@ interface DetailChatGroupPageProps {
 const DetailChatGroupRoute = () => {
     const { props } = usePage<PageProps<DetailChatGroupPageProps>>();
     const { messages, allGroups } = props;
-    // Get active group ID from URL or props
     const activeGroupId = props.activeGroupId;
 
     console.log('messages', messages);
@@ -60,7 +53,7 @@ const DetailChatGroupRoute = () => {
                 messages={messages}
                 allGroups={allGroups}
                 activeGroupId={activeGroupId}
-                currentUserId={props.auth?.user?.id}
+                currentUserId={props.auth?.user?.id ?? 0}
             />
         </CitizenLayout>
     );

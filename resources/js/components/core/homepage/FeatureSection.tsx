@@ -42,7 +42,7 @@ const FeatureSection = () => {
             link: '/education',
         },
         {
-            icon: <Lightbulb className="w-8 h-8 text-purple-600" />,
+            icon: <Lightbulb className="w-8 h-8 text-yellow-600" />,
             title: 'Kuis Edukasi',
             description:
                 'Akses dan kerjakan berbagai kuis edukasi tentang  lingkungan',

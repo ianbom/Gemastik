@@ -4,9 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Report } from '@/types/report';
 import { Comment } from '@/types/report/comment';
+import { Donation } from '@/types/report/donations';
 import { User } from '@/types/user/interface';
 import { getCategoryLabel } from '@/utils/categoryReportLabel';
-import { formatFullDateTime } from '@/utils/formatDate';
+import { formatCommentOnlyDate, formatFullDateTime } from '@/utils/formatDate';
 import { getStatusColor as getMissionStatusColor } from '@/utils/missionStatusColor';
 import { getMissionStatusLabel } from '@/utils/missionStatusLabel';
 import { getStatusColor } from '@/utils/reportStatusColor';
@@ -32,10 +33,8 @@ import CancelVolunteerModal from '../mission/CancelVolunteerModal';
 import ConfirmVolunteerAsCommunityModal from '../mission/ConfirmVolunteerAsCommunityModal';
 import ConfirmVolunteerModal from '../mission/ConfirmVolunteerModal';
 import UploadDocumentationModal from '../mission/UploadDocumentationModal';
-import CommentUploadCard from './InputCommentReport';
-
-import { Donation } from '@/types/report/donations';
 import { DonationCard } from './DonationCard';
+import CommentUploadCard from './InputCommentReport';
 interface Leader {
     id: number;
     name: string;
@@ -244,7 +243,8 @@ const ReportDetailPage = ({
 
     const formatCommentDate = (dateString: string) => {
         try {
-            return formatFullDateTime(dateString);
+            return formatCommentOnlyDate(dateString);
+            // return formatFullDateTime(dateString);
         } catch (error) {
             return dateString;
         }
@@ -1138,8 +1138,13 @@ const ReportDetailPage = ({
                                                     {/* User info */}
                                                     <div className="flex items-center mb-3 space-x-3">
                                                         <span className="font-semibold text-gray-900">
-                                                            {comment.user.name}
+                                                            {comment.user.name
+                                                                .length > 3
+                                                                ? `${comment.user.name.slice(0, 3)}.`
+                                                                : comment.user
+                                                                      .name}
                                                         </span>
+
                                                         <span className="px-2 py-1 text-xs text-gray-500 rounded-full bg-gray-50">
                                                             {formatCommentDate(
                                                                 comment.created_at,
@@ -1202,11 +1207,18 @@ const ReportDetailPage = ({
                                                                             <div className="flex-1 min-w-0">
                                                                                 <div className="flex items-center mb-1 space-x-2">
                                                                                     <span className="text-sm font-medium text-gray-900">
-                                                                                        {
-                                                                                            reply
-                                                                                                .user
-                                                                                                .name
-                                                                                        }
+                                                                                        {reply
+                                                                                            .user
+                                                                                            .name
+                                                                                            .length >
+                                                                                        3
+                                                                                            ? `${reply.user.name.slice(
+                                                                                                  0,
+                                                                                                  3,
+                                                                                              )}.`
+                                                                                            : reply
+                                                                                                  .user
+                                                                                                  .name}
                                                                                     </span>
                                                                                     <span className="text-xs text-gray-500">
                                                                                         {formatCommentDate(
