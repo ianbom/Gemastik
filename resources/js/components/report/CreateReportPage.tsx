@@ -293,13 +293,13 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
         });
     };
     return (
-        <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-8 flex items-center justify-between">
+        <div className="px-4 py-8 mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between mb-8">
                 {' '}
                 <Button
                     variant="ghost"
                     onClick={onBack}
-                    className="text-gray-600 hover:text-emerald-600"
+                    className="text-gray-600 hover:text-sky-600"
                     disabled={isSubmitting}
                 >
                     <ArrowLeft size={20} className="mr-2" />
@@ -325,7 +325,7 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                                 <CardTitle className="flex items-center">
                                     <Info
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Informasi Dasar
                                 </CardTitle>
@@ -429,13 +429,13 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                                 <CardTitle className="flex items-center">
                                     <Camera
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Unggah Foto/Video
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-6">
-                                <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center transition-colors hover:border-emerald-400">
+                                <div className="p-8 text-center transition-colors border-2 border-gray-300 border-dashed rounded-lg hover:border-sky-400">
                                     <input
                                         type="file"
                                         multiple
@@ -471,9 +471,9 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                                         {uploadedFiles.map((file, index) => (
                                             <div
                                                 key={index}
-                                                className="group relative"
+                                                className="relative group"
                                             >
-                                                <div className="flex aspect-square items-center justify-center rounded-lg bg-gray-100">
+                                                <div className="flex items-center justify-center bg-gray-100 rounded-lg aspect-square">
                                                     {file.type.startsWith(
                                                         'image/',
                                                     ) ? (
@@ -482,7 +482,7 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                                                                 file,
                                                             )}
                                                             alt={file.name}
-                                                            className="h-full w-full rounded-lg object-cover"
+                                                            className="object-cover w-full h-full rounded-lg"
                                                         />
                                                     ) : (
                                                         <FileVideo
@@ -496,12 +496,12 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                                                     onClick={() =>
                                                         removeFile(index)
                                                     }
-                                                    className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                                                    className="absolute flex items-center justify-center w-6 h-6 text-white transition-opacity bg-red-500 rounded-full opacity-0 -right-2 -top-2 group-hover:opacity-100"
                                                     disabled={isSubmitting}
                                                 >
                                                     <X size={14} />
                                                 </button>
-                                                <p className="mt-1 truncate text-xs text-gray-500">
+                                                <p className="mt-1 text-xs text-gray-500 truncate">
                                                     {file.name}
                                                 </p>
                                             </div>
@@ -518,14 +518,14 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                                 <CardTitle className="flex items-center">
                                     <MapPin
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Lokasi Masalah
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 {/* <div className="h-64 bg-gray-100 border-2 border-gray-300 border-dashed rounded-lg"> */}
-                                <div className="h-64 overflow-hidden rounded-lg border-2 border-dashed border-gray-300 bg-gray-100">
+                                <div className="h-64 overflow-hidden bg-gray-100 border-2 border-gray-300 border-dashed rounded-lg">
                                     <MapPicker
                                         onChange={(pos) => setLocation(pos)}
                                         location={location}
@@ -537,7 +537,7 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                                     <p className="text-sm text-gray-600">
                                         Lokasi terpilih:{' '}
                                         {location ? (
-                                            <span className="font-medium text-emerald-600">
+                                            <span className="font-medium text-sky-600">
                                                 {location.latitude},{' '}
                                                 {location.longitude}
                                             </span>
@@ -551,7 +551,7 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                                 <Button
                                     type="button"
                                     variant="outline"
-                                    className="w-full border-emerald-200 text-emerald-600 hover:bg-emerald-50"
+                                    className="w-full border-sky-200 text-sky-600 hover:bg-sky-50"
                                     onClick={handleUseCurrentLocation}
                                     disabled={loading || isSubmitting}
                                 >
@@ -696,7 +696,7 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                         </Card>
                     </div>
                 </div>
-                <div className="flex flex-col justify-start gap-4 rounded-lg border border-gray-200 bg-white p-3 shadow-sm sm:flex-row">
+                <div className="flex flex-col justify-start gap-4 p-3 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex-row">
                     <Button
                         type="button"
                         variant="outline"
@@ -708,7 +708,7 @@ const CreateReportPage = ({ provinces, onBack }: PageProps) => {
                     </Button>
                     <Button
                         type="submit"
-                        className="bg-emerald-600 hover:bg-emerald-700 sm:w-auto"
+                        className="bg-sky-600 hover:bg-sky-700 sm:w-auto"
                         size="lg"
                         disabled={isSubmitting}
                     >

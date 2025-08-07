@@ -1,5 +1,5 @@
-import CitizenLayout from '@/components/layouts/CitizenLayout';
 import DetailChatGroup from '@/components/chatgroup/DetailChatGroup';
+import CitizenLayout from '@/components/layouts/CitizenLayout';
 import { PageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 
@@ -7,12 +7,6 @@ interface Mission {
     id: number;
     title: string;
     thumbnail: string | null;
-}
-
-interface ChatUser {
-    id: number;
-    name: string;
-    profile_url: string | null;
 }
 
 interface ChatMessage {
@@ -47,9 +41,7 @@ interface DetailChatGroupPageProps {
 const DetailChatGroupRoute = () => {
     const { props } = usePage<PageProps<DetailChatGroupPageProps>>();
     const { messages, allGroups } = props;
-
-    // Get active group ID from URL or props
-    const activeGroupId = props.activeGroupId
+    const activeGroupId = props.activeGroupId;
 
     console.log('messages', messages);
     console.log('allGroups', allGroups);
@@ -61,7 +53,7 @@ const DetailChatGroupRoute = () => {
                 messages={messages}
                 allGroups={allGroups}
                 activeGroupId={activeGroupId}
-                currentUserId={props.auth?.user?.id}
+                currentUserId={props.auth?.user?.id ?? 0}
             />
         </CitizenLayout>
     );

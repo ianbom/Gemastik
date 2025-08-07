@@ -1,12 +1,9 @@
-import React from 'react'
-
 const Welcome = () => {
-  return (
-    <div>
+    return (
+        <div>
+            <h1> Ini Welcome</h1>
+        </div>
+    );
+};
 
-        <h1> Ini Welcome</h1>
-    </div>
-  )
-}
-
-export default Welcome
+export default Welcome;

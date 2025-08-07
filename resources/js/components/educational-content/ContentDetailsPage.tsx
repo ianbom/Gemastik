@@ -14,12 +14,12 @@ interface ContentDetailsPageProps {
 }
 const ContentDetailsPage = ({ content, onBack }: ContentDetailsPageProps) => {
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-6 flex items-center justify-between">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between mb-6">
                 <Button
                     variant="ghost"
                     onClick={onBack}
-                    className="text-gray-600 hover:text-emerald-600"
+                    className="text-gray-600 hover:text-sky-600"
                 >
                     <ArrowLeft size={20} className="mr-2" />
                     Kembali ke Daftar Konten
@@ -35,9 +35,9 @@ const ContentDetailsPage = ({ content, onBack }: ContentDetailsPageProps) => {
             <div className="space-y-8">
                 <Card>
                     <CardContent className="p-6">
-                        <div className="mb-6 flex flex-col items-start justify-between md:flex-row">
+                        <div className="flex flex-col items-start justify-between mb-6 md:flex-row">
                             <div className="flex-1">
-                                <div className="mb-3 flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2 mb-3">
                                     <Badge
                                         className={getTypeColor(
                                             content.content_type,
@@ -74,7 +74,7 @@ const ContentDetailsPage = ({ content, onBack }: ContentDetailsPageProps) => {
                             </div>
                         </div>
                         <CardContent className="px-0 py-4">
-                            <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
                                 {content.media?.map((mediaItem, index) => {
                                     const type = mediaItem.media_type;
                                     if (type === 'document') {
@@ -84,11 +84,11 @@ const ContentDetailsPage = ({ content, onBack }: ContentDetailsPageProps) => {
                                                 href={`/storage/${mediaItem.media_url}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex flex-col space-y-2 rounded-lg border p-4 transition-colors hover:bg-gray-50 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0"
+                                                className="flex flex-col p-4 space-y-2 transition-colors border rounded-lg hover:bg-gray-50 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0"
                                             >
-                                                <FileText className="mx-auto h-14 w-14 shrink-0 text-emerald-600 sm:mx-0" />
+                                                <FileText className="mx-auto h-14 w-14 shrink-0 text-sky-600 sm:mx-0" />
                                                 <div className="w-full text-center sm:w-0 sm:flex-1 sm:text-left">
-                                                    <p className="truncate font-medium text-gray-900">
+                                                    <p className="font-medium text-gray-900 truncate">
                                                         {mediaItem.media_url
                                                             ? mediaItem.media_url.replace(
                                                                   /^contents\//,
@@ -106,19 +106,19 @@ const ContentDetailsPage = ({ content, onBack }: ContentDetailsPageProps) => {
                                     return (
                                         <div
                                             key={index}
-                                            className="aspect-video overflow-hidden rounded-lg bg-black"
+                                            className="overflow-hidden bg-black rounded-lg aspect-video"
                                         >
                                             {type === 'video' ? (
                                                 <video
                                                     controls
-                                                    className="h-full w-full object-contain"
+                                                    className="object-contain w-full h-full"
                                                     src={`/storage/${mediaItem.media_url}`}
                                                 />
                                             ) : (
                                                 <ImageWithPopup
                                                     src={`/storage/${mediaItem.media_url}`}
                                                     alt={`Media ${index + 1}`}
-                                                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                                                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
                                                 />
                                             )}
                                         </div>
@@ -138,7 +138,7 @@ const ContentDetailsPage = ({ content, onBack }: ContentDetailsPageProps) => {
                             <h2 className="mb-4 text-2xl font-bold text-gray-900"></h2>
                             <RenderHTML
                                 htmlString={content.body}
-                                className="prose prose-li:text-black prose-table:border prose-th:border prose-td:border max-w-none"
+                                className="prose max-w-none prose-li:text-black prose-table:border prose-th:border prose-td:border"
                             />
                         </div>
                     </CardContent>

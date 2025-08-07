@@ -141,10 +141,10 @@ const QuizTakingRoute = () => {
     if (!quiz || !quiz.questions || quiz.questions.length === 0) {
         return (
             <CitizenLayout currentPage="quiz">
-                <div className="mx-auto max-w-4xl px-4 py-8">
+                <div className="max-w-4xl px-4 py-8 mx-auto">
                     <div className="flex items-center justify-center py-32">
                         <div className="text-center">
-                            <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-emerald-600"></div>
+                            <div className="w-12 h-12 mx-auto mb-4 border-b-2 rounded-full animate-spin border-emerald-600"></div>
                             <p className="text-gray-600">Memuat quiz...</p>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ const QuizTakingRoute = () => {
     if (!quiz.is_active) {
         return (
             <CitizenLayout currentPage="quiz">
-                <div className="mx-auto max-w-4xl px-4 py-8">
+                <div className="max-w-4xl px-4 py-8 mx-auto">
                     <div className="py-32 text-center">
                         <h2 className="mb-4 text-2xl font-bold text-gray-900">
                             Quiz Tidak Tersedia
@@ -168,7 +168,7 @@ const QuizTakingRoute = () => {
                         </p>
                         <button
                             onClick={() => window.history.back()}
-                            className="rounded-lg bg-emerald-600 px-6 py-2 text-white hover:bg-emerald-700"
+                            className="px-6 py-2 text-white rounded-lg bg-emerald-600 hover:bg-emerald-700"
                         >
                             Kembali
                         </button>

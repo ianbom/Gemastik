@@ -92,10 +92,10 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::get('quiz-result', [CtzQuizController::class, 'result'])->name('quiz.result');
     // Route untuk keperluan yang berkaitan dengan Leaderboard
     Route::get('/leaderboard', [LeaderboardController::class, 'indexLeaderboard'])->name('leaderboard.indexLeaderboard');
-
+    // Route untuk keperluan yang berkaitan dengan Chat
     Route::resource('chatgroup', CtzChatGroupController::class);
     Route::post('/chat-groups/{chatGroup}/messages', [CtzChatGroupController::class, 'storeMessage'])
-    ->name('chat-groups.messages.store');
+        ->name('chat-groups.messages.store');
 });
 
 // Route untuk akses fitur peran komunitas

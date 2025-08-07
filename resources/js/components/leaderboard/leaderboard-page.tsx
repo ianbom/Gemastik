@@ -303,11 +303,11 @@ export default function LeaderboardPage(
     const getRankIcon = (rank: number) => {
         switch (rank) {
             case 1:
-                return <Trophy className="h-8 w-8 text-yellow-500" />;
+                return <Trophy className="w-8 h-8 text-yellow-500" />;
             case 2:
-                return <Medal className="h-8 w-8 text-gray-400" />;
+                return <Medal className="w-8 h-8 text-gray-400" />;
             case 3:
-                return <Award className="h-8 w-8 text-amber-600" />;
+                return <Award className="w-8 h-8 text-amber-600" />;
             default:
                 return (
                     <span className="text-2xl font-bold text-emerald-600">
@@ -390,9 +390,9 @@ export default function LeaderboardPage(
         }
 
         return (
-            <div className="flex items-center justify-between rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-md">
+            <div className="flex items-center justify-between p-4 transition-shadow duration-200 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md">
                 <div className="flex items-center space-x-4">
-                    <div className="flex h-10 w-10 items-center justify-center">
+                    <div className="flex items-center justify-center w-10 h-10">
                         {getRankIcon(rank)}
                     </div>
                     {/* <Image
@@ -416,34 +416,34 @@ export default function LeaderboardPage(
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-100 px-4 py-8">
+        <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-emerald-50 to-green-100">
             <div className="mx-auto max-w-7xl">
                 {/* Main Header */}
                 <div className="mb-12 text-center">
                     <h1 className="mb-4 text-4xl font-bold text-emerald-800 md:text-5xl">
                         🌍 Pahlawan Bumi
                     </h1>
-                    <p className="mx-auto max-w-2xl text-xl text-emerald-600">
+                    <p className="max-w-2xl mx-auto text-xl text-emerald-600">
                         Apresiasi untuk para kontributor paling berpengaruh di
-                        SobatBumi.
+                        KawanBumi.
                     </p>
                 </div>
 
                 {/* Section 1: Podium Pahlawan */}
                 <div className="mb-16">
-                    <h2 className="mb-8 text-center text-3xl font-bold text-emerald-800">
+                    <h2 className="mb-8 text-3xl font-bold text-center text-emerald-800">
                         🏆 Podium Pahlawan
                     </h2>
 
                     {/* Top 3 Reporters */}
                     <div className="mb-12">
-                        <div className="mb-6 flex items-center justify-center">
-                            <FileText className="mr-2 h-6 w-6 text-emerald-600" />
+                        <div className="flex items-center justify-center mb-6">
+                            <FileText className="w-6 h-6 mr-2 text-emerald-600" />
                             <h3 className="text-2xl font-semibold text-emerald-700">
                                 Top 3 Pengguna dengan Laporan Terbanyak
                             </h3>
                         </div>
-                        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+                        <div className="grid max-w-4xl grid-cols-1 gap-6 mx-auto md:grid-cols-3">
                             {props.top3Reporters.map((user, index) => (
                                 <PodiumCard
                                     key={user.id}
@@ -458,13 +458,13 @@ export default function LeaderboardPage(
 
                     {/* Top 3 Mission Volunteers */}
                     <div className="mb-12">
-                        <div className="mb-6 flex items-center justify-center">
-                            <Target className="mr-2 h-6 w-6 text-emerald-600" />
+                        <div className="flex items-center justify-center mb-6">
+                            <Target className="w-6 h-6 mr-2 text-emerald-600" />
                             <h3 className="text-2xl font-semibold text-emerald-700">
                                 Top 3 Pengguna dengan Misi Terbanyak
                             </h3>
                         </div>
-                        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+                        <div className="grid max-w-4xl grid-cols-1 gap-6 mx-auto md:grid-cols-3">
                             {props.top3MissionVolunteers.map((user, index) => (
                                 <PodiumCard
                                     key={user.id}
@@ -479,13 +479,13 @@ export default function LeaderboardPage(
 
                     {/* Top 3 Donors */}
                     <div className="mb-12">
-                        <div className="mb-6 flex items-center justify-center">
-                            <Heart className="mr-2 h-6 w-6 text-emerald-600" />
+                        <div className="flex items-center justify-center mb-6">
+                            <Heart className="w-6 h-6 mr-2 text-emerald-600" />
                             <h3 className="text-2xl font-semibold text-emerald-700">
                                 Top 3 Pengguna dengan Donasi Terbanyak
                             </h3>
                         </div>
-                        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+                        <div className="grid max-w-4xl grid-cols-1 gap-6 mx-auto md:grid-cols-3">
                             {props.top3Donors.map((user, index) => (
                                 <PodiumCard
                                     key={user.id}
@@ -500,13 +500,13 @@ export default function LeaderboardPage(
                 </div>
 
                 {/* Section 2: Daftar Peringkat */}
-                <div className="rounded-2xl bg-white p-8 shadow-xl">
-                    <h2 className="mb-8 text-center text-3xl font-bold text-emerald-800">
+                <div className="p-8 bg-white shadow-xl rounded-2xl">
+                    <h2 className="mb-8 text-3xl font-bold text-center text-emerald-800">
                         📊 Daftar Peringkat
                     </h2>
 
                     {/* Tabs */}
-                    <div className="mb-8 flex flex-wrap justify-center border-b border-gray-200">
+                    <div className="flex flex-wrap justify-center mb-8 border-b border-gray-200">
                         <button
                             onClick={() => setActiveTab('reports')}
                             className={`flex items-center border-b-2 px-6 py-3 font-semibold transition-colors duration-200 ${
@@ -515,7 +515,7 @@ export default function LeaderboardPage(
                                     : 'border-transparent text-gray-500 hover:text-emerald-500'
                             }`}
                         >
-                            <FileText className="mr-2 h-5 w-5" />
+                            <FileText className="w-5 h-5 mr-2" />
                             Laporan Terbanyak
                         </button>
                         <button
@@ -526,7 +526,7 @@ export default function LeaderboardPage(
                                     : 'border-transparent text-gray-500 hover:text-emerald-500'
                             }`}
                         >
-                            <Shield className="mr-2 h-5 w-5" />
+                            <Shield className="w-5 h-5 mr-2" />
                             Misi Terbanyak
                         </button>
                         <button
@@ -537,7 +537,7 @@ export default function LeaderboardPage(
                                     : 'border-transparent text-gray-500 hover:text-emerald-500'
                             }`}
                         >
-                            <Heart className="mr-2 h-5 w-5" />
+                            <Heart className="w-5 h-5 mr-2" />
                             Donasi Terbanyak
                         </button>
                     </div>

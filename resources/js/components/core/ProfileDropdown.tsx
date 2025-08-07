@@ -17,8 +17,8 @@ const ProfileMenuDropdown = ({ user, menuItems }: Props) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <button className="flex h-10 w-10 items-center justify-center rounded-full transition-shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
-                    <Avatar className="h-10 w-10">
+                <button className="flex items-center justify-center w-10 h-10 transition-shadow rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <Avatar className="w-10 h-10">
                         <AvatarImage
                             src={
                                 user?.profile_url
@@ -27,7 +27,7 @@ const ProfileMenuDropdown = ({ user, menuItems }: Props) => {
                             }
                             alt={userName}
                         />
-                        <AvatarFallback className="bg-emerald-100 text-sm font-semibold text-emerald-700">
+                        <AvatarFallback className="text-sm font-semibold bg-sky-100 text-sky-700">
                             {userInitial}
                         </AvatarFallback>
                     </Avatar>

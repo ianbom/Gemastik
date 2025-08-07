@@ -26,7 +26,7 @@ export default function CancelVolunteerModal({
             <DialogContent>
                 <DialogHeader>
                     <h2 className="text-lg font-semibold text-gray-800">
-                        Konfirmasi Pendaftaran
+                        Konfirmasi Batal Pendaftaran
                     </h2>
                 </DialogHeader>
                 <div className="py-4 text-gray-700">
@@ -47,8 +47,8 @@ export default function CancelVolunteerModal({
                         Batal
                     </Button>
                     <Button
-                        onClick={onConfirm} // ini yang penting
-                        className="bg-emerald-600 hover:bg-emerald-700"
+                        onClick={onConfirm}
+                        className="bg-sky-600 hover:bg-sky-700"
                     >
                         Ya, Saya Yakin
                     </Button>

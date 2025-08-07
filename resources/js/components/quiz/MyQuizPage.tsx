@@ -81,8 +81,8 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
     };
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-4 mb-8 sm:flex-row sm:items-center">
                 <div>
                     <h1 className="mb-1 text-2xl font-bold text-gray-900 sm:text-3xl">
                         Riwayat Kuis Yang Dikerjakan
@@ -92,7 +92,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                         Kerjakan ulang kuis untuk meningkatkan skor dan
                         mendapatkan poin!
                     </p>
-                    <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
+                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
                         <span>
                             Total Kuis Dikerjakan: {displayQuizzes.length}
                         </span>
@@ -116,7 +116,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                 </div>
                 <div className="flex items-center gap-3">
                     <Button
-                        className="bg-emerald-600 hover:bg-emerald-700"
+                        className="bg-sky-600 hover:bg-sky-700"
                         onClick={() => (window.location.href = '/quiz')}
                     >
                         Cari Kuis Baru
@@ -131,7 +131,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                             <div className="flex items-center">
                                 <SlidersHorizontal
                                     size={20}
-                                    className="mr-2 text-emerald-600"
+                                    className="mr-2 text-sky-600"
                                 />
                                 Filter Kuis
                             </div>
@@ -150,7 +150,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                             onClick={resetFilters}
                             disabled={!hasActiveFilters}
                         >
-                            <RefreshCcw className="mr-2 h-4 w-4" />
+                            <RefreshCcw className="w-4 h-4 mr-2" />
                             Reset Filter
                         </Button>
                     </div>
@@ -233,12 +233,12 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                         <CardContent className="p-6">
                             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                                 <div className="flex-1">
-                                    <div className="mb-3 flex items-start justify-between">
+                                    <div className="flex items-start justify-between mb-3">
                                         <div>
                                             <h3 className="mb-2 text-xl font-semibold text-gray-800">
                                                 {attempt.quiz.title}
                                             </h3>
-                                            <div className="mb-2 flex items-center gap-2">
+                                            <div className="flex items-center gap-2 mb-2">
                                                 {attempt.quiz.difficulty && (
                                                     <Badge
                                                         className={`text-xs ${getDifficultyColor(attempt.quiz.difficulty)}`}
@@ -271,7 +271,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
 
                                     <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 lg:grid-cols-3">
                                         <div className="flex items-center gap-2">
-                                            <Clock className="h-4 w-4 text-emerald-600" />
+                                            <Clock className="w-4 h-4 text-emerald-600" />
                                             <span>
                                                 {formatFullDateTime(
                                                     attempt.created_at,
@@ -280,7 +280,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                                         </div>
                                         {attempt.total_questions && (
                                             <div className="flex items-center gap-2">
-                                                <Lightbulb className="h-4 w-4 text-yellow-600" />
+                                                <Lightbulb className="w-4 h-4 text-yellow-600" />
                                                 <span>
                                                     Soal:{' '}
                                                     {attempt.total_questions}{' '}
@@ -290,7 +290,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                                         )}
                                         {attempt.score === 100 && (
                                             <div className="flex items-center gap-2">
-                                                <Trophy className="h-4 w-4 text-purple-600" />
+                                                <Trophy className="w-4 h-4 text-purple-600" />
                                                 <span>
                                                     Poin: +
                                                     {attempt.quiz.points_reward}
@@ -302,9 +302,9 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
 
                                 <div className="flex flex-col items-end gap-3 lg:min-w-[200px]">
                                     <div className="text-right">
-                                        <div className="mb-1 flex items-center gap-2">
+                                        <div className="flex items-center gap-2 mb-1">
                                             {attempt.score === 100 && (
-                                                <CheckCircle className="h-5 w-5 text-green-600" />
+                                                <CheckCircle className="w-5 h-5 text-green-600" />
                                             )}
                                             <p
                                                 className={`text-3xl font-bold ${getScoreColor(attempt.score)}`}
@@ -325,17 +325,17 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                                             onClick={() =>
                                                 retakeQuiz(attempt.quiz.id)
                                             }
-                                            className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700"
+                                            className="flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700"
                                             size="sm"
                                         >
-                                            <RotateCcw className="h-4 w-4" />
+                                            <RotateCcw className="w-4 h-4" />
                                             Kerjakan Ulang
                                         </Button>
                                     )}
 
                                     {attempt.score === 100 && (
                                         <div className="flex items-center gap-2 text-sm font-medium text-green-600">
-                                            <CheckCircle className="h-4 w-4" />
+                                            <CheckCircle className="w-4 h-4" />
                                             Skor Sempurna!
                                         </div>
                                     )}
@@ -348,7 +348,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                 {filteredQuizzes.length === 0 && (
                     <Card>
                         <CardContent className="flex flex-col items-center py-12 text-center">
-                            <Lightbulb className="mb-4 h-12 w-12 text-gray-400" />
+                            <Lightbulb className="w-12 h-12 mb-4 text-gray-400" />
                             <h3 className="mb-2 text-lg font-medium text-gray-900">
                                 Tidak ada kuis ditemukan
                             </h3>
@@ -362,7 +362,7 @@ const MyQuizPage = ({ myQuizAttempts }: MyQuizPageProps) => {
                                     variant="outline"
                                     onClick={resetFilters}
                                 >
-                                    <RefreshCcw className="mr-2 h-4 w-4" />
+                                    <RefreshCcw className="w-4 h-4 mr-2" />
                                     Reset Filter
                                 </Button>
                             ) : (

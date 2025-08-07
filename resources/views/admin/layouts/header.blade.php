@@ -31,10 +31,10 @@
                 <!-- Dropdown Profil Pengguna -->
                 <div class="relative">
                     <button type="button"
-                        class="flex items-center p-1 text-sm transition-colors duration-200 bg-white rounded-full gap-x-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 hover:bg-gray-50"
+                        class="flex items-center p-1 text-sm transition-colors duration-200 bg-white rounded-full gap-x-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 hover:bg-gray-50"
                         id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                         <img class="object-cover w-8 h-8 rounded-full"
-                            src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=107555&color=ffffff&size=128"
+                            src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=2563eb&color=ffffff&size=128"
                             alt="User avatar">
                         <span class="hidden lg:flex lg:items-center">
                             <span class="text-sm font-semibold text-gray-900"
@@ -74,9 +74,8 @@
                     </div>
                 </div>
             @else
-                <a href="{{ route('login') }}"
-                    class="text-sm font-semibold leading-6 text-gray-900 hover:text-emerald-600">Log in <span
-                        aria-hidden="true">→</span></a>
+                <a href="{{ route('login') }}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-sky-600">Log
+                    in <span aria-hidden="true">→</span></a>
             @endauth
         </div>
     </div>

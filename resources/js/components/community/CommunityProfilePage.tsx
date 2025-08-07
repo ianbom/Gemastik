@@ -100,13 +100,13 @@ const CommunityProfilePage = ({
     ];
     return (
         <div className="min-h-screen">
-            <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <Card className="mb-8">
                     <CardContent className="p-6">
                         <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-start">
                             <div className="flex flex-col items-center space-y-4">
                                 <div className="relative">
-                                    <Avatar className="h-24 w-24">
+                                    <Avatar className="w-24 h-24">
                                         <AvatarImage
                                             src={
                                                 user?.profile_url
@@ -115,7 +115,7 @@ const CommunityProfilePage = ({
                                             }
                                         />
 
-                                        <AvatarFallback className="bg-emerald-100 text-xl font-semibold text-emerald-700">
+                                        <AvatarFallback className="text-xl font-semibold bg-sky-100 text-sky-700">
                                             {user?.name
                                                 ?.charAt(0)
                                                 .toUpperCase() || 'U'}
@@ -125,10 +125,10 @@ const CommunityProfilePage = ({
 
                                 <a
                                     href="/community/edit-profile"
-                                    className="inline-flex items-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-emerald-700"
+                                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-white transition-colors duration-200 rounded-lg shadow-sm bg-sky-600 hover:bg-sky-700"
                                 >
                                     <svg
-                                        className="mr-2 h-4 w-4"
+                                        className="w-4 h-4 mr-2"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -143,49 +143,49 @@ const CommunityProfilePage = ({
                                     Edit Profile
                                 </a>
                             </div>
-                            <div className="w-full flex-1">
+                            <div className="flex-1 w-full">
                                 <div className="mb-6">
                                     <h1 className="mb-2 text-3xl font-bold text-gray-900">
                                         {user?.name || 'User Name'}
                                     </h1>
                                     <div className="mt-2 inline-flex items-center gap-1.5 rounded-md bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">
-                                        <Star className="h-4 w-4 text-yellow-500" />
+                                        <Star className="w-4 h-4 text-yellow-500" />
                                         {user?.points_balance || 0} Poin
                                     </div>
                                 </div>
-                                <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                                <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2">
                                     <div className="space-y-4">
-                                        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-800">
+                                        <h3 className="mb-3 text-sm font-semibold tracking-wide text-gray-800 uppercase">
                                             Informasi Kontak
                                         </h3>
 
-                                        <div className="flex items-center space-x-3 rounded-lg bg-gray-50 p-3">
-                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-blue-100">
+                                        <div className="flex items-center p-3 space-x-3 rounded-lg bg-gray-50">
+                                            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg">
                                                 <Mail
                                                     size={16}
                                                     className="text-blue-600"
                                                 />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Email
                                                 </p>
-                                                <p className="truncate text-sm font-medium text-gray-900">
+                                                <p className="text-sm font-medium text-gray-900 truncate">
                                                     {user?.email ||
                                                         'Tidak tersedia'}
                                                 </p>
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center space-x-3 rounded-lg bg-gray-50 p-3">
-                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-100">
+                                        <div className="flex items-center p-3 space-x-3 rounded-lg bg-gray-50">
+                                            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-100 rounded-lg">
                                                 <Phone
                                                     size={16}
                                                     className="text-green-600"
                                                 />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Telepon
                                                 </p>
                                                 <p className="text-sm font-medium text-gray-900">
@@ -196,19 +196,19 @@ const CommunityProfilePage = ({
                                         </div>
                                     </div>
                                     <div className="space-y-4">
-                                        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-800">
+                                        <h3 className="mb-3 text-sm font-semibold tracking-wide text-gray-800 uppercase">
                                             Informasi Lokasi
                                         </h3>
 
-                                        <div className="flex items-start space-x-3 rounded-lg bg-gray-50 p-3">
+                                        <div className="flex items-start p-3 space-x-3 rounded-lg bg-gray-50">
                                             <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-red-100">
                                                 <MapPin
                                                     size={16}
                                                     className="text-red-600"
                                                 />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Wilayah
                                                 </p>
                                                 <p className="text-sm font-medium leading-relaxed text-gray-900">
@@ -224,15 +224,15 @@ const CommunityProfilePage = ({
                                             </div>
                                         </div>
 
-                                        <div className="flex items-start space-x-3 rounded-lg bg-gray-50 p-3">
+                                        <div className="flex items-start p-3 space-x-3 rounded-lg bg-gray-50">
                                             <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-purple-100">
                                                 <MapPinned
                                                     size={16}
                                                     className="text-purple-600"
                                                 />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Alamat
                                                 </p>
                                                 <p className="text-sm font-medium leading-relaxed text-gray-900">
@@ -243,17 +243,17 @@ const CommunityProfilePage = ({
                                         </div>
                                     </div>
                                 </div>
-                                <div className="border-t border-gray-100 pt-4">
+                                <div className="pt-4 border-t border-gray-100">
                                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                                         <div className="flex items-center space-x-3">
-                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-100">
+                                            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-emerald-100">
                                                 <Calendar
                                                     size={14}
                                                     className="text-emerald-600"
                                                 />
                                             </div>
                                             <div>
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Bergabung
                                                 </p>
                                                 <p className="text-sm font-medium text-gray-700">
@@ -265,14 +265,14 @@ const CommunityProfilePage = ({
                                         </div>
 
                                         <div className="flex items-center space-x-3">
-                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-orange-100">
+                                            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-orange-100 rounded-lg">
                                                 <Clock
                                                     size={14}
                                                     className="text-orange-600"
                                                 />
                                             </div>
                                             <div>
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Terakhir Diperbarui
                                                 </p>
                                                 <p className="text-sm font-medium text-gray-700">
@@ -289,16 +289,16 @@ const CommunityProfilePage = ({
                     </CardContent>
                 </Card>
                 <Card className="mb-8 overflow-hidden border-0 shadow-lg">
-                    <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 px-6 py-8">
+                    <div className="px-6 py-8 bg-gradient-to-br from-sky-500 to-sky-600">
                         <div className="flex items-center space-x-3">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-                                <Users className="h-6 w-6 text-white" />
+                            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm">
+                                <Users className="w-6 h-6 text-white" />
                             </div>
                             <div>
                                 <h1 className="text-2xl font-bold text-white">
                                     Informasi Komunitas
                                 </h1>
-                                <p className="text-emerald-100">
+                                <p className="text-sky-100">
                                     Detail lengkap tentang komunitas Anda
                                 </p>
                             </div>
@@ -307,16 +307,16 @@ const CommunityProfilePage = ({
 
                     <CardContent className="p-6">
                         <div className="grid gap-6 md:grid-cols-2">
-                            <div className="group rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-5 transition-all duration-200 hover:border-emerald-200 hover:shadow-md">
+                            <div className="p-5 transition-all duration-200 border group rounded-xl border-cyan-100 bg-gradient-to-br from-cyan-50 to-white hover:border-cyan-200 hover:shadow-md">
                                 <div className="flex items-start space-x-4">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 transition-colors group-hover:bg-emerald-200">
-                                        <Building2 className="h-5 w-5 text-emerald-600" />
+                                    <div className="flex items-center justify-center w-10 h-10 transition-colors rounded-lg bg-cyan-100 group-hover:bg-cyan-200">
+                                        <Building2 className="w-5 h-5 text-cyan-600" />
                                     </div>
-                                    <div className="min-w-0 flex-1">
-                                        <label className="text-xs font-semibold uppercase tracking-wider text-emerald-600">
+                                    <div className="flex-1 min-w-0">
+                                        <label className="text-xs font-semibold tracking-wider uppercase text-cyan-600">
                                             Nama Komunitas
                                         </label>
-                                        <p className="mt-1 truncate text-lg font-semibold text-gray-900">
+                                        <p className="mt-1 text-lg font-semibold text-gray-900 truncate">
                                             {user?.community?.name || (
                                                 <span className="italic text-gray-400">
                                                     Belum ada nama komunitas
@@ -326,16 +326,16 @@ const CommunityProfilePage = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="group rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-5 transition-all duration-200 hover:border-blue-200 hover:shadow-md">
+                            <div className="p-5 transition-all duration-200 border border-blue-100 group rounded-xl bg-gradient-to-br from-blue-50 to-white hover:border-blue-200 hover:shadow-md">
                                 <div className="flex items-start space-x-4">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 transition-colors group-hover:bg-blue-200">
-                                        <Crown className="h-5 w-5 text-blue-600" />
+                                    <div className="flex items-center justify-center w-10 h-10 transition-colors bg-blue-100 rounded-lg group-hover:bg-blue-200">
+                                        <Crown className="w-5 h-5 text-blue-600" />
                                     </div>
-                                    <div className="min-w-0 flex-1">
-                                        <label className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                                    <div className="flex-1 min-w-0">
+                                        <label className="text-xs font-semibold tracking-wider text-blue-600 uppercase">
                                             Ketua Komunitas
                                         </label>
-                                        <p className="mt-1 truncate text-lg font-semibold text-gray-900">
+                                        <p className="mt-1 text-lg font-semibold text-gray-900 truncate">
                                             {user?.name || (
                                                 <span className="italic text-gray-400">
                                                     Ketua belum ditentukan
@@ -343,7 +343,7 @@ const CommunityProfilePage = ({
                                             )}
                                         </p>
                                         {user?.email && (
-                                            <p className="mt-1 truncate text-xs text-gray-500">
+                                            <p className="mt-1 text-xs text-gray-500 truncate">
                                                 {user.email}
                                             </p>
                                         )}
@@ -352,13 +352,13 @@ const CommunityProfilePage = ({
                             </div>
                         </div>
                         <div className="mt-6">
-                            <div className="group rounded-xl border border-amber-100 bg-gradient-to-br from-amber-50 to-white p-5 transition-all duration-200 hover:border-amber-200 hover:shadow-md">
+                            <div className="p-5 transition-all duration-200 border group rounded-xl border-amber-100 bg-gradient-to-br from-amber-50 to-white hover:border-amber-200 hover:shadow-md">
                                 <div className="flex items-start space-x-4">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 transition-colors group-hover:bg-amber-200">
-                                        <FileText className="h-5 w-5 text-amber-600" />
+                                    <div className="flex items-center justify-center w-10 h-10 transition-colors rounded-lg bg-amber-100 group-hover:bg-amber-200">
+                                        <FileText className="w-5 h-5 text-amber-600" />
                                     </div>
-                                    <div className="min-w-0 flex-1">
-                                        <label className="text-xs font-semibold uppercase tracking-wider text-amber-600">
+                                    <div className="flex-1 min-w-0">
+                                        <label className="text-xs font-semibold tracking-wider uppercase text-amber-600">
                                             Deskripsi Komunitas
                                         </label>
                                         <div className="mt-2">
@@ -368,7 +368,7 @@ const CommunityProfilePage = ({
                                                 </p>
                                             ) : (
                                                 <div className="flex items-center space-x-2 text-gray-400">
-                                                    <AlertCircle className="h-4 w-4" />
+                                                    <AlertCircle className="w-4 h-4" />
                                                     <span className="text-sm italic">
                                                         Deskripsi komunitas
                                                         belum ditambahkan
@@ -380,8 +380,8 @@ const CommunityProfilePage = ({
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-2">
-                            <div className="rounded-lg bg-gray-50 p-3 text-center">
+                        <div className="grid grid-cols-2 gap-4 mt-6 md:grid-cols-2">
+                            <div className="p-3 text-center rounded-lg bg-gray-50">
                                 <div className="text-lg font-bold text-gray-900">
                                     {user?.community?.member_count || '0'}
                                 </div>
@@ -389,7 +389,7 @@ const CommunityProfilePage = ({
                                     Anggota
                                 </div>
                             </div>
-                            <div className="rounded-lg bg-gray-50 p-3 text-center">
+                            <div className="p-3 text-center rounded-lg bg-gray-50">
                                 <div className="text-lg font-bold text-gray-900">
                                     {user?.community?.created_at
                                         ? new Date(
@@ -409,7 +409,7 @@ const CommunityProfilePage = ({
                     <h2 className="mb-4 text-xl font-semibold text-gray-900">
                         Kilas Balik Kontribusi Anda
                     </h2>
-                    <div className="mb-6 grid gap-6 md:grid-cols-3">
+                    <div className="grid gap-6 mb-6 md:grid-cols-3">
                         {stats.map((stat, index) => (
                             <Card
                                 key={index}
@@ -439,7 +439,7 @@ const CommunityProfilePage = ({
                                                 }
                                             >
                                                 Buat Sekarang
-                                                <ArrowRight className="ml-1 h-3 w-3" />
+                                                <ArrowRight className="w-3 h-3 ml-1" />
                                             </Button>
                                         ) : (
                                             <Button
@@ -451,7 +451,7 @@ const CommunityProfilePage = ({
                                                 }
                                             >
                                                 Lihat Semua
-                                                <ArrowRight className="ml-1 h-3 w-3" />
+                                                <ArrowRight className="w-3 h-3 ml-1" />
                                             </Button>
                                         )
                                     ) : stat.label === 'MISI DIIKUTI' ? (
@@ -465,7 +465,7 @@ const CommunityProfilePage = ({
                                                 }
                                             >
                                                 Cari Misi
-                                                <ArrowRight className="ml-1 h-3 w-3" />
+                                                <ArrowRight className="w-3 h-3 ml-1" />
                                             </Button>
                                         ) : (
                                             <Button
@@ -477,7 +477,7 @@ const CommunityProfilePage = ({
                                                 }
                                             >
                                                 Lihat Semua
-                                                <ArrowRight className="ml-1 h-3 w-3" />
+                                                <ArrowRight className="w-3 h-3 ml-1" />
                                             </Button>
                                         )
                                     ) : (
@@ -487,7 +487,7 @@ const CommunityProfilePage = ({
                                             className="mt-2 text-xs"
                                         >
                                             Lihat Semua
-                                            <ArrowRight className="ml-1 h-3 w-3" />
+                                            <ArrowRight className="w-3 h-3 ml-1" />
                                         </Button>
                                     )}
                                 </CardContent>
@@ -498,9 +498,9 @@ const CommunityProfilePage = ({
                     {/* Quick Actions */}
                     <div className="grid gap-4 md:grid-cols-2">
                         <Link href="/report-create">
-                            <Card className="h-full cursor-pointer transition-shadow hover:shadow-lg">
+                            <Card className="h-full transition-shadow cursor-pointer hover:shadow-lg">
                                 <CardContent className="p-6 text-center">
-                                    <Plus className="mx-auto mb-3 h-12 w-12 text-green-600" />
+                                    <Plus className="w-12 h-12 mx-auto mb-3 text-green-600" />
                                     <h3 className="mb-2 text-lg font-semibold text-gray-900">
                                         LAPORKAN ISU BARU
                                     </h3>
@@ -513,9 +513,9 @@ const CommunityProfilePage = ({
                         </Link>
 
                         <Link href="/map">
-                            <Card className="h-full cursor-pointer transition-shadow hover:shadow-lg">
+                            <Card className="h-full transition-shadow cursor-pointer hover:shadow-lg">
                                 <CardContent className="p-6 text-center">
-                                    <Map className="mx-auto mb-3 h-12 w-12 text-blue-600" />
+                                    <Map className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                                     <h3 className="mb-2 text-lg font-semibold text-gray-900">
                                         LIHAT PETA LAPORAN
                                     </h3>
@@ -596,7 +596,7 @@ const CommunityProfilePage = ({
                                                                         )}
                                                                     </p>
                                                                 </div>
-                                                                <div className="flex items-center gap-3 self-start">
+                                                                <div className="flex items-center self-start gap-3">
                                                                     <Badge
                                                                         className={getStatusColor(
                                                                             report.status,
@@ -642,7 +642,7 @@ const CommunityProfilePage = ({
                                         </>
                                     ) : (
                                         <div className="py-8 text-center">
-                                            <FileText className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+                                            <FileText className="w-12 h-12 mx-auto mb-4 text-gray-400" />
                                             <p className="text-gray-600">
                                                 Belum ada riwayat laporan
                                             </p>
@@ -683,7 +683,7 @@ const CommunityProfilePage = ({
                                                                         )}
                                                                     </p>
                                                                 </div>
-                                                                <div className="flex items-center gap-3 self-start">
+                                                                <div className="flex items-center self-start gap-3">
                                                                     <Badge
                                                                         className={getMissionStatusColor(
                                                                             mission.status,
@@ -729,7 +729,7 @@ const CommunityProfilePage = ({
                                         </>
                                     ) : (
                                         <div className="py-8 text-center">
-                                            <Target className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+                                            <Target className="w-12 h-12 mx-auto mb-4 text-gray-400" />
                                             <p className="text-gray-600">
                                                 Belum ada riwayat misi
                                             </p>
@@ -768,7 +768,7 @@ const CommunityProfilePage = ({
                                                                         )}
                                                                     </p>
                                                                 </div>
-                                                                <div className="flex flex-col items-end gap-1 self-start">
+                                                                <div className="flex flex-col items-end self-start gap-1">
                                                                     <Badge
                                                                         className={getStatusClass(
                                                                             donation.status,
@@ -809,7 +809,7 @@ const CommunityProfilePage = ({
                                         </>
                                     ) : (
                                         <div className="py-8 text-center">
-                                            <Heart className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+                                            <Heart className="w-12 h-12 mx-auto mb-4 text-gray-400" />
                                             <p className="text-gray-600">
                                                 Belum ada riwayat donasi
                                             </p>
@@ -826,7 +826,7 @@ const CommunityProfilePage = ({
                         <CardTitle>Riwayat Poin</CardTitle>
                         <div className="inline-flex items-center gap-1.5 rounded-md bg-yellow-100 px-2 py-2.5 text-xs font-medium text-yellow-800">
                             Poin Saat Ini:
-                            <Star className="h-4 w-4 text-yellow-500" />
+                            <Star className="w-4 h-4 text-yellow-500" />
                             {user?.points_balance || 0} Poin
                         </div>
                     </CardHeader>
@@ -870,9 +870,9 @@ const CommunityProfilePage = ({
                             <TabsContent value="all-points" className="mt-6">
                                 {myPoints.length === 0 ? (
                                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                                        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+                                        <div className="flex items-center justify-center w-16 h-16 mb-4 bg-gray-100 rounded-full">
                                             <svg
-                                                className="h-8 w-8 text-gray-400"
+                                                className="w-8 h-8 text-gray-400"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -942,9 +942,9 @@ const CommunityProfilePage = ({
                                 {myPoints.filter((p) => p.type === 'increment')
                                     .length === 0 ? (
                                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                                        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                                        <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-emerald-100">
                                             <svg
-                                                className="h-8 w-8 text-emerald-400"
+                                                className="w-8 h-8 text-emerald-400"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -973,7 +973,7 @@ const CommunityProfilePage = ({
                                             .map((point) => (
                                                 <Card
                                                     key={point.id}
-                                                    className="border-emerald-200 bg-emerald-50/50 p-3 shadow-sm transition-colors hover:bg-emerald-50"
+                                                    className="p-3 transition-colors shadow-sm border-emerald-200 bg-emerald-50/50 hover:bg-emerald-50"
                                                 >
                                                     <CardContent className="p-0">
                                                         <div className="mb-1 text-sm font-semibold text-emerald-600">
@@ -1001,9 +1001,9 @@ const CommunityProfilePage = ({
                                 {myPoints.filter((p) => p.type === 'decrement')
                                     .length === 0 ? (
                                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                                        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
+                                        <div className="flex items-center justify-center w-16 h-16 mb-4 bg-red-100 rounded-full">
                                             <svg
-                                                className="h-8 w-8 text-red-400"
+                                                className="w-8 h-8 text-red-400"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -1032,7 +1032,7 @@ const CommunityProfilePage = ({
                                             .map((point) => (
                                                 <Card
                                                     key={point.id}
-                                                    className="border-red-200 bg-red-50/50 p-3 shadow-sm transition-colors hover:bg-red-50"
+                                                    className="p-3 transition-colors border-red-200 shadow-sm bg-red-50/50 hover:bg-red-50"
                                                 >
                                                     <CardContent className="p-0">
                                                         <div className="mb-1 text-sm font-semibold text-red-600">

@@ -1,20 +1,20 @@
 import { Instagram } from 'lucide-react';
 const Footer = () => {
     return (
-        <footer className="relative overflow-hidden bg-green-900 text-white">
-            <div className="absolute inset-0 bg-emerald-600"></div>
-            <div className="relative z-10 mx-auto max-w-7xl px-4 py-16">
-                <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <footer className="relative overflow-hidden text-white bg-blue-900">
+            <div className="absolute inset-0 bg-sky-600"></div>
+            <div className="relative z-10 px-4 py-16 mx-auto max-w-7xl">
+                <div className="grid grid-cols-1 gap-8 mb-12 md:grid-cols-2 lg:grid-cols-4">
                     <div className="lg:col-span-2">
-                        <div className="mb-6 flex items-start gap-4">
+                        <div className="flex items-start gap-4 mb-6">
                             <img
                                 src="/assets/images/sobatbumibnw.png"
-                                alt="SobatBumi"
-                                className="h-12 w-12 object-contain"
+                                alt="KawanBumi"
+                                className="object-contain w-12 h-12"
                             />
                             <div>
                                 <h3 className="text-2xl font-bold text-white">
-                                    SobatBumi
+                                    KawanBumi
                                 </h3>
                                 <p className="text-sm text-slate-200">
                                     Aksi nyata untuk bumi, mulai dari laporan
@@ -23,8 +23,8 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <p className="mb-6 max-w-md text-justify leading-relaxed text-slate-50">
-                            SobatBumi adalah platform digital untuk
+                        <p className="max-w-md mb-6 leading-relaxed text-justify text-slate-50">
+                            KawanBumi adalah platform digital untuk
                             berpartisipasi dalam misi sosial dan lingkungan.
                             Kamu bisa bergabung dalam kegiatan, mengumpulkan
                             poin, mengasah wawasan lewat konten edukasi dan
@@ -33,16 +33,16 @@ const Footer = () => {
                         <div className="flex gap-4">
                             <a
                                 href="#"
-                                className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500 transition-colors hover:bg-amber-800"
+                                className="flex items-center justify-center w-10 h-10 transition-colors rounded-lg bg-cyan-500 hover:bg-cyan-800"
                             >
-                                <Instagram className="h-5 w-5" />
+                                <Instagram className="w-5 h-5" />
                             </a>
                             <a
                                 href="#"
-                                className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500 transition-colors hover:bg-amber-800"
+                                className="flex items-center justify-center w-10 h-10 transition-colors rounded-lg bg-cyan-500 hover:bg-cyan-800"
                             >
                                 <svg
-                                    className="h-5 w-5"
+                                    className="w-5 h-5"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                 >
@@ -57,7 +57,7 @@ const Footer = () => {
                             <li>
                                 <a
                                     href="/report"
-                                    className="text-slate-300 transition-colors hover:text-white"
+                                    className="transition-colors text-slate-300 hover:text-white"
                                 >
                                     Laporan
                                 </a>
@@ -65,7 +65,7 @@ const Footer = () => {
                             <li>
                                 <a
                                     href="/mission"
-                                    className="text-slate-300 transition-colors hover:text-white"
+                                    className="transition-colors text-slate-300 hover:text-white"
                                 >
                                     Misi
                                 </a>
@@ -73,7 +73,7 @@ const Footer = () => {
                             <li>
                                 <a
                                     href="/map"
-                                    className="text-slate-300 transition-colors hover:text-white"
+                                    className="transition-colors text-slate-300 hover:text-white"
                                 >
                                     Peta
                                 </a>
@@ -81,7 +81,7 @@ const Footer = () => {
                             <li>
                                 <a
                                     href="/education"
-                                    className="text-slate-300 transition-colors hover:text-white"
+                                    className="transition-colors text-slate-300 hover:text-white"
                                 >
                                     Konten Edukasi
                                 </a>
@@ -89,7 +89,7 @@ const Footer = () => {
                             <li>
                                 <a
                                     href="/quiz"
-                                    className="text-slate-300 transition-colors hover:text-white"
+                                    className="transition-colors text-slate-300 hover:text-white"
                                 >
                                     Quiz
                                 </a>
@@ -100,37 +100,37 @@ const Footer = () => {
                         <h4 className="mb-6 text-lg font-semibold">Layanan</h4>
                         <ul className="space-y-3">
                             <li>
-                                <p className="text-slate-300 transition-colors hover:text-white">
+                                <p className="transition-colors text-slate-300 hover:text-white">
                                     Pengajuan Laporan
                                 </p>
                             </li>
                             <li>
-                                <p className="text-slate-300 transition-colors hover:text-white">
+                                <p className="transition-colors text-slate-300 hover:text-white">
                                     Verifikasi dan Tindak Lanjut Laporan
                                 </p>
                             </li>
                             <li>
-                                <p className="text-slate-300 transition-colors hover:text-white">
+                                <p className="transition-colors text-slate-300 hover:text-white">
                                     Aksi Peduli Lingkungan
                                 </p>
                             </li>
                             <li>
-                                <p className="text-slate-300 transition-colors hover:text-white">
+                                <p className="transition-colors text-slate-300 hover:text-white">
                                     Penukaran Merchandise
                                 </p>
                             </li>
                             <li>
-                                <p className="text-slate-300 transition-colors hover:text-white">
+                                <p className="transition-colors text-slate-300 hover:text-white">
                                     Edukasi Berupa Kuis dan Konten
                                 </p>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div className="border-t border-emerald-900 pt-8">
+                <div className="pt-8 border-t border-sky-900">
                     <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
                         <div className="flex flex-col items-center gap-4 text-sm sm:flex-row">
-                            <p>&copy; 2025 SobatBumi. All rights reserved.</p>
+                            <p>&copy; 2025 KawanBumi. All rights reserved.</p>
                             <div className="flex items-center gap-4">
                                 <a
                                     href="#"
@@ -155,7 +155,7 @@ const Footer = () => {
                         <div className="flex items-center gap-4 text-sm">
                             <span>Made with</span>
                             <svg
-                                className="h-4 w-4 text-red-500"
+                                className="w-4 h-4 text-red-500"
                                 fill="currentColor"
                                 viewBox="0 0 24 24"
                             >
@@ -166,9 +166,9 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
-            <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-indigo-500/5 blur-2xl"></div>
+            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+            <div className="absolute top-0 right-0 rounded-full h-96 w-96 bg-blue-500/5 blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-indigo-500/5 blur-2xl"></div>
         </footer>
     );
 };

@@ -173,8 +173,8 @@ const MissionPage = ({
         filters.endDate;
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col items-start justify-between md:flex-row md:items-center">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
                 <div>
                     <h1 className="mb-2 text-3xl font-bold text-gray-900">
                         {myMissions ? 'Misi yang Diikuti' : 'Daftar Misi'}
@@ -195,12 +195,12 @@ const MissionPage = ({
                                 <div className="flex items-center">
                                     <SlidersHorizontal
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Filter Misi
                                 </div>
                                 {hasActiveFilters && (
-                                    <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-600">
+                                    <span className="px-2 py-1 text-xs rounded-full bg-emerald-100 text-emerald-600">
                                         Aktif
                                     </span>
                                 )}
@@ -278,7 +278,7 @@ const MissionPage = ({
                                 </label>
                                 <input
                                     type="date"
-                                    className="w-full rounded-md border border-gray-200 px-2 py-2"
+                                    className="w-full px-2 py-2 border border-gray-200 rounded-md"
                                     value={filters.startDate}
                                     onChange={(e) =>
                                         handleFilterChange(
@@ -295,7 +295,7 @@ const MissionPage = ({
 
                                 <input
                                     type="date"
-                                    className="w-full rounded border border-gray-300 px-2 py-2"
+                                    className="w-full px-2 py-2 border border-gray-300 rounded"
                                     value={filters.endDate}
                                     onChange={(e) =>
                                         handleFilterChange(
@@ -306,14 +306,14 @@ const MissionPage = ({
                                     min={filters.startDate}
                                 />
                             </div>
-                            <div className="space-y-2 pt-4">
+                            <div className="pt-4 space-y-2">
                                 <Button
                                     variant="outline"
-                                    className="flex w-full items-center justify-center gap-2"
+                                    className="flex items-center justify-center w-full gap-2"
                                     onClick={resetFilters}
                                     disabled={!hasActiveFilters}
                                 >
-                                    <RefreshCcw className="h-4 w-4" />
+                                    <RefreshCcw className="w-4 h-4" />
                                     Reset Filter
                                 </Button>
                             </div>
@@ -324,7 +324,7 @@ const MissionPage = ({
                 {/* Main Content */}
                 <div className="lg:col-span-3">
                     {/* Sort and Search */}
-                    <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
                         <div className="flex items-center space-x-4">
                             <Select value={sortBy} onValueChange={setSortBy}>
                                 <SelectTrigger className="w-48">
@@ -351,7 +351,7 @@ const MissionPage = ({
                         </div>
 
                         <div className="relative w-full sm:w-64">
-                            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                            <Search className="absolute w-4 h-4 text-gray-400 left-3 top-3" />
                             <Input
                                 placeholder="Cari misi..."
                                 className="pl-10"
@@ -368,7 +368,7 @@ const MissionPage = ({
                                     (mission: Mission) => (
                                         <Card
                                             key={mission.id}
-                                            className="group cursor-pointer border-0 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                                            className="transition-all duration-300 border-0 shadow-md cursor-pointer group hover:-translate-y-1 hover:shadow-lg"
                                             onClick={() =>
                                                 onViewDetails(
                                                     mission.report?.id,
@@ -379,18 +379,18 @@ const MissionPage = ({
                                                 {mission.report?.media?.[0]?.media_type?.startsWith(
                                                     'video',
                                                 ) ? (
-                                                    <div className="relative h-48 w-full bg-black">
+                                                    <div className="relative w-full h-48 bg-black">
                                                         <video
-                                                            className="h-full w-full object-cover opacity-50"
+                                                            className="object-cover w-full h-full opacity-50"
                                                             src={`/storage/${mission.report.media[0].media_url}`}
                                                             muted
                                                             preload="metadata"
                                                         />
                                                         <div className="absolute inset-0 flex items-center justify-center">
-                                                            <div className="rounded-full bg-white/80 p-2">
+                                                            <div className="p-2 rounded-full bg-white/80">
                                                                 <svg
                                                                     xmlns="http://www.w3.org/2000/svg"
-                                                                    className="h-6 w-6 text-black"
+                                                                    className="w-6 h-6 text-black"
                                                                     fill="none"
                                                                     viewBox="0 0 24 24"
                                                                     stroke="currentColor"
@@ -411,7 +411,7 @@ const MissionPage = ({
                                                     <img
                                                         src={`/storage/${mission.thumbnail_url}`}
                                                         alt={mission.title}
-                                                        className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                        className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
                                                     />
                                                 )}
 
@@ -429,19 +429,19 @@ const MissionPage = ({
                                             </div>
 
                                             <CardContent className="p-4">
-                                                <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900 transition-colors group-hover:text-emerald-600">
+                                                <h3 className="mb-2 font-semibold text-gray-900 transition-colors line-clamp-2 group-hover:text-sky-600">
                                                     {mission.title}
                                                 </h3>
-                                                <p className="mb-3 line-clamp-2 text-sm text-gray-600">
+                                                <p className="mb-3 text-sm text-gray-600 line-clamp-2">
                                                     {mission.description}
                                                 </p>
-                                                <div className="mb-3 flex items-center justify-between text-xs text-gray-500">
+                                                <div className="flex items-center justify-between mb-3 text-xs text-gray-500">
                                                     <span>
                                                         Diverifikasi:{' '}
                                                         {mission.creator?.name}
                                                     </span>
                                                 </div>
-                                                <div className="mb-3 flex items-center text-sm text-gray-500">
+                                                <div className="flex items-center mb-3 text-sm text-gray-500">
                                                     <MapPin
                                                         size={14}
                                                         className="mr-1"
@@ -453,7 +453,7 @@ const MissionPage = ({
                                                     </span>
                                                 </div>
 
-                                                <div className="mb-4 flex items-center justify-between">
+                                                <div className="flex items-center justify-between mb-4">
                                                     <div className="flex items-center text-sm text-gray-500">
                                                         <span>
                                                             Pelaksanaan:{' '}
@@ -465,7 +465,7 @@ const MissionPage = ({
                                                 </div>
 
                                                 <Button
-                                                    className="mt-auto w-full bg-amber-500 transition-colors duration-200 hover:bg-amber-700"
+                                                    className="w-full mt-auto transition-colors duration-200 bg-cyan-500 hover:bg-cyan-700"
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         Inertia.visit(
@@ -486,13 +486,13 @@ const MissionPage = ({
                             </div>
                         </>
                     ) : (
-                        <div className="flex w-full items-center justify-center">
+                        <div className="flex items-center justify-center w-full">
                             <Card className="w-full px-8 py-32 text-center">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="rounded-full bg-gray-100 p-4">
+                                <div className="flex justify-center mb-4">
+                                    <div className="p-4 bg-gray-100 rounded-full">
                                         <Target
                                             size={32}
-                                            className="h-12 w-12 text-gray-400"
+                                            className="w-12 h-12 text-gray-400"
                                         />
                                     </div>
                                 </div>

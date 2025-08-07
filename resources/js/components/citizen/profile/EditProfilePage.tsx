@@ -182,12 +182,12 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
     };
 
     return (
-        <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-8 flex items-center justify-between">
+        <div className="px-4 py-8 mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between mb-8">
                 <Button
                     variant="ghost"
                     onClick={onBack}
-                    className="text-gray-600 hover:text-emerald-600"
+                    className="text-gray-600 hover:text-sky-600"
                     disabled={isSubmitting}
                 >
                     <ArrowLeft size={20} className="mr-2" />
@@ -208,12 +208,12 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
             <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                     <div className="flex flex-col space-y-6">
-                        <Card className="flex h-full flex-col">
+                        <Card className="flex flex-col h-full">
                             <CardHeader>
                                 <CardTitle className="flex items-center">
                                     <Info
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Informasi Pengguna
                                 </CardTitle>
@@ -264,12 +264,12 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
 
                     {/* Alamat Pengguna - Kanan */}
                     <div className="flex flex-col space-y-6">
-                        <Card className="flex h-full flex-col">
+                        <Card className="flex flex-col h-full">
                             <CardHeader>
                                 <CardTitle className="flex items-center">
                                     <MapPin
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Alamat Pengguna
                                 </CardTitle>
@@ -411,12 +411,12 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                 </div>
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                     <div className="flex flex-col space-y-6">
-                        <Card className="flex h-full flex-col">
+                        <Card className="flex flex-col h-full">
                             <CardHeader>
                                 <CardTitle className="flex items-center">
                                     <Lock
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Kata Sandi
                                 </CardTitle>
@@ -451,7 +451,7 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                                         />
                                         <button
                                             type="button"
-                                            className="absolute inset-y-0 right-2 flex items-center text-gray-500"
+                                            className="absolute inset-y-0 flex items-center text-gray-500 right-2"
                                             onClick={() =>
                                                 setShowCurrentPassword(
                                                     !showCurrentPassword,
@@ -492,7 +492,7 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                                         />
                                         <button
                                             type="button"
-                                            className="absolute inset-y-0 right-2 flex items-center text-gray-500"
+                                            className="absolute inset-y-0 flex items-center text-gray-500 right-2"
                                             onClick={() =>
                                                 setShowPassword(!showPassword)
                                             }
@@ -533,7 +533,7 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                                         />
                                         <button
                                             type="button"
-                                            className="absolute inset-y-0 right-2 flex items-center text-gray-500"
+                                            className="absolute inset-y-0 flex items-center text-gray-500 right-2"
                                             onClick={() =>
                                                 setShowPasswordConfirmation(
                                                     !showPasswordConfirmation,
@@ -552,18 +552,18 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                         </Card>
                     </div>
                     <div className="flex flex-col space-y-6">
-                        <Card className="flex h-full flex-col">
+                        <Card className="flex flex-col h-full">
                             <CardHeader>
                                 <CardTitle className="flex items-center">
                                     <Camera
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Foto Profil Pengguna
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-6">
-                                <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center transition-colors hover:border-emerald-400">
+                                <div className="p-8 text-center transition-colors border-2 border-gray-300 border-dashed rounded-lg hover:border-sky-400">
                                     <input
                                         type="file"
                                         accept="image/*,video/*"
@@ -598,9 +598,9 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                                         {uploadedFiles.map((file, index) => (
                                             <div
                                                 key={index}
-                                                className="group relative"
+                                                className="relative group"
                                             >
-                                                <div className="flex aspect-square items-center justify-center rounded-lg bg-gray-100">
+                                                <div className="flex items-center justify-center bg-gray-100 rounded-lg aspect-square">
                                                     {file.type.startsWith(
                                                         'image/',
                                                     ) ? (
@@ -609,7 +609,7 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                                                                 file,
                                                             )}
                                                             alt={file.name}
-                                                            className="h-full w-full rounded-lg object-cover"
+                                                            className="object-cover w-full h-full rounded-lg"
                                                         />
                                                     ) : (
                                                         <FileVideo
@@ -623,12 +623,12 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                                                     onClick={() =>
                                                         removeFile(index)
                                                     }
-                                                    className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                                                    className="absolute flex items-center justify-center w-6 h-6 text-white transition-opacity bg-red-500 rounded-full opacity-0 -right-2 -top-2 group-hover:opacity-100"
                                                     disabled={isSubmitting}
                                                 >
                                                     <X size={14} />
                                                 </button>
-                                                <p className="mt-1 truncate text-xs text-gray-500">
+                                                <p className="mt-1 text-xs text-gray-500 truncate">
                                                     {file.name}
                                                 </p>
                                             </div>
@@ -640,7 +640,7 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                     </div>
                 </div>
 
-                <div className="flex flex-col justify-start gap-4 rounded-lg border border-gray-200 bg-white p-3 shadow-sm sm:flex-row">
+                <div className="flex flex-col justify-start gap-4 p-3 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex-row">
                     <Button
                         type="button"
                         variant="outline"
@@ -652,7 +652,7 @@ const EditProfilePage = ({ provinces, onBack, auth }: PageProps) => {
                     </Button>
                     <Button
                         type="submit"
-                        className="bg-emerald-600 hover:bg-emerald-700 sm:w-auto"
+                        className="bg-sky-600 hover:bg-sky-700 sm:w-auto"
                         size="lg"
                         disabled={isSubmitting}
                     >

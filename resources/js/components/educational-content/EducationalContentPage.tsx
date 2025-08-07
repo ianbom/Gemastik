@@ -106,7 +106,7 @@ const EducationalContentPage = ({
     const hasActiveFilters =
         searchQuery.trim() || filters.content_type !== 'semua';
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="mb-8">
                 <h1 className="mb-2 text-3xl font-bold text-gray-900">
                     Konten Edukasi
@@ -126,12 +126,12 @@ const EducationalContentPage = ({
                                 <div className="flex items-center">
                                     <SlidersHorizontal
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Filter Konten
                                 </div>
                                 {hasActiveFilters && (
-                                    <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-600">
+                                    <span className="px-2 py-1 text-xs rounded-full bg-emerald-100 text-emerald-600">
                                         Aktif
                                     </span>
                                 )}
@@ -168,14 +168,14 @@ const EducationalContentPage = ({
                                     </SelectContent>
                                 </Select>
                             </div>
-                            <div className="space-y-2 pt-4">
+                            <div className="pt-4 space-y-2">
                                 <Button
                                     variant="outline"
-                                    className="flex w-full items-center justify-center gap-2"
+                                    className="flex items-center justify-center w-full gap-2"
                                     onClick={resetFilters}
                                     disabled={!hasActiveFilters}
                                 >
-                                    <RefreshCcw className="h-4 w-4" />
+                                    <RefreshCcw className="w-4 h-4" />
                                     Reset Filter
                                 </Button>
                             </div>
@@ -186,7 +186,7 @@ const EducationalContentPage = ({
                 {/* Main Content */}
                 <div className="lg:col-span-3">
                     {/* Sort and Search */}
-                    <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
                         <div className="flex items-center space-x-4">
                             <Select value={sortBy} onValueChange={setSortBy}>
                                 <SelectTrigger className="w-48">
@@ -207,7 +207,7 @@ const EducationalContentPage = ({
                         </div>
 
                         <div className="relative w-full sm:w-64">
-                            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                            <Search className="absolute w-4 h-4 text-gray-400 left-3 top-3" />
                             <Input
                                 placeholder="Cari konten..."
                                 className="pl-10"
@@ -218,7 +218,7 @@ const EducationalContentPage = ({
                     </div>
                     {/* Active Filters Display */}
                     {(filters.content_type !== 'semua' || searchQuery) && (
-                        <div className="mb-4 flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mb-4">
                             <span className="mr-2 text-sm font-medium text-gray-700">
                                 Filter aktif:
                             </span>
@@ -263,7 +263,7 @@ const EducationalContentPage = ({
                                 {filteredContents.map((content: Content) => (
                                     <Card
                                         key={content.id}
-                                        className="group cursor-pointer border-0 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                                        className="transition-all duration-300 border-0 shadow-md cursor-pointer group hover:-translate-y-1 hover:shadow-lg"
                                         onClick={() =>
                                             onViewDetails(content.id)
                                         }
@@ -272,18 +272,18 @@ const EducationalContentPage = ({
                                             {content.media?.[0]?.media_type?.startsWith(
                                                 'video',
                                             ) ? (
-                                                <div className="relative h-48 w-full bg-black">
+                                                <div className="relative w-full h-48 bg-black">
                                                     <video
-                                                        className="h-full w-full object-cover opacity-50"
+                                                        className="object-cover w-full h-full opacity-50"
                                                         src={`/storage/${content.media[0].media_url}`}
                                                         muted
                                                         preload="metadata"
                                                     />
                                                     <div className="absolute inset-0 flex items-center justify-center">
-                                                        <div className="rounded-full bg-white/80 p-2">
+                                                        <div className="p-2 rounded-full bg-white/80">
                                                             <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
-                                                                className="h-6 w-6 text-black"
+                                                                className="w-6 h-6 text-black"
                                                                 fill="none"
                                                                 viewBox="0 0 24 24"
                                                                 stroke="currentColor"
@@ -303,10 +303,10 @@ const EducationalContentPage = ({
                                             ) : content.media?.[0]
                                                   ?.media_type ===
                                               'document' ? (
-                                                <div className="flex h-48 w-full items-center justify-center bg-gray-100">
+                                                <div className="flex items-center justify-center w-full h-48 bg-gray-100">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        className="h-12 w-12 text-emerald-600"
+                                                        className="w-12 h-12 text-sky-600"
                                                         viewBox="0 0 24 24"
                                                         fill="currentColor"
                                                     >
@@ -317,7 +317,7 @@ const EducationalContentPage = ({
                                                 <img
                                                     src={`/storage/${content.media?.[0]?.media_url}`}
                                                     alt={content.title}
-                                                    className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                    className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
                                                 />
                                             )}
 
@@ -337,33 +337,32 @@ const EducationalContentPage = ({
 
                                             {content.content_type ===
                                                 'Video' && (
-                                                <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:opacity-100">
-                                                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90">
+                                                <div className="absolute inset-0 flex items-center justify-center transition-opacity opacity-0 bg-black/20 group-hover:opacity-100">
+                                                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white/90">
                                                         <Play
                                                             size={24}
-                                                            className="ml-1 text-emerald-600"
+                                                            className="ml-1 text-sky-600"
                                                         />
                                                     </div>
                                                 </div>
                                             )}
                                         </div>
-
                                         <CardContent className="p-4">
-                                            <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900 transition-colors group-hover:text-emerald-600">
+                                            <h3 className="mb-2 font-semibold text-gray-900 transition-colors line-clamp-2 group-hover:text-sky-600">
                                                 {content.title}
                                             </h3>
-                                            <div className="mb-3 line-clamp-2 text-sm text-gray-600">
+                                            <div className="mb-3 text-sm text-gray-600 line-clamp-2">
                                                 <RenderHTML
                                                     htmlString={content.body}
                                                     className="leading-relaxed text-gray-700"
                                                 />
                                             </div>
-                                            <div className="mb-3 flex items-center justify-between text-xs text-gray-500">
+                                            <div className="flex items-center justify-between mb-3 text-xs text-gray-500">
                                                 <span>
                                                     Oleh: {content.author?.name}
                                                 </span>
                                             </div>
-                                            <div className="mb-4 flex items-center justify-between">
+                                            <div className="flex items-center justify-between mb-4">
                                                 <div className="flex items-center text-sm text-gray-500">
                                                     <Calendar
                                                         size={14}
@@ -378,7 +377,7 @@ const EducationalContentPage = ({
                                             </div>
 
                                             <Button
-                                                className="mt-auto w-full bg-amber-500 transition-colors duration-200 hover:bg-amber-700"
+                                                className="w-full mt-auto transition-colors duration-200 bg-cyan-500 hover:bg-cyan-700"
                                                 onClick={() =>
                                                     Inertia.visit(
                                                         `/content/${content.id}`,
@@ -397,12 +396,12 @@ const EducationalContentPage = ({
                             </div>
                         </>
                     ) : (
-                        <div className="flex w-full items-center justify-center">
+                        <div className="flex items-center justify-center w-full">
                             <Card className="w-full px-8 py-32 text-center">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="rounded-full bg-gray-100 p-4">
+                                <div className="flex justify-center mb-4">
+                                    <div className="p-4 bg-gray-100 rounded-full">
                                         <svg
-                                            className="h-12 w-12 text-gray-400"
+                                            className="w-12 h-12 text-gray-400"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
