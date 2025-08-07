@@ -9,7 +9,7 @@ const Footer = () => {
                         <div className="flex items-start gap-4 mb-6">
                             <img
                                 src="/assets/images/sobatbumibnw.png"
-                                alt="SobatBumi"
+                                alt="KawanBumi"
                                 className="object-contain w-12 h-12"
                             />
                             <div>
@@ -130,7 +130,7 @@ const Footer = () => {
                 <div className="pt-8 border-t border-sky-900">
                     <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
                         <div className="flex flex-col items-center gap-4 text-sm sm:flex-row">
-                            <p>&copy; 2025 SobatBumi. All rights reserved.</p>
+                            <p>&copy; 2025 KawanBumi. All rights reserved.</p>
                             <div className="flex items-center gap-4">
                                 <a
                                     href="#"

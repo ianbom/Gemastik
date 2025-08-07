@@ -52,7 +52,7 @@ const FeatureSection = () => {
             icon: <ShoppingBag className="w-8 h-8 text-indigo-500" />,
             title: 'Merchandise',
             description:
-                'Dapatkan merchandise resmi dari SobatBumi dan tukarkan poinmu',
+                'Dapatkan merchandise resmi dari KawanBumi dan tukarkan poinmu',
             link: '/merchandise',
         },
     ];

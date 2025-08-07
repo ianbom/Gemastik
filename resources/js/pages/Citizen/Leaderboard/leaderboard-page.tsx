@@ -272,7 +272,7 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
                     </h1>
                     <p className="max-w-2xl text-lg text-sky-700 md:text-xl">
                         Apresiasi untuk para kontributor paling berpengaruh di
-                        SobatBumi.
+                        KawanBumi.
                     </p>
                 </div>
 

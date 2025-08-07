@@ -258,7 +258,7 @@
 
                     <div class="main-content">
                         <div class="about-certificate">
-                            <p>Telah menyelesaikan kegiatan volunteer SobatBumi</p>
+                            <p>Telah menyelesaikan kegiatan volunteer KawanBumi</p>
                             <p><strong>{{ $missionTitle ?? 'Misi' }}</strong></p>
                             <p>Yang Diselesaikan pada <strong>{{ $certificateDate ?? '[Date of Completion]' }}</strong></p>
                         </div>
@@ -276,7 +276,7 @@
                 <div class="certificate-footer">
                     <div class="signature-section">
                         <div class="signature-line"></div>
-                        <p class="signature-label">Tim SobatBumi</p>
+                        <p class="signature-label">Tim KawanBumi</p>
                     </div>
 
 

@@ -49,8 +49,8 @@ export function LoginForm({
                                 <h1 className="text-2xl font-bold text-green-900">
                                     Selamat Datang
                                 </h1>
-                                <p className="text-balance font-bold text-green-700">
-                                    Masuk ke Akun Sobat Bumi
+                                <p className="font-bold text-green-700 text-balance">
+                                    Masuk ke Akun KawanBumi
                                 </p>
                             </div>
                             <div className="grid gap-2">
@@ -111,14 +111,14 @@ export function LoginForm({
 
                             <Button
                                 type="submit"
-                                className="w-full bg-green-800 text-white hover:bg-green-700"
+                                className="w-full text-white bg-green-800 hover:bg-green-700"
                                 disabled={processing}
                             >
                                 {processing ? 'Masuk...' : 'Masuk'}
                             </Button>
 
-                            <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-                                <span className="relative z-10 bg-background px-2 text-muted-foreground">
+                            <div className="relative text-sm text-center after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
+                                <span className="relative z-10 px-2 bg-background text-muted-foreground">
                                     Atau
                                 </span>
                             </div>
@@ -131,7 +131,7 @@ export function LoginForm({
                                     )}
                                 >
                                     <svg
-                                        className="mr-2 h-4 w-4"
+                                        className="w-4 h-4 mr-2"
                                         xmlns="http://www.w.org/2000/svg"
                                         viewBox="0 0 24 24"
                                     >
@@ -144,7 +144,7 @@ export function LoginForm({
                                 </a>
                             </div> */}
 
-                            <div className="text-center text-sm">
+                            <div className="text-sm text-center">
                                 Belum memiliki akun?{' '}
                                 <Link
                                     href={route('register')}

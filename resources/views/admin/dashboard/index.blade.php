@@ -5,7 +5,7 @@
         <div class="container px-4 py-8 mx-auto">
             <!-- Header -->
             <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-900">Dashboard Admin SobatBumi</h1>
+                <h1 class="text-3xl font-bold text-gray-900">Dashboard Admin KawanBumi</h1>
                 <p class="mt-2 text-gray-600">Kelola dan pantau aktivitas platform lingkungan</p>
             </div>
             <!-- Bagian 1: Kartu Statistik Utama -->
@@ -68,7 +68,7 @@
                         <div class="ml-4">
                             <h3 class="text-lg font-semibold text-gray-900">Total Pengguna</h3>
                             <p class="text-3xl font-bold text-green-600">{{ $totalUsersCount }}</p>
-                            <p class="text-sm text-gray-500">Komunitas SobatBumi</p>
+                            <p class="text-sm text-gray-500">Komunitas KawanBumi</p>
                         </div>
                     </div>
                 </div>
@@ -271,8 +271,6 @@
                     }
                 });
             }
-
-
             // Grafik Kategori Laporan (Pie Chart)
             const categoryChartCtx = document.getElementById('categoryChart');
             if (categoryChartCtx) {
