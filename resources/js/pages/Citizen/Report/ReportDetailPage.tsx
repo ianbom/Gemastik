@@ -30,8 +30,15 @@ interface ReportDetailPageRouteProps {
     volunteers: User[];
     volunteerCounts: number;
     [key: string]: unknown;
+    chatGroup: {
+        id: number;
+        mission_id: number;
+    };
+
 }
 const ReportDetailPageRoute = () => {
+
+
     const { props } = usePage<PageProps<ReportDetailPageRouteProps>>();
     const user = props.auth?.user ?? null;
     const report = props.report;
@@ -42,7 +49,10 @@ const ReportDetailPageRoute = () => {
     const volunteerCounts = props.volunteerCounts;
     const your_vote = props.your_vote;
     const donations = props.donations;
+    const chatGroup = props.chatGroup ?? null;
 
+    console.log('chatGroupId di route', chatGroup);
+     console.log('report detail page route', report);
     // console.log('donasi', donations);
 
     const handleBack = () => {
@@ -61,6 +71,7 @@ const ReportDetailPageRoute = () => {
                 volunteers={volunteers}
                 volunteerCounts={volunteerCounts}
                 donations={donations}
+                chatGroup={chatGroup}
             />
         </CitizenLayout>
     );

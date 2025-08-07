@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\MissionController as AdmMissionController;
 use App\Http\Controllers\Admin\QuizController as AdmQuizController;
 use App\Http\Controllers\Admin\ReportController as AdmReportController;
 use App\Http\Controllers\Admin\UserController as AdmUserController;
+use App\Http\Controllers\Citizen\ChatGroupController as CtzChatGroupController;
 use App\Http\Controllers\Citizen\MerchandiseController as CtzMerchandiseController;
 use App\Http\Controllers\Citizen\CommentController as CtzCommentController;
 use App\Http\Controllers\Citizen\QuizController as CtzQuizController;
@@ -70,6 +71,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::post('comments/store', [CtzCommentController::class, 'store'])->name('comments.store');
     // Route untuk keperluan yang berkaitan dengan misi
     Route::get('/mission', [CtzMissionController::class, 'index'])->name('mission');
+
     Route::get('/my-mission', [CtzMissionController::class, 'myMissions'])->name('my-mission');
     Route::post('/join-missions/{id}', [CtzMissionController::class, 'join'])->name('mission.join');
     Route::post('/attendance-members', [CtzMissionController::class, 'attend'])->name('attendance.store');
@@ -90,6 +92,10 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::get('quiz-result', [CtzQuizController::class, 'result'])->name('quiz.result');
     // Route untuk keperluan yang berkaitan dengan Leaderboard
     Route::get('/leaderboard', [LeaderboardController::class, 'indexLeaderboard'])->name('leaderboard.indexLeaderboard');
+
+    Route::resource('chatgroup', CtzChatGroupController::class);
+    Route::post('/chat-groups/{chatGroup}/messages', [CtzChatGroupController::class, 'storeMessage'])
+    ->name('chat-groups.messages.store');
 });
 
 // Route untuk akses fitur peran komunitas
@@ -100,7 +106,7 @@ Route::prefix('community')->as('community.')->middleware(['auth'])->group(functi
 });
 
 // Route untuk akses fitur peran admin
-Route::prefix('admin')->as('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+Route::prefix('admin')->as('admin.')->middleware(['auth'])->group(function () {
     Route::resource('missions', AdmMissionController::class);
     Route::put('missions/update/volunteer/{missionVolunteer}', [AdmMissionController::class, 'updateStatusVolunteer'])->name('update.volunteerStatus');
     Route::put('missions/share-point/{mission}', [AdmMissionController::class, 'shareMissionPoint'])->name('missions.sharePoint');

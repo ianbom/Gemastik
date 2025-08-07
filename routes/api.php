@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\MissionController;
 use App\Http\Controllers\ChatBotController;
+use App\Http\Controllers\Citizen\ChatGroupController;
 use App\Http\Controllers\Citizen\CommentController as CtzCommentController;
 use App\Http\Controllers\Citizen\DonationController;
 use App\Http\Controllers\Citizen\ProfileController as CtzProfileController;
@@ -30,6 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('create-mission', [MissionController::class, 'store']);
     Route::post('register-volunteer', [CtzReportController::class, 'registerAsVolunteer']);
     Route::post('register-leader-volunteer', [CtzReportController::class, 'registerAsLeaderVolunteer']);
+
+    Route::get('/chat-groups/{chatGroup}/messages', [ChatGroupController::class, 'getMessages'])->name('chat-groups.messages');
+    Route::post('/chat-groups/{chatGroup}/messages', [ChatGroupController::class, 'sendMessage'])->name('chat-groups.send-message');
 });
 
 Route::post('payment-success/{donationId}', [DonationController::class, 'paymentSuccess'])->name('payment.success');

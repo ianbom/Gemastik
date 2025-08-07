@@ -11,7 +11,7 @@ import { getStatusColor as getMissionStatusColor } from '@/utils/missionStatusCo
 import { getMissionStatusLabel } from '@/utils/missionStatusLabel';
 import { getStatusColor } from '@/utils/reportStatusColor';
 import { getStatusLabel } from '@/utils/reportStatusLabel';
-import { router as Inertia, useForm } from '@inertiajs/react';
+import { router as Inertia, router, useForm } from '@inertiajs/react';
 import axios from 'axios';
 import {
     ArrowLeft,
@@ -65,6 +65,10 @@ interface ReportDetailPageProps {
     your_vote: 'upvote' | 'dislike' | null;
     // user: User[] | null;
     user: User | null;
+    chatGroup: {
+        id: number;
+        mission_id: number;
+    }
     onBack: () => void;
 }
 
@@ -79,6 +83,7 @@ const ReportDetailPage = ({
     user,
     your_vote,
     donations,
+    chatGroup,
 }: ReportDetailPageProps) => {
     const [hasUpvoted, setHasUpvoted] = useState(your_vote === 'upvote');
     const [hasDownvoted, setHasDownvoted] = useState(your_vote === 'dislike');
@@ -152,6 +157,17 @@ const ReportDetailPage = ({
             },
         });
     };
+
+ const visitChatGroup = () => {
+    const chatGroupId = chatGroup.id
+    console.log('Chat Group ID:', chatGroupId);
+    if (chatGroupId) {
+        Inertia.get(route('chatgroup.show', chatGroupId));
+
+    } else {
+        console.error("Gagal mengunjungi grup chat: Mission atau Chat Group ID tidak ditemukan pada laporan ini.", report);
+    }
+};
 
     const handleVote = async (type: 'upvote' | 'dislike') => {
         console.log('Handle Vote Triggered:', type);
@@ -799,6 +815,14 @@ const ReportDetailPage = ({
                                                             variant="destructive"
                                                         >
                                                             Batal Daftar
+                                                        </Button>
+                                                        <Button
+                                                            onClick={() => visitChatGroup()}
+                                                            className="bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md transition-all duration-300 hover:from-emerald-600 hover:to-green-700 hover:shadow-lg hover:-translate-y-px"
+                                                        >
+                                                            {/* Ganti dengan ikon yang sesuai, misalnya 'MessageCircle' atau 'Users' dari Lucide React */}
+                                                            <MessageCircle className="mr-2 h-4 w-4" />
+                                                            Buka Obrolan Grup
                                                         </Button>
                                                         <CancelVolunteerModal
                                                             open={

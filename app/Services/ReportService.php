@@ -119,6 +119,7 @@ class ReportService extends Service
             'mission.volunteers',
             'mission.documentation',
             'mission.documentation.uploader',
+            'mission.chatGroups'
 
         ])
             ->find($id);

@@ -64,6 +64,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function chats(){
+        return $this->hasMany(Chat::class);
+    }
+
     public function quizAttempt()
     {
         return $this->hasMany(QuizAttempt::class);

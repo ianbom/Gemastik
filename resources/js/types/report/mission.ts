@@ -43,4 +43,7 @@ export interface Mission {
         awarded_at: string | null;
     };
     documentation: MissionDocumentation[];
+    chatGroup: {
+        id: number;
+    }
 }

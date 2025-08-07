@@ -188,7 +188,7 @@ class ContentService extends Service
             return 'document';
         }
 
-        return 'image'; // default fallback
+        return 'image';
     }
 
     public function updateContent(int $contentId, array $data): Content

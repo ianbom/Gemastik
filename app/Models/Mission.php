@@ -26,6 +26,10 @@ class Mission extends Model
         return $this->belongsTo(Report::class);
     }
 
+    public function chatGroups(){
+        return $this->hasOne(ChatGroup::class);
+    }
+
     /**
      * Get the user who created the mission.
      */

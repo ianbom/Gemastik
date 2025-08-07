@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\ChatGroup;
 use App\Models\Mission;
 use App\Models\MissionDocumentation;
 use App\Models\MissionVolunteer;
@@ -37,8 +38,6 @@ class MissionServices extends Service
             $data['thumbnail_url'] = $filePath;
         }
 
-
-
         return DB::transaction(function () use ($data) {
 
 
@@ -66,9 +65,16 @@ class MissionServices extends Service
             ];
 
             $mission = Mission::create($missionData);
-
+            $this->createChatGroupMission($mission->id);
             return $mission;
         });
+    }
+
+    public function createChatGroupMission($missionId){
+
+        ChatGroup::create([
+            'mission_id' => $missionId,
+        ]);
     }
 
     public function getMissions(array $filters = [], int $perPage = 10)

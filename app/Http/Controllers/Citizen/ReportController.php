@@ -7,6 +7,7 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\ReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Jobs\NotificationJob;
+use App\Models\ChatGroup;
 use App\Services\ReportService;
 use Exception;
 use Illuminate\Http\Request;
@@ -182,6 +183,14 @@ class ReportController extends Controller
 
             $donations = $this->reportService->getReportDonation($id);
 
+            if ($mission) {
+               $chatGroup = ChatGroup::where('mission_id', $mission->id)->first();
+            } else{
+                $chatGroup = null;
+            }
+
+
+            // return response()->json(['chatgrub' => $chatGroup]);
 
             return Inertia::render('Citizen/Report/ReportDetailPage', [
                 'report' => $report,
@@ -192,6 +201,7 @@ class ReportController extends Controller
                 'volunteers' => $volunteers,
                 'volunteerCounts' => $volunteerCounts,
                 'donations' => $donations,
+                'chatGroup' => $chatGroup
 
             ]);
         } catch (Exception $e) {
