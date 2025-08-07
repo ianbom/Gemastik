@@ -21,7 +21,7 @@ const initialMessages: Message[] = [
     {
         id: '1',
         content:
-            'Halo! Saya Asisten SobatBumi. Ada yang bisa saya bantu terkait isu lingkungan?',
+            'Halo! Saya Asisten KawanBumi. Ada yang bisa saya bantu terkait isu lingkungan?',
         role: 'assistant',
         timestamp: new Date(),
     },
@@ -320,12 +320,12 @@ export default function FloatingChat() {
                 <div
                     onMouseDown={handleChatDragStart}
                     onTouchStart={handleChatDragStart}
-                    className={`flex items-center justify-between rounded-t-xl bg-emerald-600 p-4 text-white ${
+                    className={`flex items-center justify-between rounded-t-xl bg-sky-600 p-4 text-white ${
                         isDragging ? 'cursor-grabbing' : 'cursor-grab'
                     }`}
                 >
-                    <h3 className="select-none text-lg font-semibold">
-                        SobatBumi AI Assistant
+                    <h3 className="text-lg font-semibold select-none">
+                        KawanBumi AI Assistant
                     </h3>
                     <div className="flex items-center">
                         <Button
@@ -334,7 +334,7 @@ export default function FloatingChat() {
                             onClick={handleClearHistory}
                             onMouseDown={(e) => e.stopPropagation()}
                             onTouchStart={(e) => e.stopPropagation()}
-                            className="mr-1 h-auto p-1 text-white hover:bg-emerald-700"
+                            className="h-auto p-1 mr-1 text-white hover:bg-sky-700"
                             title="Hapus riwayat"
                         >
                             <Trash2 size={18} />
@@ -345,26 +345,26 @@ export default function FloatingChat() {
                             onClick={toggleChat}
                             onMouseDown={(e) => e.stopPropagation()}
                             onTouchStart={(e) => e.stopPropagation()}
-                            className="h-auto p-1 text-white hover:bg-emerald-700"
+                            className="h-auto p-1 text-white hover:bg-sky-700"
                             title="Tutup chat"
                         >
                             <X size={18} />
                         </Button>
                     </div>
                 </div>
-                <div className="h-full flex-1 space-y-4 overflow-y-auto bg-gray-50 p-4">
+                <div className="flex-1 h-full p-4 space-y-4 overflow-y-auto bg-gray-50">
                     {messages.map((message) => (
                         <div
                             key={message.id}
                             className={`flex items-start gap-2.5 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                         >
                             {message.role !== 'user' && (
-                                <Bot className="h-6 w-6 flex-shrink-0 text-emerald-600" />
+                                <Bot className="flex-shrink-0 w-6 h-6 text-sky-600" />
                             )}
                             <div
                                 className={`max-w-[85%] rounded-lg p-3 text-sm ${
                                     message.role === 'user'
-                                        ? 'rounded-br-none bg-emerald-600 text-white'
+                                        ? 'rounded-br-none bg-sky-600 text-white'
                                         : message.role === 'assistant'
                                           ? 'rounded-bl-none bg-gray-100 text-gray-800'
                                           : 'rounded-bl-none bg-red-100 text-red-800'
@@ -376,18 +376,18 @@ export default function FloatingChat() {
                     ))}
                     {isLoading && (
                         <div className="flex items-start justify-start gap-2.5">
-                            <Bot className="h-6 w-6 flex-shrink-0 text-emerald-600" />
+                            <Bot className="flex-shrink-0 w-6 h-6 text-sky-600" />
                             <div className="flex items-center space-x-1.5 rounded-lg bg-gray-100 p-3">
                                 <span
-                                    className="h-2 w-2 animate-bounce rounded-full bg-gray-400"
+                                    className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
                                     style={{ animationDelay: '0s' }}
                                 ></span>
                                 <span
-                                    className="h-2 w-2 animate-bounce rounded-full bg-gray-400"
+                                    className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
                                     style={{ animationDelay: '0.2s' }}
                                 ></span>
                                 <span
-                                    className="h-2 w-2 animate-bounce rounded-full bg-gray-400"
+                                    className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
                                     style={{ animationDelay: '0.4s' }}
                                 ></span>
                             </div>
@@ -395,20 +395,20 @@ export default function FloatingChat() {
                     )}
                     <div ref={messagesEndRef} />
                 </div>
-                <div className="rounded-b-xl border-t border-gray-200 p-4">
+                <div className="p-4 border-t border-gray-200 rounded-b-xl">
                     <div className="flex items-center space-x-2">
                         <Input
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={handleKeyPress}
                             placeholder="Tanyakan sesuatu..."
-                            className="flex-1 border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
+                            className="flex-1 border-gray-300 focus:border-sky-500 focus:ring-sky-500"
                             disabled={isLoading}
                         />
                         <Button
                             onClick={handleSendMessage}
                             size="sm"
-                            className="h-9 w-9 bg-emerald-600 p-2 text-white hover:bg-emerald-700"
+                            className="p-2 text-white h-9 w-9 bg-sky-600 hover:bg-sky-700"
                             disabled={!input.trim() || isLoading}
                         >
                             <Send size={16} />
@@ -423,7 +423,7 @@ export default function FloatingChat() {
                 style={{
                     transform: `translate(${fabPosition.x}px, ${fabPosition.y}px)`,
                 }}
-                className={`fixed bottom-6 right-6 z-50 flex transform items-center gap-2 rounded-lg bg-emerald-600 px-4 py-3 text-white shadow-lg hover:bg-emerald-700 ${
+                className={`fixed bottom-6 right-6 z-50 flex transform items-center gap-2 rounded-lg bg-sky-600 px-4 py-3 text-white shadow-lg hover:bg-sky-700 ${
                     isOpen ? 'rotate-[360deg] scale-95' : 'rotate-0'
                 } ${isFabDragging ? 'cursor-grabbing transition-none' : 'cursor-grab transition-all duration-300 ease-in-out'}`}
             >
@@ -432,12 +432,12 @@ export default function FloatingChat() {
                 ) : (
                     <img
                         src="/assets/images/sobatbumibnw.png"
-                        alt="SobatBumi"
-                        className="h-6 w-6"
+                        alt="KawanBumi"
+                        className="w-6 h-6"
                     />
                 )}
-                <span className="whitespace-nowrap text-sm font-medium">
-                    SobatBumi AI Assistant
+                <span className="text-sm font-medium whitespace-nowrap">
+                    KawanBumi AI Assistant
                 </span>
             </Button>
         </>

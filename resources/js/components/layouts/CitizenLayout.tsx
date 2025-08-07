@@ -94,7 +94,7 @@ export default function CitizenLayout({ children, currentPage }: Props) {
         Inertia.post(route('logout'));
     };
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-white">
+        <div className="min-h-screen bg-gradient-to-br from-sky-50 to-white">
             <Navbar
                 user={user}
                 navItems={navItems}

@@ -23,7 +23,7 @@ interface QuizzesPageRouteProps {
 
 const QuizzesPageRoute = () => {
     const { props } = usePage<PageProps<QuizzesPageRouteProps>>();
-    const quizzes = props.quizzes
+    const quizzes = props.quizzes;
     const canCreate = props.canCreate || false;
 
     const handleViewDetails = (id: number) => {

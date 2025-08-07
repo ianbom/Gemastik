@@ -94,13 +94,13 @@ const CitizenProfilePage = ({
     ];
     return (
         <div className="min-h-screen">
-            <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <Card className="mb-8">
                     <CardContent className="p-6">
                         <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-start">
                             <div className="flex flex-col items-center space-y-4">
                                 <div className="relative">
-                                    <Avatar className="h-24 w-24">
+                                    <Avatar className="w-24 h-24">
                                         <AvatarImage
                                             src={
                                                 user?.profile_url
@@ -109,7 +109,7 @@ const CitizenProfilePage = ({
                                             }
                                         />
 
-                                        <AvatarFallback className="bg-emerald-100 text-xl font-semibold text-emerald-700">
+                                        <AvatarFallback className="text-xl font-semibold bg-sky-100 text-sky-700">
                                             {user?.name
                                                 ?.charAt(0)
                                                 .toUpperCase() || 'U'}
@@ -119,10 +119,10 @@ const CitizenProfilePage = ({
 
                                 <a
                                     href="/edit-profile"
-                                    className="inline-flex items-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-emerald-700"
+                                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-white transition-colors duration-200 rounded-lg shadow-sm bg-sky-600 hover:bg-sky-700"
                                 >
                                     <svg
-                                        className="mr-2 h-4 w-4"
+                                        className="w-4 h-4 mr-2"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -137,49 +137,49 @@ const CitizenProfilePage = ({
                                     Edit Profile
                                 </a>
                             </div>
-                            <div className="w-full flex-1">
+                            <div className="flex-1 w-full">
                                 <div className="mb-6">
                                     <h1 className="mb-2 text-3xl font-bold text-gray-900">
                                         {user?.name || 'User Name'}
                                     </h1>
                                     <div className="mt-2 inline-flex items-center gap-1.5 rounded-md bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">
-                                        <Star className="h-4 w-4 text-yellow-500" />
+                                        <Star className="w-4 h-4 text-yellow-500" />
                                         {user?.points_balance || 0} Poin
                                     </div>
                                 </div>
-                                <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                                <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2">
                                     <div className="space-y-4">
-                                        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-800">
+                                        <h3 className="mb-3 text-sm font-semibold tracking-wide text-gray-800 uppercase">
                                             Informasi Kontak
                                         </h3>
 
-                                        <div className="flex items-center space-x-3 rounded-lg bg-gray-50 p-3">
-                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-blue-100">
+                                        <div className="flex items-center p-3 space-x-3 rounded-lg bg-gray-50">
+                                            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg">
                                                 <Mail
                                                     size={16}
                                                     className="text-blue-600"
                                                 />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Email
                                                 </p>
-                                                <p className="truncate text-sm font-medium text-gray-900">
+                                                <p className="text-sm font-medium text-gray-900 truncate">
                                                     {user?.email ||
                                                         'Tidak tersedia'}
                                                 </p>
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center space-x-3 rounded-lg bg-gray-50 p-3">
-                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-100">
+                                        <div className="flex items-center p-3 space-x-3 rounded-lg bg-gray-50">
+                                            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-100 rounded-lg">
                                                 <Phone
                                                     size={16}
                                                     className="text-green-600"
                                                 />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Telepon
                                                 </p>
                                                 <p className="text-sm font-medium text-gray-900">
@@ -190,19 +190,19 @@ const CitizenProfilePage = ({
                                         </div>
                                     </div>
                                     <div className="space-y-4">
-                                        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-800">
+                                        <h3 className="mb-3 text-sm font-semibold tracking-wide text-gray-800 uppercase">
                                             Informasi Lokasi
                                         </h3>
 
-                                        <div className="flex items-start space-x-3 rounded-lg bg-gray-50 p-3">
+                                        <div className="flex items-start p-3 space-x-3 rounded-lg bg-gray-50">
                                             <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-red-100">
                                                 <MapPin
                                                     size={16}
                                                     className="text-red-600"
                                                 />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Wilayah
                                                 </p>
                                                 <p className="text-sm font-medium leading-relaxed text-gray-900">
@@ -218,15 +218,15 @@ const CitizenProfilePage = ({
                                             </div>
                                         </div>
 
-                                        <div className="flex items-start space-x-3 rounded-lg bg-gray-50 p-3">
+                                        <div className="flex items-start p-3 space-x-3 rounded-lg bg-gray-50">
                                             <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-purple-100">
                                                 <MapPinned
                                                     size={16}
                                                     className="text-purple-600"
                                                 />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Alamat
                                                 </p>
                                                 <p className="text-sm font-medium leading-relaxed text-gray-900">
@@ -237,17 +237,17 @@ const CitizenProfilePage = ({
                                         </div>
                                     </div>
                                 </div>
-                                <div className="border-t border-gray-100 pt-4">
+                                <div className="pt-4 border-t border-gray-100">
                                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                                         <div className="flex items-center space-x-3">
-                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-100">
+                                            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-emerald-100">
                                                 <Calendar
                                                     size={14}
                                                     className="text-emerald-600"
                                                 />
                                             </div>
                                             <div>
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Bergabung
                                                 </p>
                                                 <p className="text-sm font-medium text-gray-700">
@@ -259,14 +259,14 @@ const CitizenProfilePage = ({
                                         </div>
 
                                         <div className="flex items-center space-x-3">
-                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-orange-100">
+                                            <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-orange-100 rounded-lg">
                                                 <Clock
                                                     size={14}
                                                     className="text-orange-600"
                                                 />
                                             </div>
                                             <div>
-                                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                                <p className="text-xs tracking-wide text-gray-500 uppercase">
                                                     Terakhir Diperbarui
                                                 </p>
                                                 <p className="text-sm font-medium text-gray-700">
@@ -288,7 +288,7 @@ const CitizenProfilePage = ({
                     <h2 className="mb-4 text-xl font-semibold text-gray-900">
                         Kilas Balik Kontribusi Anda
                     </h2>
-                    <div className="mb-6 grid gap-6 md:grid-cols-3">
+                    <div className="grid gap-6 mb-6 md:grid-cols-3">
                         {stats.map((stat, index) => (
                             <Card
                                 key={index}
@@ -317,7 +317,7 @@ const CitizenProfilePage = ({
                                                 }
                                             >
                                                 Buat Sekarang
-                                                <ArrowRight className="ml-1 h-3 w-3" />
+                                                <ArrowRight className="w-3 h-3 ml-1" />
                                             </Button>
                                         ) : (
                                             <Button
@@ -329,7 +329,7 @@ const CitizenProfilePage = ({
                                                 }
                                             >
                                                 Lihat Semua
-                                                <ArrowRight className="ml-1 h-3 w-3" />
+                                                <ArrowRight className="w-3 h-3 ml-1" />
                                             </Button>
                                         )
                                     ) : stat.label === 'MISI DIIKUTI' ? (
@@ -343,7 +343,7 @@ const CitizenProfilePage = ({
                                                 }
                                             >
                                                 Cari Misi
-                                                <ArrowRight className="ml-1 h-3 w-3" />
+                                                <ArrowRight className="w-3 h-3 ml-1" />
                                             </Button>
                                         ) : (
                                             <Button
@@ -355,7 +355,7 @@ const CitizenProfilePage = ({
                                                 }
                                             >
                                                 Lihat Semua
-                                                <ArrowRight className="ml-1 h-3 w-3" />
+                                                <ArrowRight className="w-3 h-3 ml-1" />
                                             </Button>
                                         )
                                     ) : (
@@ -365,7 +365,7 @@ const CitizenProfilePage = ({
                                             className="mt-2 text-xs"
                                         >
                                             Lihat Semua
-                                            <ArrowRight className="ml-1 h-3 w-3" />
+                                            <ArrowRight className="w-3 h-3 ml-1" />
                                         </Button>
                                     )}
                                 </CardContent>
@@ -376,9 +376,9 @@ const CitizenProfilePage = ({
                     {/* Quick Actions */}
                     <div className="grid gap-4 md:grid-cols-2">
                         <Link href="/report-create">
-                            <Card className="h-full cursor-pointer transition-shadow hover:shadow-lg">
+                            <Card className="h-full transition-shadow cursor-pointer hover:shadow-lg">
                                 <CardContent className="p-6 text-center">
-                                    <Plus className="mx-auto mb-3 h-12 w-12 text-green-600" />
+                                    <Plus className="w-12 h-12 mx-auto mb-3 text-green-600" />
                                     <h3 className="mb-2 text-lg font-semibold text-gray-900">
                                         LAPORKAN ISU BARU
                                     </h3>
@@ -391,9 +391,9 @@ const CitizenProfilePage = ({
                         </Link>
 
                         <Link href="/map">
-                            <Card className="h-full cursor-pointer transition-shadow hover:shadow-lg">
+                            <Card className="h-full transition-shadow cursor-pointer hover:shadow-lg">
                                 <CardContent className="p-6 text-center">
-                                    <Map className="mx-auto mb-3 h-12 w-12 text-blue-600" />
+                                    <Map className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                                     <h3 className="mb-2 text-lg font-semibold text-gray-900">
                                         LIHAT PETA LAPORAN
                                     </h3>
@@ -474,7 +474,7 @@ const CitizenProfilePage = ({
                                                                         )}
                                                                     </p>
                                                                 </div>
-                                                                <div className="flex items-center gap-3 self-start">
+                                                                <div className="flex items-center self-start gap-3">
                                                                     <Badge
                                                                         className={getStatusColor(
                                                                             report.status,
@@ -520,7 +520,7 @@ const CitizenProfilePage = ({
                                         </>
                                     ) : (
                                         <div className="py-8 text-center">
-                                            <FileText className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+                                            <FileText className="w-12 h-12 mx-auto mb-4 text-gray-400" />
                                             <p className="text-gray-600">
                                                 Belum ada riwayat laporan
                                             </p>
@@ -560,7 +560,7 @@ const CitizenProfilePage = ({
                                                                         )}
                                                                     </p>
                                                                 </div>
-                                                                <div className="flex items-center gap-3 self-start">
+                                                                <div className="flex items-center self-start gap-3">
                                                                     <Badge
                                                                         className={getMissionStatusColor(
                                                                             mission.status,
@@ -606,7 +606,7 @@ const CitizenProfilePage = ({
                                         </>
                                     ) : (
                                         <div className="py-8 text-center">
-                                            <Target className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+                                            <Target className="w-12 h-12 mx-auto mb-4 text-gray-400" />
                                             <p className="text-gray-600">
                                                 Belum ada riwayat misi
                                             </p>
@@ -645,7 +645,7 @@ const CitizenProfilePage = ({
                                                                         )}
                                                                     </p>
                                                                 </div>
-                                                                <div className="flex flex-col items-end gap-1 self-start">
+                                                                <div className="flex flex-col items-end self-start gap-1">
                                                                     <Badge
                                                                         className={getStatusClass(
                                                                             donation.status,
@@ -686,7 +686,7 @@ const CitizenProfilePage = ({
                                         </>
                                     ) : (
                                         <div className="py-8 text-center">
-                                            <Heart className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+                                            <Heart className="w-12 h-12 mx-auto mb-4 text-gray-400" />
                                             <p className="text-gray-600">
                                                 Belum ada riwayat donasi
                                             </p>
@@ -703,7 +703,7 @@ const CitizenProfilePage = ({
                         <CardTitle>Riwayat Poin</CardTitle>
                         <div className="inline-flex items-center gap-1.5 rounded-md bg-yellow-100 px-2 py-2.5 text-xs font-medium text-yellow-800">
                             Poin Saat Ini:
-                            <Star className="h-4 w-4 text-yellow-500" />
+                            <Star className="w-4 h-4 text-yellow-500" />
                             {user?.points_balance || 0} Poin
                         </div>
                     </CardHeader>
@@ -747,9 +747,9 @@ const CitizenProfilePage = ({
                             <TabsContent value="all-points" className="mt-6">
                                 {myPoints.length === 0 ? (
                                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                                        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+                                        <div className="flex items-center justify-center w-16 h-16 mb-4 bg-gray-100 rounded-full">
                                             <svg
-                                                className="h-8 w-8 text-gray-400"
+                                                className="w-8 h-8 text-gray-400"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -819,9 +819,9 @@ const CitizenProfilePage = ({
                                 {myPoints.filter((p) => p.type === 'increment')
                                     .length === 0 ? (
                                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                                        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                                        <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-emerald-100">
                                             <svg
-                                                className="h-8 w-8 text-emerald-400"
+                                                className="w-8 h-8 text-emerald-400"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -850,7 +850,7 @@ const CitizenProfilePage = ({
                                             .map((point) => (
                                                 <Card
                                                     key={point.id}
-                                                    className="border-emerald-200 bg-emerald-50/50 p-3 shadow-sm transition-colors hover:bg-emerald-50"
+                                                    className="p-3 transition-colors shadow-sm border-emerald-200 bg-emerald-50/50 hover:bg-emerald-50"
                                                 >
                                                     <CardContent className="p-0">
                                                         <div className="mb-1 text-sm font-semibold text-emerald-600">
@@ -878,9 +878,9 @@ const CitizenProfilePage = ({
                                 {myPoints.filter((p) => p.type === 'decrement')
                                     .length === 0 ? (
                                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                                        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
+                                        <div className="flex items-center justify-center w-16 h-16 mb-4 bg-red-100 rounded-full">
                                             <svg
-                                                className="h-8 w-8 text-red-400"
+                                                className="w-8 h-8 text-red-400"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -909,7 +909,7 @@ const CitizenProfilePage = ({
                                             .map((point) => (
                                                 <Card
                                                     key={point.id}
-                                                    className="border-red-200 bg-red-50/50 p-3 shadow-sm transition-colors hover:bg-red-50"
+                                                    className="p-3 transition-colors border-red-200 shadow-sm bg-red-50/50 hover:bg-red-50"
                                                 >
                                                     <CardContent className="p-0">
                                                         <div className="mb-1 text-sm font-semibold text-red-600">

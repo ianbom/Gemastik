@@ -51,7 +51,7 @@ export default function ConfirmVolunteerModal({
                     </Button>
                     <Button
                         onClick={onConfirm}
-                        className="bg-emerald-600 hover:bg-emerald-700"
+                        className="bg-sky-600 hover:bg-sky-700"
                     >
                         Ya, Saya Yakin
                     </Button>

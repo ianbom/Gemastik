@@ -4,13 +4,13 @@ import { ArrowRight } from 'lucide-react';
 const JoinSection = () => {
     return (
         <section
-            className="relative bg-cover bg-center bg-no-repeat py-20"
-            style={{ backgroundImage: "url('/assets/images/tanganbumi.png')" }}
+            className="relative py-20 bg-center bg-no-repeat bg-cover"
+            style={{ backgroundImage: "url('/assets/images/tanganbumi2.jpg')" }}
         >
             {' '}
-            <div className="absolute inset-0 z-0 bg-emerald-600/70" />
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="rounded-xl p-6 text-center">
+            <div className="absolute inset-0 z-0 bg-sky-600/70" />
+            <div className="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div className="p-6 text-center rounded-xl">
                     <h2 className="mb-6 text-4xl font-bold text-white lg:text-5xl">
                         Bergabunglah dengan Gerakan Lingkungan
                     </h2>
@@ -21,10 +21,10 @@ const JoinSection = () => {
                     <Link href="/dashboard">
                         <Button
                             size="lg"
-                            className="bg-white text-green-600 hover:bg-green-700 hover:text-white"
+                            className="bg-white text-cyan-600 hover:bg-cyan-700 hover:text-white"
                         >
                             Lihat Dashboard Saya
-                            <ArrowRight className="ml-2 h-5 w-5" />
+                            <ArrowRight className="w-5 h-5 ml-2" />
                         </Button>
                     </Link>
                 </div>

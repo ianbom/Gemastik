@@ -20,7 +20,6 @@ interface LeaderboardUser {
 }
 
 interface LeaderboardPageProps {
-    // Data for the Top 3 Podiums
     top3Reporters?: LeaderboardUser[];
     top3MissionVolunteers?: LeaderboardUser[];
     top3Donors?: LeaderboardUser[];
@@ -88,15 +87,15 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
                     className={`relative flex transform items-center rounded-xl border-2 p-4 shadow-lg transition-all duration-300 ${cardStyle.className}`}
                     style={{ height: cardStyle.height }}
                 >
-                    <div className="mr-4 flex items-center justify-center">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/50 bg-white/30">
+                    <div className="flex items-center justify-center mr-4">
+                        <div className="flex items-center justify-center w-12 h-12 border-2 rounded-full border-white/50 bg-white/30">
                             <span className="text-xl font-bold text-white">
                                 {rank}
                             </span>
                         </div>
                     </div>
-                    <div className="flex flex-1 items-center">
-                        <div className="mr-4 flex h-16 w-16 items-center justify-center rounded-full border-4 border-white bg-white shadow-lg">
+                    <div className="flex items-center flex-1">
+                        <div className="flex items-center justify-center w-16 h-16 mr-4 bg-white border-4 border-white rounded-full shadow-lg">
                             <span className="text-xl text-gray-600">👤</span>
                         </div>
                         <div className="text-left">
@@ -118,15 +117,15 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
                 style={{ height: cardStyle.height }}
             >
                 <div className="flex justify-center">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/50 bg-white/30">
+                    <div className="flex items-center justify-center w-10 h-10 border-2 rounded-full border-white/50 bg-white/30">
                         <span className="text-xl font-bold text-white">
                             {rank}
                         </span>
                     </div>
                 </div>
-                <div className="flex flex-1 flex-col justify-center text-center">
+                <div className="flex flex-col justify-center flex-1 text-center">
                     <div className="relative mb-4">
-                        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-white shadow-lg">
+                        <div className="flex items-center justify-center w-20 h-20 mx-auto bg-white border-4 border-white rounded-full shadow-lg">
                             <span className="text-2xl text-gray-600">👤</span>
                         </div>
                     </div>
@@ -158,22 +157,21 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
                 metric = formatCurrency(user.total_donation || 0);
                 break;
         }
-
         return (
             <div
-                className="flex items-center justify-between rounded-lg border border-green-100 p-4 shadow-sm transition-shadow duration-200 hover:shadow-md"
+                className="flex items-center justify-between p-4 transition-shadow duration-200 border border-green-100 rounded-lg shadow-sm hover:shadow-md"
                 style={{
                     backgroundImage:
-                        'linear-gradient(to right, #047857, #059669, #10b981)',
+                        'linear-gradient(to right, #60a5fa, #38bdf8, #22d3ee)', // blue-400 → sky-400 → cyan-400
                 }}
             >
                 <div className="flex items-center space-x-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/50 bg-white/30">
+                    <div className="flex items-center justify-center w-10 h-10 border-2 rounded-full border-white/50 bg-white/30">
                         <span className="text-xl font-bold text-white">
                             {rank}
                         </span>
                     </div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-emerald-200 bg-gray-200">
+                    <div className="flex items-center justify-center w-12 h-12 bg-gray-200 border-2 rounded-full border-emerald-200">
                         <span className="text-sm text-gray-600">👤</span>
                     </div>
                     <div>
@@ -196,10 +194,10 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
         metricFormatter: (user: LeaderboardUser) => string;
     }> = ({ top3Users, top10Users, category, metricFormatter }) => (
         <div>
-            <div className="mb-12 hidden md:block">
-                <div className="mx-auto flex max-w-5xl items-end justify-center gap-6">
+            <div className="hidden mb-12 md:block">
+                <div className="flex items-end justify-center max-w-5xl gap-6 mx-auto">
                     {top3Users[1] && (
-                        <div className="max-w-xs flex-1">
+                        <div className="flex-1 max-w-xs">
                             <PodiumCard
                                 user={top3Users[1]}
                                 rank={2}
@@ -209,7 +207,7 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
                         </div>
                     )}
                     {top3Users[0] && (
-                        <div className="max-w-xs flex-1">
+                        <div className="flex-1 max-w-xs">
                             <PodiumCard
                                 user={top3Users[0]}
                                 rank={1}
@@ -219,7 +217,7 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
                         </div>
                     )}
                     {top3Users[2] && (
-                        <div className="max-w-xs flex-1">
+                        <div className="flex-1 max-w-xs">
                             <PodiumCard
                                 user={top3Users[2]}
                                 rank={3}
@@ -265,31 +263,32 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-100 px-4 py-8">
+        // <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-emerald-50 to-green-100">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-8 md:mb-12">
-                    <h1 className="mb-4 text-3xl font-bold text-emerald-800 md:text-4xl lg:text-5xl">
+                    <h1 className="mb-4 text-3xl font-bold text-sky-800 md:text-4xl lg:text-5xl">
                         🌍 Pahlawan Bumi
                     </h1>
-                    <p className="max-w-2xl text-lg text-emerald-700 md:text-xl">
+                    <p className="max-w-2xl text-lg text-sky-700 md:text-xl">
                         Apresiasi untuk para kontributor paling berpengaruh di
                         SobatBumi.
                     </p>
                 </div>
 
-                <div className="rounded-2xl bg-transparent">
+                <div className="bg-transparent rounded-2xl">
                     <div className="hidden md:block">
                         <Tabs defaultValue="reports" className="w-full">
-                            <TabsList className="mb-8 w-full grid-cols-3 bg-transparent md:mb-16 md:grid">
+                            <TabsList className="w-full grid-cols-3 mb-8 bg-transparent md:mb-16 md:grid">
                                 {tabOptions.map((tab) => {
                                     const Icon = tab.icon;
                                     return (
                                         <TabsTrigger
                                             key={tab.value}
                                             value={tab.value}
-                                            className="mr-5 flex items-center gap-2 rounded-md bg-white py-3 text-base transition-all duration-200 hover:text-green-600 data-[state=active]:bg-emerald-600 data-[state=active]:font-bold data-[state=active]:text-white md:text-lg"
+                                            className="mr-5 flex items-center gap-2 rounded-md bg-white py-3 text-base transition-all duration-200 hover:text-sky-600 data-[state=active]:bg-sky-600 data-[state=active]:font-bold data-[state=active]:text-white md:text-lg"
                                         >
-                                            <Icon className="h-4 w-4" />
+                                            <Icon className="w-4 h-4" />
                                             <span className="hidden sm:inline">
                                                 {tab.label}
                                             </span>
@@ -353,7 +352,7 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
                                     )
                                 }
                             >
-                                <SelectTrigger className="w-full bg-white py-6 text-lg">
+                                <SelectTrigger className="w-full py-6 text-lg bg-white">
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -365,7 +364,7 @@ const LeaderBoard: React.FC<LeaderboardPageProps> = (props = {}) => {
                                                 value={tab.value}
                                             >
                                                 <div className="flex items-center gap-2">
-                                                    <Icon className="h-4 w-4" />
+                                                    <Icon className="w-4 h-4" />
                                                     {tab.label}
                                                 </div>
                                             </SelectItem>

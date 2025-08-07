@@ -190,8 +190,8 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
         filters.endDate;
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col items-start justify-between md:flex-row md:items-center">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
                 <div>
                     <h1 className="mb-2 text-3xl font-bold text-gray-900">
                         Toko Merchandise
@@ -202,8 +202,8 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                     </p>
                 </div>
                 <div className="mt-4 md:mt-0">
-                    <div className="flex items-center rounded-lg bg-yellow-100 px-4 py-2">
-                        <Star className="mr-2 h-5 w-5 text-yellow-800" />
+                    <div className="flex items-center px-4 py-2 bg-yellow-100 rounded-lg">
+                        <Star className="w-5 h-5 mr-2 text-yellow-800" />
                         <span className="font-semibold text-yellow-800">
                             Poin Saya: {userPoints.toLocaleString('id-ID')} Poin
                         </span>
@@ -220,12 +220,12 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                                 <div className="flex items-center">
                                     <SlidersHorizontal
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Filter Merchandise
                                 </div>
                                 {hasActiveFilters && (
-                                    <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-600">
+                                    <span className="px-2 py-1 text-xs rounded-full bg-emerald-100 text-emerald-600">
                                         Aktif
                                     </span>
                                 )}
@@ -262,14 +262,14 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                                 </Select>
                             </div>
 
-                            <div className="space-y-2 pt-4">
+                            <div className="pt-4 space-y-2">
                                 <Button
                                     variant="outline"
-                                    className="flex w-full items-center justify-center gap-2"
+                                    className="flex items-center justify-center w-full gap-2"
                                     onClick={resetFilters}
                                     disabled={!hasActiveFilters}
                                 >
-                                    <RefreshCcw className="h-4 w-4" />
+                                    <RefreshCcw className="w-4 h-4" />
                                     Reset Filter
                                 </Button>
                             </div>
@@ -280,7 +280,7 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                 {/* Main Content */}
                 <div className="lg:col-span-3">
                     {/* Sort and Search */}
-                    <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
                         <div className="flex items-center space-x-4">
                             <Select value={sortBy} onValueChange={setSortBy}>
                                 <SelectTrigger className="w-48">
@@ -307,7 +307,7 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                         </div>
 
                         <div className="relative w-full sm:w-64">
-                            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                            <Search className="absolute w-4 h-4 text-gray-400 left-3 top-3" />
                             <Input
                                 placeholder="Cari merchandise..."
                                 className="pl-10"
@@ -324,13 +324,13 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                                     (item: Merchandise) => (
                                         <Card
                                             key={item.id}
-                                            className="group cursor-pointer border-0 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                                            className="transition-all duration-300 border-0 shadow-md cursor-pointer group hover:-translate-y-1 hover:shadow-lg"
                                         >
                                             <div className="relative overflow-hidden rounded-t-lg">
                                                 <img
                                                     src={`/storage/${item.image_url}`}
                                                     alt={item.name}
-                                                    className="h-48 w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                                                    className="object-contain w-full h-48 transition-transform duration-300 group-hover:scale-105"
                                                 />
                                                 <div className="absolute right-3 top-3">
                                                     <Badge
@@ -348,7 +348,7 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                                                 {userPoints <
                                                     item.points_cost && (
                                                     <div className="absolute left-3 top-3">
-                                                        <Badge className="bg-yellow-100 text-yellow-800">
+                                                        <Badge className="text-yellow-800 bg-yellow-100">
                                                             Poin Kurang
                                                         </Badge>
                                                     </div>
@@ -356,15 +356,15 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                                             </div>
 
                                             <CardContent className="p-4">
-                                                <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900 transition-colors group-hover:text-emerald-600">
+                                                <h3 className="mb-2 font-semibold text-gray-900 transition-colors line-clamp-2 group-hover:text-sky-600">
                                                     {item.name}
                                                 </h3>
-                                                <p className="mb-3 line-clamp-2 text-sm text-gray-600">
+                                                <p className="mb-3 text-sm text-gray-600 line-clamp-2">
                                                     {item.description}
                                                 </p>
 
-                                                <div className="mb-3 flex items-center justify-between">
-                                                    <div className="flex items-center text-lg font-bold text-emerald-600">
+                                                <div className="flex items-center justify-between mb-3">
+                                                    <div className="flex items-center text-lg font-bold text-yellow-600">
                                                         <Star
                                                             size={16}
                                                             className="mr-1 fill-current"
@@ -376,7 +376,7 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                                                     </div>
                                                 </div>
 
-                                                <div className="mb-4 flex items-center text-sm text-gray-500">
+                                                <div className="flex items-center mb-4 text-sm text-gray-500">
                                                     <Calendar
                                                         size={14}
                                                         className="mr-1"
@@ -390,24 +390,8 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                                                 </div>
 
                                                 <div className="flex gap-2">
-                                                    {/* <Button
-                                                        variant="outline"
-                                                        className="flex-1"
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            onViewDetails(
-                                                                item.id,
-                                                            );
-                                                        }}
-                                                    >
-                                                        <Eye
-                                                            size={16}
-                                                            className="mr-2"
-                                                        />
-                                                        Detail
-                                                    </Button> */}
                                                     <Button
-                                                        className="flex-1 bg-amber-600 transition-colors duration-200 hover:bg-amber-700 disabled:bg-gray-400"
+                                                        className="flex-1 transition-colors duration-200 bg-cyan-600 hover:bg-cyan-700 disabled:bg-gray-400"
                                                         onClick={(e) => {
                                                             e.stopPropagation();
                                                             openModal(item);
@@ -437,13 +421,13 @@ const MerchandisePage = ({ merchandise, userPoints }: MerchandisePageProps) => {
                             </div>
                         </>
                     ) : (
-                        <div className="flex w-full items-center justify-center">
+                        <div className="flex items-center justify-center w-full">
                             <Card className="w-full px-8 py-32 text-center">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="rounded-full bg-gray-100 p-4">
+                                <div className="flex justify-center mb-4">
+                                    <div className="p-4 bg-gray-100 rounded-full">
                                         <Gift
                                             size={32}
-                                            className="h-12 w-12 text-gray-400"
+                                            className="w-12 h-12 text-gray-400"
                                         />
                                     </div>
                                 </div>

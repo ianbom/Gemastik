@@ -89,13 +89,13 @@ export default function AttendanceFormModal({
                         id="leader"
                         value={teamLeader}
                         disabled
-                        className="border-gray-400 bg-gray-100 text-gray-900"
+                        className="text-gray-900 bg-gray-100 border-gray-400"
                     />
                 </div>
 
                 {/* Daftar Anggota */}
                 <Label>Anggota Tim</Label>
-                <ScrollArea className="mb-4 h-60 pr-2">
+                <ScrollArea className="pr-2 mb-4 h-60">
                     {members.length > 0 ? (
                         <div className="space-y-4">
                             {members.map((member) => (
@@ -138,7 +138,7 @@ export default function AttendanceFormModal({
                         Batal
                     </Button>
                     <Button
-                        className="bg-emerald-600 hover:bg-emerald-700"
+                        className="bg-sky-600 hover:bg-sky-700"
                         onClick={handleSave}
                     >
                         Simpan

@@ -1,5 +1,5 @@
-import CitizenLayout from '@/components/layouts/CitizenLayout';
 import DetailChatGroup from '@/components/chatgroup/DetailChatGroup';
+import CitizenLayout from '@/components/layouts/CitizenLayout';
 import { PageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 
@@ -47,9 +47,8 @@ interface DetailChatGroupPageProps {
 const DetailChatGroupRoute = () => {
     const { props } = usePage<PageProps<DetailChatGroupPageProps>>();
     const { messages, allGroups } = props;
-
     // Get active group ID from URL or props
-    const activeGroupId = props.activeGroupId
+    const activeGroupId = props.activeGroupId;
 
     console.log('messages', messages);
     console.log('allGroups', allGroups);

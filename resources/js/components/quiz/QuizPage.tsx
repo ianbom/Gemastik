@@ -200,8 +200,8 @@ const QuizzesPage = ({
         filters.maxPoints;
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col items-start justify-between md:flex-row md:items-center">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
                 <div>
                     <h1 className="mb-2 text-3xl font-bold text-gray-900">
                         Daftar Kuis
@@ -214,7 +214,7 @@ const QuizzesPage = ({
                 {canCreate && onCreateQuiz && (
                     <Button
                         onClick={onCreateQuiz}
-                        className="mt-4 bg-emerald-700 text-white hover:bg-emerald-800 md:mt-0"
+                        className="mt-4 text-white bg-sky-700 hover:bg-sky-800 md:mt-0"
                         size="lg"
                     >
                         <Target size={20} className="mr-2" />
@@ -226,18 +226,18 @@ const QuizzesPage = ({
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
                 {/* Filter Sidebar */}
                 <div className="lg:col-span-1">
-                    <Card className="sticky top-24 overflow-visible">
+                    <Card className="sticky overflow-visible top-24">
                         <CardHeader>
                             <CardTitle className="flex items-center justify-between text-lg">
                                 <div className="flex items-center">
                                     <SlidersHorizontal
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Filter Kuis
                                 </div>
                                 {hasActiveFilters && (
-                                    <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-600">
+                                    <span className="px-2 py-1 text-xs rounded-full bg-emerald-100 text-emerald-600">
                                         Aktif
                                     </span>
                                 )}
@@ -335,14 +335,14 @@ const QuizzesPage = ({
                                 />
                             </div>
 
-                            <div className="space-y-2 pt-4">
+                            <div className="pt-4 space-y-2">
                                 <Button
                                     variant="outline"
-                                    className="flex w-full items-center justify-center gap-2"
+                                    className="flex items-center justify-center w-full gap-2"
                                     onClick={resetFilters}
                                     disabled={!hasActiveFilters}
                                 >
-                                    <RefreshCcw className="h-4 w-4" />
+                                    <RefreshCcw className="w-4 h-4" />
                                     Reset Filter
                                 </Button>
                             </div>
@@ -353,7 +353,7 @@ const QuizzesPage = ({
                 {/* Main Content */}
                 <div className="lg:col-span-3">
                     {/* Sort and Search */}
-                    <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
                         <div className="flex items-center space-x-4">
                             <Select value={sortBy} onValueChange={setSortBy}>
                                 <SelectTrigger className="w-48">
@@ -380,7 +380,7 @@ const QuizzesPage = ({
                         </div>
 
                         <div className="relative w-full sm:w-64">
-                            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                            <Search className="absolute w-4 h-4 text-gray-400 left-3 top-3" />
                             <Input
                                 placeholder="Cari kuis..."
                                 className="pl-10"
@@ -396,7 +396,7 @@ const QuizzesPage = ({
                         filters.minPoints ||
                         filters.maxPoints ||
                         searchQuery) && (
-                        <div className="mb-4 flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mb-4">
                             <span className="mr-2 text-sm font-medium text-gray-700">
                                 Filter aktif:
                             </span>
@@ -473,7 +473,7 @@ const QuizzesPage = ({
                             {filteredQuizzes.map((quiz: Quiz) => (
                                 <Card
                                     key={quiz.id}
-                                    className="group cursor-pointer border-0 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                                    className="transition-all duration-300 border-0 shadow-md cursor-pointer group hover:-translate-y-1 hover:shadow-lg"
                                     onClick={() => onViewDetails(quiz.id)}
                                 >
                                     <div className="relative overflow-hidden rounded-t-lg">
@@ -487,11 +487,11 @@ const QuizzesPage = ({
                                                         : `/storage/${quiz.thumbnail_url}`
                                                 }
                                                 alt={quiz.title}
-                                                className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
                                             />
                                         ) : (
-                                            <div className="flex h-48 w-full items-center justify-center bg-gradient-to-br from-emerald-400 to-emerald-600">
-                                                <Target className="h-16 w-16 text-white opacity-80" />
+                                            <div className="flex items-center justify-center w-full h-48 bg-gradient-to-br from-sky-400 to-sky-600">
+                                                <Target className="w-16 h-16 text-white opacity-80" />
                                             </div>
                                         )}
 
@@ -509,7 +509,7 @@ const QuizzesPage = ({
 
                                         {!quiz.is_active && (
                                             <div className="absolute left-3 top-3">
-                                                <Badge className="bg-gray-100 text-gray-700">
+                                                <Badge className="text-gray-700 bg-gray-100">
                                                     Non-aktif
                                                 </Badge>
                                             </div>
@@ -517,18 +517,18 @@ const QuizzesPage = ({
                                     </div>
 
                                     <CardContent className="p-4">
-                                        <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900 transition-colors group-hover:text-emerald-600">
+                                        <h3 className="mb-2 font-semibold text-gray-900 transition-colors line-clamp-2 group-hover:text-sky-600">
                                             {quiz.title}
                                         </h3>
 
                                         {quiz.description && (
-                                            <p className="mb-3 line-clamp-2 text-sm text-gray-600">
+                                            <p className="mb-3 text-sm text-gray-600 line-clamp-2">
                                                 {quiz.description}
                                             </p>
                                         )}
 
-                                        <div className="mb-4 flex items-center justify-between">
-                                            <div className="flex items-center text-sm text-emerald-600">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <div className="flex items-center text-sm text-yellow-600">
                                                 <Trophy
                                                     size={14}
                                                     className="mr-1"
@@ -553,7 +553,7 @@ const QuizzesPage = ({
                                         </div>
 
                                         <Button
-                                            className="mt-auto w-full bg-amber-600 transition-colors duration-200 hover:bg-amber-700"
+                                            className="w-full mt-auto transition-colors duration-200 bg-cyan-600 hover:bg-cyan-700"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 onViewDetails(quiz.id);
@@ -570,11 +570,11 @@ const QuizzesPage = ({
                             ))}
                         </div>
                     ) : (
-                        <div className="flex w-full items-center justify-center">
+                        <div className="flex items-center justify-center w-full">
                             <Card className="w-full px-8 py-32 text-center">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="rounded-full bg-gray-100 p-4">
-                                        <Target className="h-12 w-12 text-gray-400" />
+                                <div className="flex justify-center mb-4">
+                                    <div className="p-4 bg-gray-100 rounded-full">
+                                        <Target className="w-12 h-12 text-gray-400" />
                                     </div>
                                 </div>
                                 <h3 className="mb-2 text-lg font-semibold text-gray-900">

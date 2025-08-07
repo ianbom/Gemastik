@@ -21,6 +21,7 @@ import {
     RefreshCcw,
     ShoppingBag,
     SlidersHorizontal,
+    Star,
 } from 'lucide-react';
 import { useState } from 'react';
 interface MyMerchandisePageProps {
@@ -77,8 +78,8 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
         searchQuery.trim() || statusFilter !== 'all' || nominalFilter !== 'all';
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-4 mb-8 sm:flex-row sm:items-center">
                 <div>
                     <h1 className="mb-1 text-2xl font-bold text-gray-900 sm:text-3xl">
                         Riwayat Penukaran Merchandise
@@ -90,7 +91,7 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                 <div className="flex items-center gap-3">
                     <div className="inline-flex items-center gap-1.5 rounded-md bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-800">
                         <svg
-                            className="h-4 w-4 text-yellow-500"
+                            className="w-4 h-4 text-yellow-500"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                         >
@@ -100,7 +101,7 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                         {auth.user?.points_balance || 0} Poin
                     </div>
                     <button
-                        className="rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+                        className="px-4 py-2 text-sm font-medium text-white transition rounded-md bg-sky-600 hover:bg-sky-700"
                         onClick={() => (window.location.href = '/merchandise')}
                     >
                         Tukar Merchandise
@@ -115,12 +116,12 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                             <div className="flex items-center">
                                 <SlidersHorizontal
                                     size={20}
-                                    className="mr-2 text-emerald-600"
+                                    className="mr-2 text-sky-600"
                                 />
                                 Filter Penukaran Merchandise
                             </div>
                             {hasActiveFilters && (
-                                <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-600">
+                                <span className="px-2 py-1 text-xs rounded-full bg-emerald-100 text-emerald-600">
                                     Aktif
                                 </span>
                             )}
@@ -131,7 +132,7 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                             onClick={resetFilters}
                             disabled={!hasActiveFilters}
                         >
-                            <RefreshCcw className="mr-2 h-4 w-4" />
+                            <RefreshCcw className="w-4 h-4 mr-2" />
                             Reset Filter
                         </Button>
                     </div>
@@ -227,7 +228,7 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                                     <img
                                         src={`/storage/${reedem.merchandise?.image_url}`}
                                         alt={reedem.merchandise?.name}
-                                        className="h-16 w-16 rounded-md object-contain"
+                                        className="object-contain w-16 h-16 rounded-md"
                                     />
                                     <div>
                                         <p className="text-sm text-gray-500">
@@ -248,10 +249,14 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                                 {/* Kanan: Poin & Status & Button */}
                                 <div className="flex flex-col gap-2 sm:items-end">
                                     <div className="text-right">
-                                        <p className="text-lg font-semibold text-emerald-600">
+                                        <div className="flex items-center text-lg font-bold text-yellow-600">
+                                            <Star
+                                                size={16}
+                                                className="mr-1 fill-current"
+                                            />
                                             {reedem.points_spent.toLocaleString()}{' '}
                                             Poin
-                                        </p>
+                                        </div>
                                         <Badge
                                             className={getStatusClass(
                                                 reedem.status,
@@ -270,12 +275,12 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                                     >
                                         {expandedItems.has(reedem.id) ? (
                                             <>
-                                                <ChevronUp className="mr-2 h-4 w-4" />
+                                                <ChevronUp className="w-4 h-4 mr-2" />
                                                 Tutup
                                             </>
                                         ) : (
                                             <>
-                                                <ChevronDown className="mr-2 h-4 w-4" />
+                                                <ChevronDown className="w-4 h-4 mr-2" />
                                                 Detail
                                             </>
                                         )}
@@ -283,7 +288,7 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                                 </div>
                             </div>
                             {expandedItems.has(reedem.id) && (
-                                <div className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm shadow-sm">
+                                <div className="p-4 mt-4 text-sm border rounded-lg shadow-sm border-sky-200 bg-sky-50">
                                     <div className="mb-4">
                                         <h3 className="text-base font-semibold text-gray-800">
                                             Deskripsi Barang Merchandise
@@ -294,7 +299,7 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                                         </p>
                                     </div>
 
-                                    <div className="border-t border-gray-200 pt-4">
+                                    <div className="pt-4 border-t border-gray-200">
                                         <h3 className="mb-2 text-base font-semibold text-gray-800">
                                             Informasi Pengiriman
                                         </h3>
@@ -347,7 +352,7 @@ const MyMerchandisePage = ({ reedems, auth }: MyMerchandisePageProps) => {
                 {filteredReedems.length === 0 && (
                     <Card>
                         <CardContent className="flex flex-col items-center py-12 text-center">
-                            <ShoppingBag className="mb-3 h-10 w-10 text-gray-400" />
+                            <ShoppingBag className="w-10 h-10 mb-3 text-gray-400" />
                             <p className="text-gray-500">
                                 Tidak ada data penukaran merchandise.
                             </p>

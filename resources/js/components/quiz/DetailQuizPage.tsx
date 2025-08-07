@@ -200,22 +200,23 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
     };
 
     const getTimeColor = () => {
-        if (timeRemaining > 300) return 'text-green-600';
+        if (timeRemaining > 300) return 'text-sky-600';
         if (timeRemaining > 60) return 'text-yellow-600';
         return 'text-red-600'; // <= 1 minute
     };
 
     if (isQuizFinished) {
         return (
-            <div className="mx-auto max-w-4xl px-4 py-8">
+            // <div className="max-w-4xl px-4 py-8 mx-auto">
+            <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <Card className="text-center">
                     <CardContent className="py-12">
                         <div className="mb-6">
-                            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+                            <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full">
                                 {processing ? (
-                                    <Loader2 className="h-8 w-8 animate-spin text-green-600" />
+                                    <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
                                 ) : (
-                                    <CheckCircle className="h-8 w-8 text-green-600" />
+                                    <CheckCircle className="w-8 h-8 text-green-600" />
                                 )}
                             </div>
                             <h2 className="mb-2 text-2xl font-bold text-gray-900">
@@ -230,11 +231,11 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                             </p>
                         </div>
                         {errors && Object.keys(errors).length > 0 && (
-                            <div className="mt-4 rounded-lg bg-red-50 p-4 text-red-700">
+                            <div className="p-4 mt-4 text-red-700 rounded-lg bg-red-50">
                                 <p className="font-medium">
                                     Terjadi kesalahan:
                                 </p>
-                                <ul className="mt-2 list-inside list-disc text-sm">
+                                <ul className="mt-2 text-sm list-disc list-inside">
                                     {Object.entries(errors).map(
                                         ([key, error]) => (
                                             <li key={key}>{error}</li>
@@ -247,10 +248,10 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                         <div className="mt-8">
                             <Button
                                 size="lg"
-                                className="bg-emerald-600 hover:bg-emerald-700"
+                                className="bg-sky-600 hover:bg-sky-700"
                                 onClick={() => router.visit(route('my-quiz'))}
                             >
-                                <Award className="mr-2 h-5 w-5" />
+                                <Award className="w-5 h-5 mr-2" />
                                 Lihat Skor Saya
                             </Button>
                         </div>
@@ -261,9 +262,10 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
     }
 
     return (
-        <div className="mx-auto max-w-6xl px-4 py-6">
+        // <div className="max-w-6xl px-4 py-6 mx-auto">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
             {/* Header */}
-            <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-4">
                     <Button
                         variant="outline"
@@ -272,7 +274,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                         className="flex items-center"
                         disabled={processing}
                     >
-                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        <ArrowLeft className="w-4 h-4 mr-2" />
                         Keluar
                     </Button>
                 </div>
@@ -281,7 +283,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                     <div
                         className={`flex items-center font-mono text-lg font-bold ${getTimeColor()}`}
                     >
-                        <Clock className="mr-2 h-5 w-5" />
+                        <Clock className="w-5 h-5 mr-2" />
                         {formatTime(timeRemaining)}
                     </div>
                     <Button
@@ -290,9 +292,9 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                         disabled={answeredQuestions === 0 || processing}
                     >
                         {processing ? (
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                         ) : (
-                            <Flag className="mr-2 h-4 w-4" />
+                            <Flag className="w-4 h-4 mr-2" />
                         )}
                         Selesai
                     </Button>
@@ -301,10 +303,10 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
 
             {/* Progress */}
             <div className="mb-6">
-                <div className="relative mb-2 overflow-hidden rounded-lg bg-gradient-to-r from-emerald-500 to-emerald-600 px-4 py-4 shadow-lg">
+                <div className="relative px-4 py-4 mb-2 overflow-hidden rounded-lg shadow-lg bg-gradient-to-r from-sky-500 to-sky-600">
                     <div className="relative z-10 flex items-start justify-between p-5">
-                        <div className="mr-4 min-w-0 flex-1">
-                            <h1 className="mb-2 line-clamp-2 text-2xl font-bold leading-tight text-white">
+                        <div className="flex-1 min-w-0 mr-4">
+                            <h1 className="mb-2 text-2xl font-bold leading-tight text-white line-clamp-2">
                                 {quiz.title}
                             </h1>
                             <div className="flex flex-wrap items-center gap-2">
@@ -313,7 +315,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                                 >
                                     {getDifficultyLabel(quiz.difficulty)}
                                 </Badge>
-                                <Badge className="flex items-center gap-1 bg-yellow-100 text-yellow-800">
+                                <Badge className="flex items-center gap-1 text-yellow-800 bg-yellow-100">
                                     <Star
                                         size={12}
                                         className="text-yellow-500"
@@ -324,9 +326,9 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                         </div>
 
                         <div className="flex-shrink-0">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/30 bg-white/20 backdrop-blur-sm">
+                            <div className="flex items-center justify-center w-16 h-16 border rounded-xl border-white/30 bg-white/20 backdrop-blur-sm">
                                 <svg
-                                    className="h-8 w-8 text-white"
+                                    className="w-8 h-8 text-white"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                 >
@@ -336,7 +338,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                         </div>
                     </div>
                 </div>
-                <div className="mb-2 flex items-center justify-between text-sm text-gray-600">
+                <div className="flex items-center justify-between mb-2 text-sm text-gray-600">
                     <span>
                         Pertanyaan {currentQuestionIndex + 1} dari{' '}
                         {totalQuestions}
@@ -347,7 +349,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                 </div>
                 <Progress
                     value={progressPercentage}
-                    className="h-2 [&>div]:bg-emerald-600"
+                    className="h-2 [&>div]:bg-sky-600"
                 />
             </div>
 
@@ -382,15 +384,15 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                             <div className="mt-4 space-y-2 text-xs text-gray-600">
                                 <p>Keterangan:</p>
                                 <div className="flex items-center">
-                                    <div className="mr-2 h-3 w-3 rounded border-2 border-sky-500 bg-sky-100"></div>
+                                    <div className="w-3 h-3 mr-2 border-2 rounded border-sky-500 bg-sky-100"></div>
                                     Soal saat ini
                                 </div>
                                 <div className="flex items-center">
-                                    <div className="mr-2 h-3 w-3 rounded border-2 border-green-500 bg-green-100"></div>
+                                    <div className="w-3 h-3 mr-2 bg-green-100 border-2 border-green-500 rounded"></div>
                                     Sudah dijawab
                                 </div>
                                 <div className="flex items-center">
-                                    <div className="mr-2 h-3 w-3 rounded border-2 border-gray-300 bg-gray-100"></div>
+                                    <div className="w-3 h-3 mr-2 bg-gray-100 border-2 border-gray-300 rounded"></div>
                                     Belum dijawab
                                 </div>
                             </div>
@@ -400,9 +402,9 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
 
                 {/* Main Question */}
                 <div className="lg:col-span-3">
-                    <Card className="bg-emerald-100">
+                    <Card className="bg-sky-100">
                         <CardHeader>
-                            <CardTitle className="text-xl text-emerald-800">
+                            <CardTitle className="text-xl text-sky-800">
                                 Pertanyaan {currentQuestionIndex + 1}
                             </CardTitle>
                         </CardHeader>
@@ -423,7 +425,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                                                     : `/storage/${currentQuestion.question_image_url}`
                                             }
                                             alt="Question illustration"
-                                            className="max-h-64 rounded-lg border"
+                                            className="border rounded-lg max-h-64"
                                         />
                                     </div>
                                 )}
@@ -443,8 +445,8 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                                                 selectedAnswers[
                                                     currentQuestion.id
                                                 ] === answer.id
-                                                    ? 'border-emerald-700 bg-emerald-700'
-                                                    : 'border-emerald-200 bg-white hover:scale-105 hover:border-emerald-300 hover:bg-gray-50'
+                                                    ? 'border-sky-700 bg-sky-700'
+                                                    : 'border-sky-200 bg-white hover:scale-105 hover:border-sky-300 hover:bg-gray-50'
                                             }`}
                                         >
                                             <div className="flex items-start space-x-3">
@@ -453,8 +455,8 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                                                         selectedAnswers[
                                                             currentQuestion.id
                                                         ] === answer.id
-                                                            ? 'border-emerald-200 bg-emerald-200 text-emerald-900'
-                                                            : 'border-emerald-200 bg-white text-emerald-700'
+                                                            ? 'border-sky-200 bg-sky-200 text-sky-900'
+                                                            : 'border-sky-200 bg-white text-sky-700'
                                                     }`}
                                                 >
                                                     {String.fromCharCode(
@@ -472,7 +474,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                                                                     : `/storage/${answer.image_url}`
                                                             }
                                                             alt={`Option ${String.fromCharCode(65 + index)}`}
-                                                            className="mb-2 max-h-32 rounded"
+                                                            className="mb-2 rounded max-h-32"
                                                         />
                                                     )}
                                                     {answer.answer_text && (
@@ -497,7 +499,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                             </div>
 
                             {/* Navigation Buttons */}
-                            <div className="flex items-center justify-between border-t pt-6">
+                            <div className="flex items-center justify-between pt-6 border-t">
                                 <Button
                                     variant="outline"
                                     onClick={goToPreviousQuestion}
@@ -505,7 +507,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                                         currentQuestionIndex === 0 || processing
                                     }
                                 >
-                                    <ArrowLeft className="mr-2 h-4 w-4" />
+                                    <ArrowLeft className="w-4 h-4 mr-2" />
                                     Sebelumnya
                                 </Button>
 
@@ -521,20 +523,20 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                                         }
                                     >
                                         {processing ? (
-                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                                         ) : (
-                                            <Flag className="mr-2 h-4 w-4" />
+                                            <Flag className="w-4 h-4 mr-2" />
                                         )}
                                         Selesaikan Quiz
                                     </Button>
                                 ) : (
                                     <Button
                                         onClick={goToNextQuestion}
-                                        className="bg-emerald-600 hover:bg-emerald-700"
+                                        className="bg-sky-600 hover:bg-sky-700"
                                         disabled={processing}
                                     >
                                         Selanjutnya
-                                        <ArrowRight className="ml-2 h-4 w-4" />
+                                        <ArrowRight className="w-4 h-4 ml-2" />
                                     </Button>
                                 )}
                             </div>
@@ -548,7 +550,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                 <AlertDialogContent>
                     <AlertDialogHeader>
                         <AlertDialogTitle className="flex items-center">
-                            <AlertTriangle className="mr-2 h-5 w-5 text-amber-500" />
+                            <AlertTriangle className="w-5 h-5 mr-2 text-amber-500" />
                             Keluar dari Quiz?
                         </AlertDialogTitle>
                         <AlertDialogDescription>
@@ -580,7 +582,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                 <AlertDialogContent>
                     <AlertDialogHeader>
                         <AlertDialogTitle className="flex items-center">
-                            <Flag className="mr-2 h-5 w-5 text-emerald-500" />
+                            <Flag className="w-5 h-5 mr-2 text-emerald-500" />
                             Selesaikan Quiz?
                         </AlertDialogTitle>
                         <AlertDialogDescription>
@@ -591,7 +593,7 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                                 </p>
                                 {answeredQuestions < totalQuestions && (
                                     <p className="text-amber-600">
-                                        <AlertTriangle className="mr-1 inline h-4 w-4" />
+                                        <AlertTriangle className="inline w-4 h-4 mr-1" />
                                         {totalQuestions - answeredQuestions}{' '}
                                         pertanyaan belum dijawab dan akan
                                         dianggap salah.
@@ -610,12 +612,12 @@ const QuizTakingPage = ({ quiz, timeLimit = 30 }: QuizTakingPageProps) => {
                         </AlertDialogCancel>
                         <AlertDialogAction
                             onClick={handleSubmitQuiz}
-                            className="bg-emerald-600 hover:bg-emerald-700"
+                            className="bg-sky-600 hover:bg-sky-700"
                             disabled={processing}
                         >
                             {processing ? (
                                 <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                                     Mengirim...
                                 </>
                             ) : (

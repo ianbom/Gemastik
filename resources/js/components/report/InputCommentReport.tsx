@@ -32,7 +32,7 @@ const Textarea = React.forwardRef<
     React.TextareaHTMLAttributes<HTMLTextAreaElement>
 >(({ className = '', ...props }, ref) => (
     <textarea
-        className={`w-full resize-none rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 ${className}`}
+        className={`w-full resize-none rounded-md border border-gray-300 px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500 ${className}`}
         ref={ref}
         {...props}
     />
@@ -58,10 +58,9 @@ const Button = ({
     const baseClasses =
         'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
     const variants: Record<ButtonVariant, string> = {
-        default:
-            'bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500',
+        default: 'bg-sky-600 text-white hover:bg-sky-700 focus:ring-sky-500',
         outline:
-            'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-emerald-500',
+            'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-sky-500',
     };
     const sizes: Record<ButtonSize, string> = {
         sm: 'px-3 py-1.5 text-sm',
@@ -175,33 +174,33 @@ const CommentUploadCard = ({ reportId }: CommentUploadCardProps) => {
 
                     {/* File Preview Section */}
                     {data.media && (
-                        <div className="mb-4 mt-2">
+                        <div className="mt-2 mb-4">
                             {preview ? (
                                 // Preview untuk gambar
                                 <div className="relative inline-block">
                                     <img
                                         src={preview}
                                         alt="Preview"
-                                        className="h-auto max-h-48 max-w-full rounded-lg border border-gray-200 object-contain"
+                                        className="object-contain h-auto max-w-full border border-gray-200 rounded-lg max-h-48"
                                     />
                                     <button
                                         type="button"
                                         onClick={removeFile}
-                                        className="absolute -right-2 -top-2 rounded-full bg-red-500 p-1 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        className="absolute p-1 text-white bg-red-500 rounded-full -right-2 -top-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                                     >
                                         <X size={14} />
                                     </button>
                                 </div>
                             ) : (
                                 // Info untuk video atau file lain
-                                <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3">
-                                    <div className="flex min-w-0 items-center space-x-3">
+                                <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-gray-50">
+                                    <div className="flex items-center min-w-0 space-x-3">
                                         <FileVideo
                                             size={24}
                                             className="flex-shrink-0 text-blue-500"
                                         />
                                         <div className="min-w-0">
-                                            <p className="truncate text-sm font-medium text-gray-900">
+                                            <p className="text-sm font-medium text-gray-900 truncate">
                                                 {data.media.name}
                                             </p>
                                             <p className="text-sm text-gray-500">
@@ -214,7 +213,7 @@ const CommentUploadCard = ({ reportId }: CommentUploadCardProps) => {
                                     <button
                                         type="button"
                                         onClick={removeFile}
-                                        className="flex-shrink-0 rounded p-1 text-red-500 hover:text-red-700 focus:outline-none"
+                                        className="flex-shrink-0 p-1 text-red-500 rounded hover:text-red-700 focus:outline-none"
                                     >
                                         <X size={16} />
                                     </button>
@@ -223,7 +222,7 @@ const CommentUploadCard = ({ reportId }: CommentUploadCardProps) => {
                         </div>
                     )}
 
-                    <div className="mt-3 flex items-center justify-between">
+                    <div className="flex items-center justify-between mt-3">
                         <Button
                             type="button"
                             variant="outline"

@@ -118,29 +118,26 @@ const DonationModal = ({
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-            <div className="flex w-full max-w-3xl scale-100 transform overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-300">
-                {/* Bagian Kiri: Gambar Laporan */}
+            <div className="flex w-full max-w-3xl overflow-hidden transition-all duration-300 transform scale-100 bg-white shadow-2xl rounded-2xl">
                 <div className="hidden bg-gray-200 md:block md:w-1/2">
                     <img
-                        src={'/donasi.jpg'} // Gunakan gambar dari prop atau fallback
+                        src={'/donasi.jpg'}
                         alt="Donation context"
-                        className="h-full w-full object-cover"
+                        className="object-cover w-full h-full"
                     />
                 </div>
-
-                {/* Bagian Kanan: Form Donasi */}
-                <div className="flex w-full flex-col p-8 md:w-1/2">
+                <div className="flex flex-col w-full p-8 md:w-1/2">
                     <div className="flex-grow">
                         <div className="mb-6">
                             <h3 className="flex items-center text-2xl font-bold text-gray-800">
-                                <Gift className="mr-3 h-6 w-6 text-emerald-600" />
+                                <Gift className="w-6 h-6 mr-3 text-sky-600" />
                                 Jumlah Donasi
                             </h3>
                         </div>
 
                         {/* Input Jumlah Donasi */}
                         <div className="relative mb-4">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 transform font-medium text-gray-500">
+                            <span className="absolute font-medium text-gray-500 transform -translate-y-1/2 left-4 top-1/2">
                                 Rp
                             </span>
                             <input
@@ -149,7 +146,7 @@ const DonationModal = ({
                                 onChange={(e) =>
                                     handleAmountChange(e.target.value)
                                 }
-                                className="w-full rounded-lg border border-gray-300 py-3 pl-12 pr-4 text-lg text-gray-800 transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500"
+                                className="w-full py-3 pl-12 pr-4 text-lg text-gray-800 transition-colors border border-gray-300 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-500"
                                 placeholder="0"
                                 disabled={loading}
                             />
@@ -160,8 +157,8 @@ const DonationModal = ({
 
                         {/* Pilihan Cepat */}
                         <div className="mb-8">
-                            <p className="mb-3 flex items-center text-sm font-medium text-gray-600">
-                                <span className="mr-2 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                            <p className="flex items-center mb-3 text-sm font-medium text-gray-600">
+                                <span className="mr-2 h-1.5 w-1.5 rounded-full bg-sky-500"></span>
                                 Pilihan Cepat:
                             </p>
                             <div className="grid grid-cols-2 gap-3">
@@ -173,7 +170,7 @@ const DonationModal = ({
                                             setAmount(preAmount.toString());
                                             setError('');
                                         }}
-                                        className={`rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-200 ${parseInt(amount) === preAmount ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-gray-300 bg-white hover:border-emerald-400 hover:bg-emerald-50'}`}
+                                        className={`rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-200 ${parseInt(amount) === preAmount ? 'border-sky-600 bg-sky-600 text-white' : 'border-gray-300 bg-white hover:border-sky-400 hover:bg-sky-50'}`}
                                         disabled={loading}
                                     >
                                         {formatCurrency(preAmount).replace(
@@ -191,16 +188,16 @@ const DonationModal = ({
                         <Button
                             onClick={handleSubmit}
                             disabled={loading || !amount}
-                            className="h-auto w-full rounded-lg bg-emerald-600 py-3 text-base font-semibold hover:bg-emerald-700"
+                            className="w-full h-auto py-3 text-base font-semibold rounded-lg bg-sky-600 hover:bg-sky-700"
                         >
                             {loading ? (
                                 <div className="flex items-center">
-                                    <div className="mr-3 h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                    <div className="w-5 h-5 mr-3 border-2 border-white rounded-full animate-spin border-t-transparent" />
                                     <span>Memproses...</span>
                                 </div>
                             ) : (
                                 <>
-                                    <Heart className="mr-2 h-5 w-5" />
+                                    <Heart className="w-5 h-5 mr-2" />
                                     <span>Donasi Sekarang</span>
                                 </>
                             )}
@@ -210,12 +207,12 @@ const DonationModal = ({
                             variant="outline"
                             onClick={onClose}
                             disabled={loading}
-                            className="h-auto w-full rounded-lg border-gray-300 py-3 font-medium hover:bg-gray-100"
+                            className="w-full h-auto py-3 font-medium border-gray-300 rounded-lg hover:bg-gray-100"
                         >
                             Batal
                         </Button>
-                        <p className="pt-2 text-center text-xs text-gray-500">
-                            <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                        <p className="pt-2 text-xs text-center text-gray-500">
+                            <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-sky-500"></span>
                             Donasi Anda akan langsung disalurkan untuk
                             penanganan
                         </p>
@@ -418,10 +415,10 @@ export function DonationCard({ donations, reportId }: DonationCardProps) {
                 />
             </Head>
 
-            <Card className="bg-gradient-to-r from-emerald-50 to-green-50">
+            <Card className="bg-gradient-to-r from-sky-50 to-sky-50">
                 <CardContent className="p-6">
                     <div className="text-center">
-                        <Heart className="mx-auto mb-4 h-12 w-12 text-emerald-600" />
+                        <Heart className="w-12 h-12 mx-auto mb-4 text-sky-600" />
                         <h3 className="mb-2 text-xl font-semibold">
                             Donasi untuk Penanganan
                         </h3>
@@ -431,26 +428,26 @@ export function DonationCard({ donations, reportId }: DonationCardProps) {
                         </p>
 
                         {/* Donation Statistics */}
-                        <div className="mb-6 grid grid-cols-2 gap-4">
-                            <div className="rounded-lg bg-white/70 p-4">
-                                <div className="mb-2 flex items-center justify-center">
-                                    <DollarSign className="mr-2 h-5 w-5 text-emerald-600" />
+                        <div className="grid grid-cols-2 gap-4 mb-6">
+                            <div className="p-4 rounded-lg bg-white/70">
+                                <div className="flex items-center justify-center mb-2">
+                                    <DollarSign className="w-5 h-5 mr-2 text-sky-600" />
                                     <span className="text-sm font-medium text-gray-600">
                                         Total Donasi
                                     </span>
                                 </div>
-                                <p className="text-lg font-bold text-emerald-700">
+                                <p className="text-lg font-bold text-sky-700">
                                     {formatCurrency(totalAmount)}
                                 </p>
                             </div>
-                            <div className="rounded-lg bg-white/70 p-4">
-                                <div className="mb-2 flex items-center justify-center">
-                                    <Users className="mr-2 h-5 w-5 text-emerald-600" />
+                            <div className="p-4 rounded-lg bg-white/70">
+                                <div className="flex items-center justify-center mb-2">
+                                    <Users className="w-5 h-5 mr-2 text-sky-600" />
                                     <span className="text-sm font-medium text-gray-600">
                                         Donatur
                                     </span>
                                 </div>
-                                <p className="text-lg font-bold text-emerald-700">
+                                <p className="text-lg font-bold text-sky-700">
                                     {totalDonors} Orang
                                 </p>
                             </div>
@@ -460,34 +457,34 @@ export function DonationCard({ donations, reportId }: DonationCardProps) {
                         {totalDonors > 0 && (
                             <div>
                                 <button
-                                    className="mb-4 flex w-full items-center justify-center text-sm text-emerald-700 transition-colors hover:text-emerald-800"
+                                    className="flex items-center justify-center w-full mb-4 text-sm transition-colors text-sky-700 hover:text-sky-800"
                                     onClick={() => setIsOpen(!isOpen)}
                                 >
-                                    <Users className="mr-2 h-4 w-4" />
+                                    <Users className="w-4 h-4 mr-2" />
                                     {isOpen ? 'Sembunyikan' : 'Lihat'} Daftar
                                     Donatur
                                     {isOpen ? (
-                                        <ChevronUp className="ml-2 h-4 w-4" />
+                                        <ChevronUp className="w-4 h-4 ml-2" />
                                     ) : (
-                                        <ChevronDown className="ml-2 h-4 w-4" />
+                                        <ChevronDown className="w-4 h-4 ml-2" />
                                     )}
                                 </button>
 
                                 {isOpen && (
                                     <div className="mb-6">
-                                        <div className="max-h-64 overflow-y-auto">
+                                        <div className="overflow-y-auto max-h-64">
                                             <div className="space-y-3">
                                                 {donations.map((donation) => (
                                                     <div
                                                         key={donation.id}
-                                                        className="flex items-center justify-between rounded-lg bg-white/70 p-3 text-left"
+                                                        className="flex items-center justify-between p-3 text-left rounded-lg bg-white/70"
                                                     >
                                                         <div className="flex items-center space-x-3">
                                                             <div className="flex-shrink-0">
                                                                 {donation.user
                                                                     .profile_url ? (
                                                                     <img
-                                                                        className="h-8 w-8 rounded-full object-cover"
+                                                                        className="object-cover w-8 h-8 rounded-full"
                                                                         src={`/storage/${donation.user.profile_url}`}
                                                                         alt={
                                                                             donation
@@ -496,8 +493,8 @@ export function DonationCard({ donations, reportId }: DonationCardProps) {
                                                                         }
                                                                     />
                                                                 ) : (
-                                                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100">
-                                                                        <span className="text-xs font-medium text-emerald-700">
+                                                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-sky-100">
+                                                                        <span className="text-xs font-medium text-sky-700">
                                                                             {getInitials(
                                                                                 donation
                                                                                     .user
@@ -507,8 +504,8 @@ export function DonationCard({ donations, reportId }: DonationCardProps) {
                                                                     </div>
                                                                 )}
                                                             </div>
-                                                            <div className="min-w-0 flex-1">
-                                                                <p className="truncate text-sm font-medium text-gray-900">
+                                                            <div className="flex-1 min-w-0">
+                                                                <p className="text-sm font-medium text-gray-900 truncate">
                                                                     {
                                                                         donation
                                                                             .user
@@ -523,7 +520,7 @@ export function DonationCard({ donations, reportId }: DonationCardProps) {
                                                             </div>
                                                         </div>
                                                         <div className="text-right">
-                                                            <p className="text-sm font-semibold text-emerald-700">
+                                                            <p className="text-sm font-semibold text-sky-700">
                                                                 {formatCurrency(
                                                                     donation.amount,
                                                                 )}
@@ -540,10 +537,10 @@ export function DonationCard({ donations, reportId }: DonationCardProps) {
 
                         <Button
                             size="lg"
-                            className="w-full bg-emerald-600 hover:bg-emerald-700"
+                            className="w-full bg-sky-600 hover:bg-sky-700"
                             onClick={() => setModalOpen(true)}
                         >
-                            <Heart className="mr-2 h-4 w-4" />
+                            <Heart className="w-4 h-4 mr-2" />
                             Donasi Sekarang
                         </Button>
                     </div>

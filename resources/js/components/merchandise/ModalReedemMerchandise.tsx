@@ -142,7 +142,7 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
             <DialogContent className="max-w-md">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
-                        <ShoppingBag className="h-5 w-5 text-emerald-600" />
+                        <ShoppingBag className="w-5 h-5 text-sky-600" />
                         Tukar Merchandise
                     </DialogTitle>
                     <DialogDescription>
@@ -155,7 +155,7 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
                     <div className="space-y-4">
                         {/* Error Message */}
                         {error && (
-                            <div className="rounded-lg border border-red-200 bg-red-50 p-3">
+                            <div className="p-3 border border-red-200 rounded-lg bg-red-50">
                                 <div className="flex items-start gap-2">
                                     <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-600" />
                                     <p className="text-sm text-red-700">
@@ -166,21 +166,21 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
                         )}
 
                         {/* Merchandise Details */}
-                        <div className="rounded-lg border p-4">
+                        <div className="p-4 border rounded-lg">
                             <div className="flex gap-4">
                                 <img
                                     src={`/storage/${merchandise.image_url}`}
                                     alt={merchandise.name}
-                                    className="h-20 w-20 rounded-lg object-cover"
+                                    className="object-cover w-20 h-20 rounded-lg"
                                 />
                                 <div className="flex-1">
                                     <h4 className="font-semibold text-gray-900">
                                         {merchandise.name}
                                     </h4>
-                                    <p className="line-clamp-2 text-sm text-gray-600">
+                                    <p className="text-sm text-gray-600 line-clamp-2">
                                         {merchandise.description}
                                     </p>
-                                    <div className="mt-2 flex items-center text-emerald-600">
+                                    <div className="flex items-center mt-2 text-yellow-600">
                                         <Star
                                             size={14}
                                             className="mr-1 fill-current"
@@ -197,7 +197,7 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
                         </div>
 
                         {/* Points Information */}
-                        <div className="rounded-lg bg-gray-50 p-4">
+                        <div className="p-4 rounded-lg bg-gray-50">
                             <h5 className="mb-3 font-medium text-gray-900">
                                 Informasi Poin
                             </h5>
@@ -206,7 +206,7 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
                                     <span className="text-gray-600">
                                         Poin Saat Ini:
                                     </span>
-                                    <span className="font-semibold text-emerald-600">
+                                    <span className="font-semibold text-sky-600">
                                         {userPoints.toLocaleString('id-ID')}{' '}
                                         Poin
                                     </span>
@@ -229,7 +229,7 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
                                         Sisa Poin:
                                     </span>
                                     <span
-                                        className={`font-semibold ${remainingPoints >= 0 ? 'text-emerald-600' : 'text-red-600'}`}
+                                        className={`font-semibold ${remainingPoints >= 0 ? 'text-sky-600' : 'text-red-600'}`}
                                     >
                                         {remainingPoints.toLocaleString(
                                             'id-ID',
@@ -243,7 +243,7 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
                         {/* Address Input */}
                         <div className="space-y-2">
                             <label className="flex items-center text-sm font-medium text-gray-700">
-                                <MapPin className="mr-1 h-4 w-4" />
+                                <MapPin className="w-4 h-4 mr-1" />
                                 Alamat Pengiriman *
                             </label>
                             <Textarea
@@ -272,7 +272,7 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
 
                         {/* Insufficient Points Warning */}
                         {!hasEnoughPoints && (
-                            <div className="rounded-lg border border-red-200 bg-red-50 p-3">
+                            <div className="p-3 border border-red-200 rounded-lg bg-red-50">
                                 <div className="flex items-start gap-2">
                                     <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-600" />
                                     <p className="text-sm text-red-700">
@@ -290,7 +290,7 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
 
                         {/* Success Conditions */}
                         {hasEnoughPoints && isAddressValid && (
-                            <div className="rounded-lg border border-green-200 bg-green-50 p-3">
+                            <div className="p-3 border border-green-200 rounded-lg bg-green-50">
                                 <div className="flex items-start gap-2">
                                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
                                     <p className="text-sm text-green-700">
@@ -316,16 +316,16 @@ const ModalRedeemMerchandise: React.FC<ModalRedeemMerchandiseProps> = ({
                         disabled={
                             !isAddressValid || !hasEnoughPoints || isProcessing
                         }
-                        className="bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-400"
+                        className="bg-sky-600 hover:bg-sky-700 disabled:bg-gray-400"
                     >
                         {isProcessing ? (
                             <>
-                                <RefreshCcw className="mr-2 h-4 w-4 animate-spin" />
+                                <RefreshCcw className="w-4 h-4 mr-2 animate-spin" />
                                 Memproses...
                             </>
                         ) : (
                             <>
-                                <ShoppingBag className="mr-2 h-4 w-4" />
+                                <ShoppingBag className="w-4 h-4 mr-2" />
                                 Konfirmasi Tukar
                             </>
                         )}

@@ -7,12 +7,12 @@ import { useState } from 'react';
 
 const faqs = [
     {
-        question: 'Apa itu SobatBumi?',
-        answer: 'SobatBumi adalah platform digital untuk berpartisipasi dalam misi sosial dan lingkungan. Kamu bisa bergabung dalam kegiatan, mengumpulkan poin, mengasah wawasan lewat konten edukasi dan kuis, serta menukar poin dengan merchandise menarik.',
+        question: 'Apa itu KawanBumi?',
+        answer: 'KawanBumi adalah platform digital untuk berpartisipasi dalam misi sosial dan lingkungan. Kamu bisa bergabung dalam kegiatan, mengumpulkan poin, mengasah wawasan lewat konten edukasi dan kuis, serta menukar poin dengan merchandise menarik.',
     },
     {
-        question: 'Apa saja yang bisa saya lakukan di Sobat Bumi?',
-        answer: 'Di SobatBumi, kamu bisa berpartisipasi dalam kegiatan atau misi seperti penanaman pohon, bersih pantai, dan aksi sosial lainnya. Kamu juga bisa membaca berbagai konten edukasi tentang lingkungan, menjawab kuis untuk mengasah pengetahuan, serta mengumpulkan poin dari berbagai aktivitas yang kamu ikuti. Poin tersebut nantinya bisa ditukar dengan merchandise eksklusif. Selain itu, kamu juga bisa berdonasi untuk mendukung program-program sosial yang dijalankan oleh komunitas.',
+        question: 'Apa saja yang bisa saya lakukan di KawanBumi?',
+        answer: 'Di KawanBumi, kamu bisa berpartisipasi dalam kegiatan atau misi seperti penanaman pohon, bersih pantai, dan aksi sosial lainnya. Kamu juga bisa membaca berbagai konten edukasi tentang lingkungan, menjawab kuis untuk mengasah pengetahuan, serta mengumpulkan poin dari berbagai aktivitas yang kamu ikuti. Poin tersebut nantinya bisa ditukar dengan merchandise eksklusif. Selain itu, kamu juga bisa berdonasi untuk mendukung program-program sosial yang dijalankan oleh komunitas.',
     },
     {
         question: 'Siapa saja yang bisa bergabung dalam aksi lingkungan?',
@@ -20,15 +20,15 @@ const faqs = [
     },
     {
         question: 'Bagaimana sistem poin dan penukaran hadiah bekerja?',
-        answer: 'Setiap aktivitas yang kamu lakukan di SobatBumi akan menghasilkan poin, mulai dari laporan terverifikasi, menyelesaikan misi, dan mengerjakan kuis. Poin ini bisa kamu akumulasikan dan tukarkan dengan hadiah berupa merchandise resmi. Sistem ini kami bangun untuk memberikan semangat dan motivasi dalam berbuat kebaikan.',
+        answer: 'Setiap aktivitas yang kamu lakukan di KawanBumi akan menghasilkan poin, mulai dari laporan terverifikasi, menyelesaikan misi, dan mengerjakan kuis. Poin ini bisa kamu akumulasikan dan tukarkan dengan hadiah berupa merchandise resmi. Sistem ini kami bangun untuk memberikan semangat dan motivasi dalam berbuat kebaikan.',
     },
     {
         question:
             'Apakah saya akan mendapatkan penghargaan setelah mengikuti aktivitas?',
-        answer: 'Ya, setiap partisipasi kamu di Sobat Bumi tidak hanya berdampak bagi lingkungan dan masyarakat, tapi juga memberikan apresiasi pribadi. Setelah menyelesaikan misi atau kontribusi tertentu, kamu akan mendapatkan sertifikat digital sebagai bukti keikutsertaan, yang bisa digunakan untuk portofolio atau kebutuhan profesional lainnya. Selain itu, kamu juga akan memperoleh badges digital yang menunjukkan pencapaianmu, seperti "Pahlawan Lingkungan", "Donatur Aktif", atau "Pembelajar Hijau". Semua penghargaan ini akan tampil di profil kamu sebagai bentuk pengakuan dan motivasi agar terus aktif berkontribusi.',
+        answer: 'Ya, setiap partisipasi kamu di KawanBumi tidak hanya berdampak bagi lingkungan dan masyarakat, tapi juga memberikan apresiasi pribadi. Setelah menyelesaikan misi atau kontribusi tertentu, kamu akan mendapatkan sertifikat digital sebagai bukti keikutsertaan, yang bisa digunakan untuk portofolio atau kebutuhan profesional lainnya. Selain itu, kamu juga akan memperoleh badges digital yang menunjukkan pencapaianmu, seperti "Pahlawan Lingkungan", "Donatur Aktif", atau "Pembelajar Hijau". Semua penghargaan ini akan tampil di profil kamu sebagai bentuk pengakuan dan motivasi agar terus aktif berkontribusi.',
     },
     {
-        question: 'Apa tujuan fitur donasi di SobatBumi?',
+        question: 'Apa tujuan fitur donasi di KawanBumi?',
         answer: 'Fitur donasi dibuat sebagai bentuk solidaritas dan dukungan terhadap aksi-aksi sosial yang membutuhkan bantuan nyata. Dengan berdonasi, kamu bisa ikut membantu korban bencana, mendukung gerakan penghijauan, atau membantu komunitas yang sedang membutuhkan. Donasi bisa dilakukan dengan nominal kecil sekalipun, karena setiap kontribusi berarti besar bagi mereka yang membutuhkan.',
     },
 ];
@@ -41,30 +41,30 @@ const QnASection = () => {
     };
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-green-200 via-emerald-50/30 to-gray-50 py-20">
+        <section className="relative py-20 overflow-hidden bg-gradient-to-br from-cyan-200 via-sky-50/30 to-gray-50">
             {/* <div className="container relative px-10 mx-auto lg:px-10"> */}
             {/* <div className="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"> */}
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
-                    <div className="mb-6 inline-flex items-center rounded-full border border-emerald-200/50 bg-emerald-100/80 px-4 py-2 text-sm font-medium text-emerald-800 backdrop-blur-sm">
+                    <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium border rounded-full border-sky-200/50 bg-sky-100/80 text-sky-800 backdrop-blur-sm">
                         Butuh Bantuan ❓
                     </div>
                     <h2 className="mb-6 text-4xl font-bold text-gray-900 lg:text-5xl">
                         <span className="text-gradient">Pertanyaan</span> yang
                         Sering Diajukan
                     </h2>
-                    <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
+                    <p className="max-w-3xl mx-auto text-lg leading-relaxed text-gray-600">
                         Temukan jawaban atas pertanyaan umum tentang layanan
                         kami. Jika tidak menemukan jawaban yang dicari, silakan
                         hubungi tim support kami.
                     </p>
                 </div>
 
-                <div className="mx-auto w-full space-y-6">
+                <div className="w-full mx-auto space-y-6">
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className="faq-item floating overflow-hidden rounded-2xl bg-white shadow-lg"
+                            className="overflow-hidden bg-white shadow-lg faq-item floating rounded-2xl"
                         >
                             <button
                                 className="w-full px-8 py-6 text-left focus:outline-none"
@@ -94,7 +94,7 @@ const QnASection = () => {
                                 </div>
                             </button>
                             {openIndex === index && (
-                                <div className="faq-content bg-amber-50 px-8 py-6 text-justify text-lg leading-relaxed text-gray-600">
+                                <div className="px-8 py-6 text-lg leading-relaxed text-justify text-gray-600 faq-content bg-cyan-50">
                                     <p>{faq.answer}</p>
                                 </div>
                             )}
@@ -103,30 +103,30 @@ const QnASection = () => {
                 </div>
 
                 <div className="mt-16 text-center">
-                    <div className="rounded-2xl bg-emerald-600 p-8 py-16 text-white shadow-lg">
+                    <div className="p-8 py-16 text-white shadow-lg rounded-2xl bg-sky-600">
                         <h3 className="mb-4 text-3xl font-bold text-white">
                             Masih Ada Pertanyaan?
                         </h3>
                         <p className="mb-6 leading-relaxed text-white">
                             Tim customer service kami siap membantu Anda 24/7
                         </p>
-                        <div className="mt-6 flex flex-wrap justify-center gap-4">
+                        <div className="flex flex-wrap justify-center gap-4 mt-6">
                             <Link href="/dashboard">
                                 <Button
                                     size="lg"
-                                    className="bg-white text-green-600 hover:bg-green-50"
+                                    className="bg-white text-cyan-600 hover:bg-cyan-50"
                                 >
                                     Wa Admin
-                                    <Headset className="ml-1 h-5 w-5" />
+                                    <Headset className="w-5 h-5 ml-1" />
                                 </Button>
                             </Link>
                             <Link href="/laporan">
                                 <Button
                                     size="lg"
-                                    className="bg-amber-500 text-white hover:bg-yellow-700"
+                                    className="text-white bg-blue-900 hover:bg-indigo-700"
                                 >
                                     Email Kami
-                                    <Mail className="ml-2 h-5 w-5" />
+                                    <Mail className="w-5 h-5 ml-2" />
                                 </Button>
                             </Link>
                         </div>

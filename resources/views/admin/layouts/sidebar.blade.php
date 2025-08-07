@@ -17,10 +17,10 @@
                     </button>
                 </div>
                 <div
-                    class="flex flex-col px-6 pb-4 overflow-y-auto bg-gradient-to-b from-emerald-700 to-emerald-900 grow gap-y-5">
+                    class="flex flex-col px-6 pb-4 overflow-y-auto bg-gradient-to-b from-sky-700 to-sky-900 grow gap-y-5">
                     <div class="flex items-center h-16 shrink-0">
                         <img class="w-auto h-8" src="/LogoSobatBumi.png" alt="Sobat Bumi">
-                        <span class="ml-3 font-semibold text-white">Admin Sobat Bumi</span>
+                        <span class="ml-3 font-semibold text-white">Admin KawanBumi</span>
                     </div>
                     @include('admin.layouts.nav-link')
                 </div>
@@ -31,7 +31,7 @@
     {{-- Static sidebar for desktop --}}
     <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
         {{-- PERUBAHAN: Latar belakang hijau dan padding di sini --}}
-        <div class="flex flex-col px-6 overflow-y-auto bg-gradient-to-b from-emerald-600 to-emerald-800 grow gap-y-5">
+        <div class="flex flex-col px-6 overflow-y-auto bg-gradient-to-b from-sky-500 to-sky-600 grow gap-y-5">
             <div class="flex items-center h-16 shrink-0">
                 <div class="p-1 border border-white rounded-md bg-white/70 backdrop-blur-sm">
                     <img class="w-auto h-8" src="/LogoSobatBumi.png" alt="Sobat Bumi">
@@ -39,9 +39,8 @@
                 <span class="ml-3 font-bold text-white">
                     Admin
                 </span>
-                <span
-                    class="ml-1 font-bold text-transparent bg-clip-text bg-gradient-to-r from-lime-200 via-emerald-300 to-green-500">
-                    SobatBumi
+                <span class="ml-1 font-bold text-transparent bg-clip-text bg-sky-900">
+                    KawanBumi
                 </span>
             </div>
 

@@ -11,7 +11,7 @@ import { getStatusColor as getMissionStatusColor } from '@/utils/missionStatusCo
 import { getMissionStatusLabel } from '@/utils/missionStatusLabel';
 import { getStatusColor } from '@/utils/reportStatusColor';
 import { getStatusLabel } from '@/utils/reportStatusLabel';
-import { router as Inertia, router, useForm } from '@inertiajs/react';
+import { router as Inertia, useForm } from '@inertiajs/react';
 import axios from 'axios';
 import {
     ArrowLeft,
@@ -68,7 +68,7 @@ interface ReportDetailPageProps {
     chatGroup: {
         id: number;
         mission_id: number;
-    }
+    };
     onBack: () => void;
 }
 
@@ -158,16 +158,18 @@ const ReportDetailPage = ({
         });
     };
 
- const visitChatGroup = () => {
-    const chatGroupId = chatGroup.id
-    console.log('Chat Group ID:', chatGroupId);
-    if (chatGroupId) {
-        Inertia.get(route('chatgroup.show', chatGroupId));
-
-    } else {
-        console.error("Gagal mengunjungi grup chat: Mission atau Chat Group ID tidak ditemukan pada laporan ini.", report);
-    }
-};
+    const visitChatGroup = () => {
+        const chatGroupId = chatGroup.id;
+        console.log('Chat Group ID:', chatGroupId);
+        if (chatGroupId) {
+            Inertia.get(route('chatgroup.show', chatGroupId));
+        } else {
+            console.error(
+                'Gagal mengunjungi grup chat: Mission atau Chat Group ID tidak ditemukan pada laporan ini.',
+                report,
+            );
+        }
+    };
 
     const handleVote = async (type: 'upvote' | 'dislike') => {
         console.log('Handle Vote Triggered:', type);
@@ -249,12 +251,12 @@ const ReportDetailPage = ({
     };
 
     return (
-        <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
+        <div className="px-4 py-8 mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
             <div className="flex items-center justify-between">
                 <Button
                     variant="ghost"
                     onClick={onBack}
-                    className="text-gray-600 hover:text-emerald-600"
+                    className="text-gray-600 hover:text-sky-600"
                 >
                     <ArrowLeft size={20} className="mr-2" />
                     Kembali ke Daftar Laporan
@@ -271,10 +273,10 @@ const ReportDetailPage = ({
                 <div className="space-y-6 lg:col-span-2">
                     <Card>
                         <CardContent className="p-6">
-                            <div className="mb-6 flex flex-col items-start justify-between md:flex-row">
+                            <div className="flex flex-col items-start justify-between mb-6 md:flex-row">
                                 <div className="flex-1">
-                                    <div className="mb-3 flex flex-wrap gap-2">
-                                        <Badge className="border border-gray-400 bg-white text-gray-700">
+                                    <div className="flex flex-wrap gap-2 mb-3">
+                                        <Badge className="text-gray-700 bg-white border border-gray-400">
                                             {getCategoryLabel(report.category)}
                                         </Badge>
                                         <Badge
@@ -285,7 +287,7 @@ const ReportDetailPage = ({
                                             {getStatusLabel(report.status)}
                                         </Badge>
                                         {report.mission && (
-                                            <Badge className="bg-indigo-100 text-indigo-700">
+                                            <Badge className="text-indigo-700 bg-indigo-100">
                                                 Ada Misi
                                             </Badge>
                                         )}
@@ -321,7 +323,7 @@ const ReportDetailPage = ({
                                             href={`https://www.google.com/maps?q=${report.latitude},${report.longitude}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex cursor-pointer items-start text-emerald-600 hover:underline md:col-span-2"
+                                            className="flex items-start cursor-pointer text-sky-700 hover:underline md:col-span-2"
                                         >
                                             <LocateFixed
                                                 size={16}
@@ -350,18 +352,18 @@ const ReportDetailPage = ({
                             <h3 className="mb-3 text-lg font-semibold">
                                 Media Pendukung
                             </h3>
-                            <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
                                 {report.media?.map((mediaItem, index) => (
                                     <div
                                         key={index}
-                                        className="aspect-video overflow-hidden rounded-lg bg-black"
+                                        className="overflow-hidden bg-black rounded-lg aspect-video"
                                     >
                                         {mediaItem.media_type?.startsWith(
                                             'video',
                                         ) ? (
                                             <video
                                                 controls
-                                                className="h-full w-full object-contain"
+                                                className="object-contain w-full h-full"
                                                 src={`/storage/${mediaItem.media_url}`}
                                             />
                                         ) : (
@@ -394,13 +396,13 @@ const ReportDetailPage = ({
                             </div>
 
                             {/* Voting Section */}
-                            <div className="flex items-center gap-4 border-t border-gray-200 py-4">
+                            <div className="flex items-center gap-4 py-4 border-t border-gray-200">
                                 {/* Tombol Upvote */}
                                 <button
                                     onClick={() => handleVote('upvote')}
                                     className={`flex items-center rounded-md border px-3 py-2 transition-colors ${
                                         hasUpvoted
-                                            ? 'border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700'
+                                            ? 'border-sky-600 bg-sky-600 text-white hover:bg-sky-700'
                                             : 'border-gray-300 text-gray-600 hover:bg-gray-100'
                                     } `}
                                 >
@@ -422,8 +424,8 @@ const ReportDetailPage = ({
                                 </button>
                             </div>
                             {report.status === 'completed' && (
-                                <div className="mt-6 rounded-xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 to-green-50 p-6 shadow-lg">
-                                    <div className="mb-4 flex items-center space-x-3">
+                                <div className="p-6 mt-6 border-2 shadow-lg rounded-xl border-emerald-200 bg-gradient-to-br from-emerald-50 to-green-50">
+                                    <div className="flex items-center mb-4 space-x-3">
                                         <div>
                                             <h3 className="text-xl font-bold text-emerald-800">
                                                 Laporan dan Misi Terkait
@@ -434,9 +436,9 @@ const ReportDetailPage = ({
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="mb-4 inline-flex items-center rounded-full border border-emerald-300 bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">
+                                    <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-semibold border rounded-full border-emerald-300 bg-emerald-100 text-emerald-800">
                                         <svg
-                                            className="mr-1 h-3 w-3"
+                                            className="w-3 h-3 mr-1"
                                             fill="currentColor"
                                             viewBox="0 0 20 20"
                                         >
@@ -448,10 +450,10 @@ const ReportDetailPage = ({
                                         </svg>
                                         STATUS: COMPLETED
                                     </div>
-                                    <div className="rounded-lg border border-emerald-100 bg-white/70 p-4">
-                                        <h4 className="mb-3 flex items-center font-semibold text-emerald-800">
+                                    <div className="p-4 border rounded-lg border-emerald-100 bg-white/70">
+                                        <h4 className="flex items-center mb-3 font-semibold text-emerald-800">
                                             <svg
-                                                className="mr-2 h-4 w-4"
+                                                className="w-4 h-4 mr-2"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -466,7 +468,7 @@ const ReportDetailPage = ({
                                             Laporan Akhir:
                                         </h4>
                                         <div className="prose-sm prose max-w-none">
-                                            <p className="text-justify leading-relaxed text-gray-700">
+                                            <p className="leading-relaxed text-justify text-gray-700">
                                                 {report.completion_details || (
                                                     <span className="italic text-gray-500">
                                                         Tidak ada detail laporan
@@ -476,14 +478,11 @@ const ReportDetailPage = ({
                                             </p>
                                         </div>
                                     </div>
-
-                                    {/* Footer with celebration elements */}
-                                    <div className="mt-4 flex items-center justify-between">
+                                    <div className="flex items-center justify-between mt-4">
                                         <div className="flex items-center space-x-2 text-emerald-600">
-                                            <span className="text-2xl">🎉</span>
                                             <span className="text-sm font-medium">
                                                 Terima kasih atas kontribusi
-                                                pihak yang terlibat!
+                                                dari pihak yang terlibat!
                                             </span>
                                         </div>
                                     </div>
@@ -496,12 +495,12 @@ const ReportDetailPage = ({
                     {report.mission && (
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-emerald-700">
+                                <CardTitle className="text-sky-700">
                                     Misi Terkait
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="mb-3 flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2 mb-3">
                                     <Badge
                                         className={getMissionStatusColor(
                                             report.mission?.status,
@@ -559,7 +558,7 @@ const ReportDetailPage = ({
 
                                 {report.status === 'under-authority' ? (
                                     <div className="my-6">
-                                        <Badge className="mb-3 bg-yellow-300 text-lg font-semibold text-black">
+                                        <Badge className="mb-3 text-lg font-semibold text-black bg-yellow-300">
                                             Misi Khusus Pihak Berwenang
                                         </Badge>
                                         <p className="text-gray-700">
@@ -570,55 +569,13 @@ const ReportDetailPage = ({
                                     </div>
                                 ) : report.mission?.volunteers ? (
                                     <div className="mb-6">
-                                        {/* <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
-                                            <div>
-                                                <span className="font-medium text-gray-600">
-                                                    Ketua Tim:
-                                                </span>
-                                                {confirmedLeader.length > 0 ? (
-                                                    <ul className="ml-5 text-gray-700 list-disc">
-                                                        {confirmedLeader.map(
-                                                            (
-                                                                leader: Leader,
-                                                            ) => (
-                                                                <li
-                                                                    key={
-                                                                        leader.id
-                                                                    }
-                                                                >
-                                                                    {
-                                                                        leader.name
-                                                                    }
-                                                                </li>
-                                                            ),
-                                                        )}
-                                                    </ul>
-                                                ) : (
-                                                    <span className="ml-2 text-gray-500">
-                                                        Belum ada
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <div>
-                                                <span className="text-gray-600">
-                                                    Anggota Bergabung:{' '}
-                                                    {volunteerCounts || 0}
-                                                </span>
-                                                <span className="font-medium">
-                                                    {report.mission?.volunteers
-                                                        ?.is_leader ==
-                                                        false}{' '}
-                                                    orang
-                                                </span>
-                                            </div>
-                                        </div> */}
-                                        <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+                                        <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
                                             {/* Ketua Tim Card */}
-                                            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                                                <div className="mb-3 flex items-center gap-2">
-                                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100">
+                                            <div className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <div className="flex items-center justify-center w-8 h-8 bg-indigo-100 rounded-full">
                                                         <svg
-                                                            className="h-4 w-4 text-emerald-600"
+                                                            className="w-4 h-4 text-indigo-600"
                                                             fill="none"
                                                             stroke="currentColor"
                                                             viewBox="0 0 24 24"
@@ -647,9 +604,9 @@ const ReportDetailPage = ({
                                                                     key={
                                                                         leader.id
                                                                     }
-                                                                    className="flex items-center gap-2 rounded-md bg-emerald-50 px-3 py-2"
+                                                                    className="flex items-center gap-2 px-3 py-2 rounded-md bg-indigo-50"
                                                                 >
-                                                                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-200 text-xs font-medium text-emerald-700">
+                                                                    <div className="flex items-center justify-center w-6 h-6 text-xs font-medium text-indigo-700 bg-indigo-200 rounded-full">
                                                                         {leader.name
                                                                             .charAt(
                                                                                 0,
@@ -667,7 +624,7 @@ const ReportDetailPage = ({
                                                     </div>
                                                 ) : (
                                                     <div className="flex items-center gap-2 text-gray-500">
-                                                        <div className="h-4 w-4 rounded-full border-2 border-dashed border-gray-300"></div>
+                                                        <div className="w-4 h-4 border-2 border-gray-300 border-dashed rounded-full"></div>
                                                         <span className="text-sm">
                                                             Belum ada ketua tim
                                                         </span>
@@ -676,11 +633,11 @@ const ReportDetailPage = ({
                                             </div>
 
                                             {/* Anggota Tim Card */}
-                                            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                                                <div className="mb-3 flex items-center gap-2">
-                                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
+                                            <div className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full">
                                                         <svg
-                                                            className="h-4 w-4 text-blue-600"
+                                                            className="w-4 h-4 text-blue-600"
                                                             fill="none"
                                                             stroke="currentColor"
                                                             viewBox="0 0 24 24"
@@ -708,7 +665,7 @@ const ReportDetailPage = ({
                                                             orang
                                                         </span>
                                                     </div>
-                                                    <div className="rounded-full bg-blue-50 px-3 py-1">
+                                                    <div className="px-3 py-1 rounded-full bg-blue-50">
                                                         <span className="text-xs font-medium text-blue-700">
                                                             Bergabung
                                                         </span>
@@ -723,7 +680,7 @@ const ReportDetailPage = ({
                                                     'community' ? (
                                                         <Button
                                                             variant="outline"
-                                                            className="bg-yellow-400 text-black hover:bg-black hover:text-yellow-400"
+                                                            className="text-black bg-yellow-400 hover:bg-black hover:text-yellow-400"
                                                             onClick={
                                                                 handleOpenModalRegisterAsCommunity
                                                             }
@@ -817,11 +774,12 @@ const ReportDetailPage = ({
                                                             Batal Daftar
                                                         </Button>
                                                         <Button
-                                                            onClick={() => visitChatGroup()}
-                                                            className="bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md transition-all duration-300 hover:from-emerald-600 hover:to-green-700 hover:shadow-lg hover:-translate-y-px"
+                                                            onClick={() =>
+                                                                visitChatGroup()
+                                                            }
+                                                            className="text-white transition-all duration-300 shadow-md bg-gradient-to-r from-emerald-500 to-green-600 hover:-translate-y-px hover:from-emerald-600 hover:to-green-700 hover:shadow-lg"
                                                         >
-                                                            {/* Ganti dengan ikon yang sesuai, misalnya 'MessageCircle' atau 'Users' dari Lucide React */}
-                                                            <MessageCircle className="mr-2 h-4 w-4" />
+                                                            <MessageCircle className="w-4 h-4 mr-2" />
                                                             Buka Obrolan Grup
                                                         </Button>
                                                         <CancelVolunteerModal
@@ -937,10 +895,10 @@ const ReportDetailPage = ({
                                                     ) => (
                                                         <div
                                                             key={index}
-                                                            className="my-2 rounded-xl border border-gray-300 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
+                                                            className="p-6 my-2 transition-shadow duration-200 bg-white border border-gray-300 shadow-sm rounded-xl hover:shadow-md"
                                                         >
                                                             {/* Media Grid */}
-                                                            <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                                                            <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2 lg:grid-cols-3">
                                                                 {docs.map(
                                                                     (
                                                                         doc,
@@ -954,27 +912,27 @@ const ReportDetailPage = ({
                                                                         >
                                                                             {doc.media_type ===
                                                                             'video' ? (
-                                                                                <div className="group relative">
+                                                                                <div className="relative group">
                                                                                     <video
                                                                                         src={`/storage/${doc.media_url}`}
                                                                                         controls
                                                                                         preload="metadata"
-                                                                                        className="aspect-video w-full rounded-lg border border-gray-200 shadow-sm"
+                                                                                        className="w-full border border-gray-200 rounded-lg shadow-sm aspect-video"
                                                                                     />
-                                                                                    <div className="absolute right-2 top-2 rounded bg-black bg-opacity-50 px-2 py-1 text-xs text-white">
+                                                                                    <div className="absolute px-2 py-1 text-xs text-white bg-black bg-opacity-50 rounded right-2 top-2">
                                                                                         Video
                                                                                     </div>
                                                                                 </div>
                                                                             ) : (
-                                                                                <div className="group relative">
+                                                                                <div className="relative group">
                                                                                     <div className="mx-auto w-full max-w-[200px]">
                                                                                         <ImageWithPopup
                                                                                             src={`/storage/${doc.media_url}`}
                                                                                             alt={`Media dokumentasi ${idx + 1}`}
-                                                                                            className="h-auto w-full rounded-lg border border-gray-200 object-cover shadow-sm transition-shadow duration-200 hover:shadow-md"
+                                                                                            className="object-cover w-full h-auto transition-shadow duration-200 border border-gray-200 rounded-lg shadow-sm hover:shadow-md"
                                                                                         />
                                                                                     </div>
-                                                                                    <div className="absolute right-2 top-2 rounded bg-black bg-opacity-50 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+                                                                                    <div className="absolute px-2 py-1 text-xs text-white transition-opacity bg-black bg-opacity-50 rounded opacity-0 right-2 top-2 group-hover:opacity-100">
                                                                                         {idx +
                                                                                             1}
 
@@ -1007,11 +965,11 @@ const ReportDetailPage = ({
                                                                 </div>
 
                                                                 {/* Metadata */}
-                                                                <div className="flex items-center justify-between border-t border-gray-100 pt-3">
+                                                                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                                                                     <div className="flex items-center space-x-4">
                                                                         <div className="flex items-center space-x-2">
-                                                                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
-                                                                                <span className="text-xs font-medium text-emerald-700">
+                                                                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-sky-100">
+                                                                                <span className="text-xs font-medium text-sky-700">
                                                                                     {
                                                                                         docs[0]
                                                                                             .uploader
@@ -1029,7 +987,7 @@ const ReportDetailPage = ({
                                                                         </div>
                                                                         <div className="flex items-center space-x-1 text-xs text-gray-500">
                                                                             <svg
-                                                                                className="h-3 w-3"
+                                                                                className="w-3 h-3"
                                                                                 fill="none"
                                                                                 stroke="currentColor"
                                                                                 viewBox="0 0 24 24"
@@ -1052,7 +1010,7 @@ const ReportDetailPage = ({
                                                                         </div>
                                                                     </div>
                                                                     <div className="flex items-center space-x-2">
-                                                                        <span className="rounded-full bg-gray-50 px-2 py-1 text-xs text-gray-500">
+                                                                        <span className="px-2 py-1 text-xs text-gray-500 rounded-full bg-gray-50">
                                                                             {
                                                                                 docs.length
                                                                             }{' '}
@@ -1072,19 +1030,19 @@ const ReportDetailPage = ({
 
                                             {/* Show more/less button */}
                                             {hasMoreDocs && (
-                                                <div className="flex justify-center border-t border-gray-100 pt-4">
+                                                <div className="flex justify-center pt-4 border-t border-gray-100">
                                                     <button
                                                         onClick={() =>
                                                             setShowAllDocs(
                                                                 !showAllDocs,
                                                             )
                                                         }
-                                                        className="inline-flex items-center rounded-lg px-4 py-2 text-sm font-medium text-emerald-600 transition-colors duration-200 hover:bg-emerald-50 hover:text-emerald-700"
+                                                        className="inline-flex items-center px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg text-sky-600 hover:bg-sky-50 hover:text-sky-700"
                                                     >
                                                         {showAllDocs ? (
                                                             <>
                                                                 <svg
-                                                                    className="mr-2 h-4 w-4"
+                                                                    className="w-4 h-4 mr-2"
                                                                     fill="none"
                                                                     stroke="currentColor"
                                                                     viewBox="0 0 24 24"
@@ -1103,7 +1061,7 @@ const ReportDetailPage = ({
                                                         ) : (
                                                             <>
                                                                 <svg
-                                                                    className="mr-2 h-4 w-4"
+                                                                    className="w-4 h-4 mr-2"
                                                                     fill="none"
                                                                     stroke="currentColor"
                                                                     viewBox="0 0 24 24"
@@ -1163,26 +1121,26 @@ const ReportDetailPage = ({
                                     {displayedComments.map((comment) => (
                                         <div
                                             key={comment.id}
-                                            className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
+                                            className="p-6 transition-shadow duration-200 bg-white border border-gray-100 shadow-sm rounded-xl hover:shadow-md"
                                         >
                                             <div className="flex space-x-4">
-                                                <Avatar className="h-10 w-10 ring-2 ring-gray-100">
+                                                <Avatar className="w-10 h-10 ring-2 ring-gray-100">
                                                     <AvatarImage
                                                         src={`/storage/${comment.user.profile_url}`}
                                                         className="object-cover"
                                                     />
-                                                    <AvatarFallback className="bg-emerald-100 font-semibold text-emerald-700">
+                                                    <AvatarFallback className="font-semibold bg-sky-100 text-sky-700">
                                                         {comment.user.name[0]}
                                                     </AvatarFallback>
                                                 </Avatar>
 
-                                                <div className="min-w-0 flex-1">
+                                                <div className="flex-1 min-w-0">
                                                     {/* User info */}
-                                                    <div className="mb-3 flex items-center space-x-3">
+                                                    <div className="flex items-center mb-3 space-x-3">
                                                         <span className="font-semibold text-gray-900">
                                                             {comment.user.name}
                                                         </span>
-                                                        <span className="rounded-full bg-gray-50 px-2 py-1 text-xs text-gray-500">
+                                                        <span className="px-2 py-1 text-xs text-gray-500 rounded-full bg-gray-50">
                                                             {formatCommentDate(
                                                                 comment.created_at,
                                                             )}
@@ -1203,13 +1161,13 @@ const ReportDetailPage = ({
                                                                     src={`/storage/${comment.media_url}`}
                                                                     controls
                                                                     preload="metadata"
-                                                                    className="aspect-video w-full max-w-md rounded-lg border border-gray-200 shadow-sm"
+                                                                    className="w-full max-w-md border border-gray-200 rounded-lg shadow-sm aspect-video"
                                                                 />
                                                             ) : (
                                                                 <img
                                                                     src={`/storage/${comment.media_url}`}
                                                                     alt={`Media untuk komentar`}
-                                                                    className="max-h-64 w-auto rounded-lg border border-gray-200 object-cover shadow-sm"
+                                                                    className="object-cover w-auto border border-gray-200 rounded-lg shadow-sm max-h-64"
                                                                 />
                                                             )}
                                                         </div>
@@ -1219,21 +1177,21 @@ const ReportDetailPage = ({
                                                     {comment.replies &&
                                                         comment.replies.length >
                                                             0 && (
-                                                            <div className="ml-2 mt-4 space-y-3 border-l-2 border-emerald-100 pl-4">
+                                                            <div className="pl-4 mt-4 ml-2 space-y-3 border-l-2 border-sky-100">
                                                                 {comment.replies.map(
                                                                     (reply) => (
                                                                         <div
                                                                             key={
                                                                                 reply.id
                                                                             }
-                                                                            className="flex space-x-3 rounded-lg bg-gray-50 p-3"
+                                                                            className="flex p-3 space-x-3 rounded-lg bg-gray-50"
                                                                         >
                                                                             <Avatar className="h-7 w-7 ring-1 ring-gray-200">
                                                                                 <AvatarImage
                                                                                     src={`/storage/${reply.user.profile_url}`}
                                                                                     className="object-cover"
                                                                                 />
-                                                                                <AvatarFallback className="bg-emerald-50 text-xs font-medium text-emerald-600">
+                                                                                <AvatarFallback className="text-xs font-medium bg-sky-50 text-sky-600">
                                                                                     {
                                                                                         reply
                                                                                             .user
@@ -1241,8 +1199,8 @@ const ReportDetailPage = ({
                                                                                     }
                                                                                 </AvatarFallback>
                                                                             </Avatar>
-                                                                            <div className="min-w-0 flex-1">
-                                                                                <div className="mb-1 flex items-center space-x-2">
+                                                                            <div className="flex-1 min-w-0">
+                                                                                <div className="flex items-center mb-1 space-x-2">
                                                                                     <span className="text-sm font-medium text-gray-900">
                                                                                         {
                                                                                             reply
@@ -1290,10 +1248,10 @@ const ReportDetailPage = ({
                                                                 });
                                                             }
                                                         }}
-                                                        className="group mt-3 inline-flex items-center text-sm font-medium text-emerald-600 transition-colors duration-200 hover:text-emerald-700"
+                                                        className="inline-flex items-center mt-3 text-sm font-medium transition-colors duration-200 group text-sky-600 hover:text-sky-700"
                                                     >
                                                         <svg
-                                                            className="mr-1 h-4 w-4"
+                                                            className="w-4 h-4 mr-1"
                                                             fill="none"
                                                             stroke="currentColor"
                                                             viewBox="0 0 24 24"
@@ -1309,7 +1267,7 @@ const ReportDetailPage = ({
                                                     </button>
                                                     {replying ===
                                                         comment.id && (
-                                                        <div className="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
+                                                        <div className="p-4 mt-4 border border-gray-200 rounded-lg bg-gray-50">
                                                             <Textarea
                                                                 rows={3}
                                                                 placeholder={`Balas komentar ${comment.user.name}...`}
@@ -1323,9 +1281,9 @@ const ReportDetailPage = ({
                                                                             .value,
                                                                     )
                                                                 }
-                                                                className="resize-none border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
+                                                                className="border-gray-300 resize-none focus:border-sky-500 focus:ring-sky-500"
                                                             />
-                                                            <div className="mt-3 flex justify-end space-x-2">
+                                                            <div className="flex justify-end mt-3 space-x-2">
                                                                 <Button
                                                                     size="sm"
                                                                     variant="outline"
@@ -1347,11 +1305,11 @@ const ReportDetailPage = ({
                                                                         processingReply ||
                                                                         !replyData.comment.trim()
                                                                     }
-                                                                    className="bg-emerald-600 text-white shadow-sm hover:bg-emerald-700"
+                                                                    className="text-white shadow-sm bg-sky-600 hover:bg-sky-700"
                                                                 >
                                                                     {processingReply ? (
                                                                         <div className="flex items-center space-x-2">
-                                                                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                                                                            <div className="w-4 h-4 border-2 border-white rounded-full animate-spin border-t-transparent"></div>
                                                                             <span>
                                                                                 Mengirim...
                                                                             </span>
@@ -1369,15 +1327,15 @@ const ReportDetailPage = ({
                                     ))}
                                 </div>
                                 {hasMoreComments && (
-                                    <div className="flex justify-center border-t border-gray-100 pt-4">
+                                    <div className="flex justify-center pt-4 border-t border-gray-100">
                                         <button
                                             onClick={() => setShowAll(!showAll)}
-                                            className="inline-flex items-center rounded-lg px-4 py-2 text-sm font-medium text-emerald-600 transition-colors duration-200 hover:bg-emerald-50 hover:text-emerald-700"
+                                            className="inline-flex items-center px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg text-sky-600 hover:bg-sky-50 hover:text-sky-700"
                                         >
                                             {showAll ? (
                                                 <>
                                                     <svg
-                                                        className="mr-2 h-4 w-4"
+                                                        className="w-4 h-4 mr-2"
                                                         fill="none"
                                                         stroke="currentColor"
                                                         viewBox="0 0 24 24"
@@ -1394,7 +1352,7 @@ const ReportDetailPage = ({
                                             ) : (
                                                 <>
                                                     <svg
-                                                        className="mr-2 h-4 w-4"
+                                                        className="w-4 h-4 mr-2"
                                                         fill="none"
                                                         stroke="currentColor"
                                                         viewBox="0 0 24 24"

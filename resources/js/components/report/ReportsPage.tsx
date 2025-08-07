@@ -205,8 +205,8 @@ const ReportsPage = ({
         filters.endDate;
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col items-start justify-between md:flex-row md:items-center">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex flex-col items-start justify-between mb-8 md:flex-row md:items-center">
                 <div>
                     <h1 className="mb-2 text-3xl font-bold text-gray-900">
                         {myReports ? 'Laporan Saya' : 'Daftar Laporan'}
@@ -222,7 +222,7 @@ const ReportsPage = ({
                 </div>
                 <Button
                     onClick={onCreateReport}
-                    className="mt-4 bg-emerald-700 text-white hover:bg-emerald-800 md:mt-0"
+                    className="mt-4 text-white bg-sky-700 hover:bg-sky-800 md:mt-0"
                     size="lg"
                 >
                     <Plus size={20} className="mr-2" />
@@ -234,18 +234,18 @@ const ReportsPage = ({
                 {/* Filter Sidebar */}
                 <div className="lg:col-span-1">
                     {/* <Card className="sticky top-24"> */}
-                    <Card className="sticky top-24 overflow-visible">
+                    <Card className="sticky overflow-visible top-24">
                         <CardHeader>
                             <CardTitle className="flex items-center justify-between text-lg">
                                 <div className="flex items-center">
                                     <SlidersHorizontal
                                         size={20}
-                                        className="mr-2 text-emerald-600"
+                                        className="mr-2 text-sky-600"
                                     />
                                     Filter Laporan
                                 </div>
                                 {hasActiveFilters && (
-                                    <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-600">
+                                    <span className="px-2 py-1 text-xs rounded-full bg-emerald-100 text-emerald-600">
                                         Aktif
                                     </span>
                                 )}
@@ -354,7 +354,7 @@ const ReportsPage = ({
                                 </label>
                                 <input
                                     type="date"
-                                    className="w-full rounded-md border border-gray-200 px-2 py-2"
+                                    className="w-full px-2 py-2 border border-gray-200 rounded-md"
                                     value={filters.startDate}
                                     onChange={(e) =>
                                         updateFilter(
@@ -370,7 +370,7 @@ const ReportsPage = ({
                                 </label>
                                 <input
                                     type="date"
-                                    className="w-full rounded-md border border-gray-200 px-2 py-2"
+                                    className="w-full px-2 py-2 border border-gray-200 rounded-md"
                                     value={filters.endDate}
                                     onChange={(e) =>
                                         updateFilter('endDate', e.target.value)
@@ -378,14 +378,14 @@ const ReportsPage = ({
                                     min={filters.startDate}
                                 />
                             </div>
-                            <div className="space-y-2 pt-4">
+                            <div className="pt-4 space-y-2">
                                 <Button
                                     variant="outline"
-                                    className="flex w-full items-center justify-center gap-2"
+                                    className="flex items-center justify-center w-full gap-2"
                                     onClick={resetFilters}
                                     disabled={!hasActiveFilters}
                                 >
-                                    <RefreshCcw className="h-4 w-4" />
+                                    <RefreshCcw className="w-4 h-4" />
                                     Reset Filter
                                 </Button>
                             </div>
@@ -396,7 +396,7 @@ const ReportsPage = ({
                 {/* Main Content */}
                 <div className="lg:col-span-3">
                     {/* Sort and Search */}
-                    <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
                         <div className="flex items-center space-x-4">
                             <Select value={sortBy} onValueChange={setSortBy}>
                                 <SelectTrigger className="w-48">
@@ -423,7 +423,7 @@ const ReportsPage = ({
                         </div>
 
                         <div className="relative w-full sm:w-64">
-                            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                            <Search className="absolute w-4 h-4 text-gray-400 left-3 top-3" />
                             <Input
                                 placeholder="Cari laporan..."
                                 className="pl-10"
@@ -439,7 +439,7 @@ const ReportsPage = ({
                         filters.startDate ||
                         filters.endDate ||
                         searchQuery) && (
-                        <div className="mb-4 flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mb-4">
                             <span className="mr-2 text-sm font-medium text-gray-700">
                                 Filter aktif:
                             </span>
@@ -531,25 +531,25 @@ const ReportsPage = ({
                                 {filteredReports.map((report: Report) => (
                                     <Card
                                         key={report.id}
-                                        className="group cursor-pointer border-0 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                                        className="transition-all duration-300 border-0 shadow-md cursor-pointer group hover:-translate-y-1 hover:shadow-lg"
                                         onClick={() => onViewDetails(report.id)}
                                     >
                                         <div className="relative overflow-hidden rounded-t-lg">
                                             {report.media?.[0]?.media_type?.startsWith(
                                                 'video',
                                             ) ? (
-                                                <div className="relative h-48 w-full bg-black">
+                                                <div className="relative w-full h-48 bg-black">
                                                     <video
-                                                        className="h-full w-full object-cover opacity-50"
+                                                        className="object-cover w-full h-full opacity-50"
                                                         src={`/storage/${report.media[0].media_url}`}
                                                         muted
                                                         preload="metadata"
                                                     />
                                                     <div className="absolute inset-0 flex items-center justify-center">
-                                                        <div className="rounded-full bg-white/80 p-2">
+                                                        <div className="p-2 rounded-full bg-white/80">
                                                             <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
-                                                                className="h-6 w-6 text-black"
+                                                                className="w-6 h-6 text-black"
                                                                 fill="none"
                                                                 viewBox="0 0 24 24"
                                                                 stroke="currentColor"
@@ -570,7 +570,7 @@ const ReportsPage = ({
                                                 <img
                                                     src={`/storage/${report.media?.[0]?.media_url}`}
                                                     alt={report.title}
-                                                    className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                    className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
                                                 />
                                             )}
 
@@ -587,7 +587,7 @@ const ReportsPage = ({
                                             </div>
                                             {report.mission && (
                                                 <div className="absolute left-3 top-3">
-                                                    <Badge className="bg-indigo-100 text-indigo-700">
+                                                    <Badge className="text-indigo-700 bg-indigo-100">
                                                         Ada Misi
                                                     </Badge>
                                                 </div>
@@ -606,11 +606,11 @@ const ReportsPage = ({
                                                 </Badge>
                                             </div>
 
-                                            <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900 transition-colors group-hover:text-emerald-600">
+                                            <h3 className="mb-2 font-semibold text-gray-900 transition-colors line-clamp-2 group-hover:text-sky-600">
                                                 {report.title}
                                             </h3>
 
-                                            <div className="mb-3 flex items-center text-sm text-gray-500">
+                                            <div className="flex items-center mb-3 text-sm text-gray-500">
                                                 <MapPin
                                                     size={14}
                                                     className="mr-1"
@@ -622,7 +622,7 @@ const ReportsPage = ({
                                                 </span>
                                             </div>
 
-                                            <div className="mb-4 flex items-center justify-between">
+                                            <div className="flex items-center justify-between mb-4">
                                                 <div className="flex items-center text-sm text-gray-500">
                                                     <Calendar
                                                         size={14}
@@ -635,7 +635,7 @@ const ReportsPage = ({
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center justify-between gap-5">
-                                                    <div className="flex items-center text-sm font-medium text-emerald-600">
+                                                    <div className="flex items-center text-sm font-medium text-sky-600">
                                                         <ThumbsUp
                                                             size={14}
                                                             className="mr-1"
@@ -659,7 +659,7 @@ const ReportsPage = ({
                                             </div>
 
                                             <Button
-                                                className="mt-auto w-full bg-amber-500 transition-colors duration-200 hover:bg-amber-700"
+                                                className="w-full mt-auto transition-colors duration-200 bg-cyan-500 hover:bg-cyan-700"
                                                 onClick={() => {
                                                     // e.stopPropagation();
                                                     Inertia.visit(
@@ -679,12 +679,12 @@ const ReportsPage = ({
                             </div>
                         </>
                     ) : (
-                        <div className="flex w-full items-center justify-center">
+                        <div className="flex items-center justify-center w-full">
                             <Card className="w-full px-8 py-32 text-center">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="rounded-full bg-gray-100 p-4">
+                                <div className="flex justify-center mb-4">
+                                    <div className="p-4 bg-gray-100 rounded-full">
                                         <svg
-                                            className="h-12 w-12 text-gray-400"
+                                            className="w-12 h-12 text-gray-400"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"

@@ -73,7 +73,7 @@ const MyDonationPage = ({ donations }: MyDonationPageProps) => {
         searchQuery.trim() || statusFilter !== 'all' || nominalFilter !== 'all';
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="mb-8">
                 <h1 className="mb-2 text-3xl font-bold text-gray-900">
                     Riwayat Donasi
@@ -89,12 +89,12 @@ const MyDonationPage = ({ donations }: MyDonationPageProps) => {
                             <div className="flex items-center">
                                 <SlidersHorizontal
                                     size={20}
-                                    className="mr-2 text-emerald-600"
+                                    className="mr-2 text-sky-600"
                                 />
                                 Filter Donasi
                             </div>
                             {hasActiveFilters && (
-                                <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-600">
+                                <span className="px-2 py-1 text-xs rounded-full bg-emerald-100 text-emerald-600">
                                     Aktif
                                 </span>
                             )}
@@ -105,7 +105,7 @@ const MyDonationPage = ({ donations }: MyDonationPageProps) => {
                             onClick={resetFilters}
                             disabled={!hasActiveFilters}
                         >
-                            <RefreshCcw className="mr-2 h-4 w-4" />
+                            <RefreshCcw className="w-4 h-4 mr-2" />
                             Reset Filter
                         </Button>
                     </div>
@@ -205,7 +205,7 @@ const MyDonationPage = ({ donations }: MyDonationPageProps) => {
                                         )}
                                     </p>
                                 </div>
-                                <div className="mt-4 flex items-center gap-4 sm:mt-0 sm:flex-col sm:items-end">
+                                <div className="flex items-center gap-4 mt-4 sm:mt-0 sm:flex-col sm:items-end">
                                     <div className="text-right">
                                         <p className="text-lg font-semibold text-emerald-600">
                                             Rp{' '}
@@ -231,12 +231,12 @@ const MyDonationPage = ({ donations }: MyDonationPageProps) => {
                                     >
                                         {expandedItems.has(donation.id) ? (
                                             <>
-                                                <ChevronUp className="mr-2 h-4 w-4" />
+                                                <ChevronUp className="w-4 h-4 mr-2" />
                                                 Tutup
                                             </>
                                         ) : (
                                             <>
-                                                <ChevronDown className="mr-2 h-4 w-4" />
+                                                <ChevronDown className="w-4 h-4 mr-2" />
                                                 Detail
                                             </>
                                         )}
@@ -244,7 +244,7 @@ const MyDonationPage = ({ donations }: MyDonationPageProps) => {
                                 </div>
                             </div>
                             {expandedItems.has(donation.id) && (
-                                <div className="mt-4 border-t border-gray-200 pt-4">
+                                <div className="pt-4 mt-4 border-t border-gray-200">
                                     <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
                                         <div>
                                             <span className="font-medium text-gray-900">
@@ -281,7 +281,7 @@ const MyDonationPage = ({ donations }: MyDonationPageProps) => {
                 {filteredDonations.length === 0 && (
                     <Card>
                         <CardContent className="flex flex-col items-center py-12 text-center">
-                            <Heart className="mb-3 h-10 w-10 text-gray-400" />
+                            <Heart className="w-10 h-10 mb-3 text-gray-400" />
                             <p className="text-gray-500">
                                 Tidak ada data donasi ditemukan.
                             </p>

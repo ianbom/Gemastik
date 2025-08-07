@@ -70,22 +70,22 @@ const Navbar = ({
 
     return (
         <>
-            <nav className="fixed left-0 right-0 top-0 z-50 border-b border-emerald-100 bg-white/95 shadow-sm backdrop-blur-md">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex h-16 items-center justify-between">
+            <nav className="fixed top-0 left-0 right-0 z-50 border-b shadow-sm border-sky-100 bg-white/95 backdrop-blur-md">
+                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-16">
                         <div
-                            className="group flex cursor-pointer items-center"
+                            className="flex items-center cursor-pointer group"
                             onClick={() => onNavigate('/homepage')}
                         >
-                            <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-xl">
+                            <div className="flex items-center justify-center w-10 h-10 mr-3 rounded-xl">
                                 <img
                                     src="/assets/images/LogoSobatBumi.png"
                                     alt="Logo Sobat Bumi"
-                                    className="h-10 w-10"
+                                    className="w-10 h-10"
                                 />
                             </div>
-                            <span className="bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-2xl font-bold text-transparent">
-                                SobatBumi
+                            <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-sky-600 to-sky-800 bg-clip-text">
+                                KawanBumi
                             </span>
                         </div>
 
@@ -98,8 +98,8 @@ const Navbar = ({
                                         onClick={() => onNavigate(item.key)}
                                         className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                             currentPage === item.key
-                                                ? 'bg-emerald-100 text-emerald-700 shadow-sm'
-                                                : 'text-gray-600 hover:bg-emerald-50 hover:text-emerald-600'
+                                                ? 'bg-sky-100 text-sky-700 shadow-sm'
+                                                : 'text-gray-600 hover:bg-sky-50 hover:text-sky-600'
                                         }`}
                                     >
                                         {item.label}
@@ -124,8 +124,8 @@ const Navbar = ({
                                             onClick={() => onNavigate(item.key)}
                                             className={`relative hidden rounded-lg p-2 transition-colors md:block ${
                                                 currentPage === item.key
-                                                    ? 'bg-emerald-100 text-emerald-600'
-                                                    : 'text-gray-500 hover:bg-emerald-50 hover:text-emerald-600'
+                                                    ? 'bg-sky-100 text-sky-600'
+                                                    : 'text-gray-500 hover:bg-sky-50 hover:text-sky-600'
                                             }`}
                                             title={item.label}
                                         >
@@ -135,12 +135,12 @@ const Navbar = ({
                                 })}
                             <button
                                 onClick={onNotificationClick}
-                                className="relative rounded-lg p-2 text-gray-500 transition-colors hover:bg-emerald-50 hover:text-emerald-600"
+                                className="relative p-2 text-gray-500 transition-colors rounded-lg hover:bg-sky-50 hover:text-sky-600"
                                 title="Notifikasi"
                             >
                                 <Bell size={20} />
                                 {unreadCount > 0 && (
-                                    <Badge className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center bg-red-500 p-0 text-xs text-white">
+                                    <Badge className="absolute flex items-center justify-center w-5 h-5 p-0 text-xs text-white bg-red-500 -right-1 -top-1">
                                         {unreadCount > 99 ? '99+' : unreadCount}
                                     </Badge>
                                 )}
@@ -153,7 +153,7 @@ const Navbar = ({
                                 onClick={() =>
                                     setIsMobileMenuOpen(!isMobileMenuOpen)
                                 }
-                                className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-emerald-50 hover:text-emerald-600 md:hidden"
+                                className="p-2 text-gray-500 transition-colors rounded-lg hover:bg-sky-50 hover:text-sky-600 md:hidden"
                                 aria-label="Toggle mobile menu"
                             >
                                 {isMobileMenuOpen ? (
@@ -169,7 +169,7 @@ const Navbar = ({
 
             {isMobileMenuOpen && (
                 <div
-                    className="fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity md:hidden"
+                    className="fixed inset-0 z-40 transition-opacity bg-black bg-opacity-50 md:hidden"
                     onClick={() => setIsMobileMenuOpen(false)}
                 />
             )}
@@ -178,35 +178,35 @@ const Navbar = ({
                     isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
                 }`}
             >
-                <div className="flex h-full flex-col">
-                    <div className="flex items-center justify-between border-b border-emerald-100 p-4">
+                <div className="flex flex-col h-full">
+                    <div className="flex items-center justify-between p-4 border-b border-sky-100">
                         <div
-                            className="group flex cursor-pointer items-center"
+                            className="flex items-center cursor-pointer group"
                             onClick={() => {
                                 onNavigate('/homepage');
                                 setIsMobileMenuOpen(false);
                             }}
                         >
-                            <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg">
+                            <div className="flex items-center justify-center w-8 h-8 mr-3 rounded-lg">
                                 <img
                                     src="/assets/images/LogoSobatBumi.png"
                                     alt="Logo Sobat Bumi"
-                                    className="h-8 w-8"
+                                    className="w-8 h-8"
                                 />
                             </div>
-                            <span className="bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-lg font-bold text-transparent">
-                                SobatBumi
+                            <span className="text-lg font-bold text-transparent bg-gradient-to-r from-sky-600 to-sky-800 bg-clip-text">
+                                KawanBumi
                             </span>
                         </div>
                         <button
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-emerald-50 hover:text-emerald-600"
+                            className="p-2 text-gray-500 transition-colors rounded-lg hover:bg-sky-50 hover:text-sky-600"
                         >
                             <X size={20} />
                         </button>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-4">
+                    <div className="flex-1 p-4 overflow-y-auto">
                         <nav className="space-y-2">
                             {navItems
                                 .filter((item) => item.showOnMobile)
@@ -218,8 +218,8 @@ const Navbar = ({
                                         }
                                         className={`flex w-full items-center rounded-lg px-4 py-3 text-left text-sm font-medium transition-all duration-200 ${
                                             currentPage === item.key
-                                                ? 'bg-emerald-100 text-emerald-700 shadow-sm'
-                                                : 'text-gray-600 hover:bg-emerald-50 hover:text-emerald-600'
+                                                ? 'bg-sky-100 text-sky-700 shadow-sm'
+                                                : 'text-gray-600 hover:bg-sky-50 hover:text-sky-600'
                                         }`}
                                     >
                                         {item.label}
@@ -229,19 +229,19 @@ const Navbar = ({
                     </div>
 
                     {user && (
-                        <div className="border-t border-emerald-100 p-4">
+                        <div className="p-4 border-t border-sky-100">
                             <div className="flex items-center space-x-3">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100">
-                                    <span className="text-sm font-medium text-emerald-700">
+                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-sky-100">
+                                    <span className="text-sm font-medium text-sky-700">
                                         {user.name?.charAt(0)?.toUpperCase() ||
                                             'U'}
                                     </span>
                                 </div>
-                                <div className="min-w-0 flex-1">
-                                    <p className="truncate text-sm font-medium text-gray-900">
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-medium text-gray-900 truncate">
                                         {user.name}
                                     </p>
-                                    <p className="truncate text-xs text-gray-500">
+                                    <p className="text-xs text-gray-500 truncate">
                                         {user.email}
                                     </p>
                                 </div>
