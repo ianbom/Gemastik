@@ -8,9 +8,9 @@ const Footer = () => {
                     <div className="lg:col-span-2">
                         <div className="flex items-start gap-4 mb-6">
                             <img
-                                src="/assets/images/sobatbumibnw.png"
+                                src="/assets/images/kawanbumibnw-logo.png"
                                 alt="KawanBumi"
-                                className="object-contain w-12 h-12"
+                                className="object-contain w-12 h-12 filter-invert"
                             />
                             <div>
                                 <h3 className="text-2xl font-bold text-white">

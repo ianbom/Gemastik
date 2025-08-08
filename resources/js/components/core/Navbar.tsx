@@ -79,7 +79,7 @@ const Navbar = ({
                         >
                             <div className="flex items-center justify-center w-10 h-10 mr-3 rounded-xl">
                                 <img
-                                    src="/assets/images/LogoSobatBumi.png"
+                                    src="/assets/images/kawanbumi-logo.png"
                                     alt="Logo KawanBumi"
                                     className="w-10 h-10"
                                 />
