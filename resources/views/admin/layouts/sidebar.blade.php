@@ -19,7 +19,7 @@
                 <div
                     class="flex flex-col px-6 pb-4 overflow-y-auto bg-gradient-to-b from-sky-700 to-sky-900 grow gap-y-5">
                     <div class="flex items-center h-16 shrink-0">
-                        <img class="w-auto h-8" src="/LogoSobatBumi.png" alt="Sobat Bumi">
+                        <img class="w-auto h-8" src="assets/images/kawanbumi-logo.png" alt="Sobat Bumi">
                         <span class="ml-3 font-semibold text-white">Admin KawanBumi</span>
                     </div>
                     @include('admin.layouts.nav-link')
@@ -34,12 +34,11 @@
         <div class="flex flex-col px-6 overflow-y-auto bg-gradient-to-b from-sky-500 to-sky-600 grow gap-y-5">
             <div class="flex items-center h-16 shrink-0">
                 <div class="p-1 border border-white rounded-md bg-white/70 backdrop-blur-sm">
-                    <img class="w-auto h-8" src="/LogoSobatBumi.png" alt="Sobat Bumi">
+                    <img class="w-auto h-8" src="/assets/images/kawanbumi-logo.png" alt="Sobat Bumi">
                 </div>
                 <span class="ml-3 font-bold text-white">
                     Admin
-                </span>
-                <span class="ml-1 font-bold text-transparent bg-clip-text bg-sky-900">
+
                     KawanBumi
                 </span>
             </div>

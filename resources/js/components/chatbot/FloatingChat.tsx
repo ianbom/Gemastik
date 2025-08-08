@@ -431,7 +431,7 @@ export default function FloatingChat() {
                     <X size={20} />
                 ) : (
                     <img
-                        src="/assets/images/sobatbumibnw.png"
+                        src="/assets/images/kawanbumibnw-logo.png"
                         alt="KawanBumi"
                         className="w-6 h-6"
                     />

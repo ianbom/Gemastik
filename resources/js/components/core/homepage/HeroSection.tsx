@@ -46,7 +46,7 @@ const HeroSection = () => {
                         >
                             <div className="text-center">
                                 <div className="text-2xl font-bold text-blue-200">
-                                    1,234
+                                    124
                                 </div>
                                 <div className="text-sm text-cyan-100/80">
                                     Laporan
@@ -54,7 +54,7 @@ const HeroSection = () => {
                             </div>
                             <div className="text-center">
                                 <div className="text-2xl font-bold text-blue-200">
-                                    567
+                                    110
                                 </div>
                                 <div className="text-sm text-cyan-100/80">
                                     Diselesaikan
