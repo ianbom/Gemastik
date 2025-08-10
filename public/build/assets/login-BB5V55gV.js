@@ -1,0 +1,1 @@
+import{j as r}from"./app-DqvPgPLX.js";import{L as i}from"./login-form-CKwVXFv-.js";import"./input-_-d2rHVp.js";import"./index-28FC01iy.js";import"./card-f358nuNf.js";import"./label-BD41T5Mp.js";function e(){return r.jsx("div",{children:r.jsx("div",{children:r.jsx(i,{})})})}export{e as default};
